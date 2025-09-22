@@ -24,6 +24,8 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 25 60% 58%;
     --radius: 0.5rem;
+    --font-inter: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --font-space: "Space Grotesk", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
   .dark {

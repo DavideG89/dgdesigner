@@ -6,77 +6,67 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import ProjectCard from "@/components/project-card"
-import { Search, Filter } from "lucide-react"
+import { Search } from "lucide-react"
 
 const projects = [
   {
-    id: "ecommerce-app",
-    title: "E-commerce App Redesign",
+    id: "topos-network",
+    title: "Topos Network",
     description:
-      "Riprogettazione completa dell'interfaccia utente di un'app di e-commerce per migliorare l'esperienza di acquisto.",
-    image: "/placeholder.svg?height=600&width=800&text=E-commerce+App",
-    tags: ["UI Design", "UX Design", "Mobile App"],
-    category: "Mobile App",
-    year: "2024",
-    client: "ShopTech Solutions",
-  },
-  {
-    id: "dashboard-analytics",
-    title: "Dashboard Analytics",
-    description:
-      "Design di una dashboard analitica intuitiva per aiutare le aziende a monitorare le loro prestazioni in tempo reale.",
-    image: "/placeholder.svg?height=600&width=800&text=Analytics+Dashboard",
-    tags: ["UI Design", "Data Visualization", "Web App"],
-    category: "Web App",
-    year: "2024",
-    client: "DataFlow Inc",
-  },
-  {
-    id: "photography-portfolio",
-    title: "Portfolio Fotografico",
-    description:
-      "Sito web minimalista per un fotografo professionista con galleria responsive e sistema di prenotazione.",
-    image: "/placeholder.svg?height=600&width=800&text=Photography+Portfolio",
-    tags: ["Web Design", "Development", "Branding"],
+      "Startup innovativa nel settore finance e crypto che porta soluzioni di pagamento decentralizzate nei paesi in via di sviluppo.",
+    image: "/Topos Network_Dsk.png",
+    tags: ["Website", "Fintech", "Crypto"],
     category: "Website",
-    year: "2023",
-    client: "Marco Fotografo",
+    year: "2024",
+    client: "Topos Network",
   },
   {
-    id: "fitness-app",
-    title: "App di Fitness",
+    id: "palermointour",
+    title: "Palermointour",
     description:
-      "App mobile per il tracciamento dell'attività fisica con interfaccia intuitiva e visualizzazione dei progressi.",
-    image: "/placeholder.svg?height=600&width=800&text=Fitness+App",
-    tags: ["UI Design", "UX Design", "Mobile App"],
-    category: "Mobile App",
-    year: "2023",
-    client: "FitLife Studio",
+      "Sito web dedicato a una guida turistica palermitana per aumentare la visibilità online e favorire le prenotazioni.",
+    image: "/Palermointour website.png",
+    tags: ["Website", "Branding", "Tourism"],
+    category: "Website",
+    year: "2024",
+    client: "Palermointour",
   },
   {
-    id: "weather-app",
-    title: "Applicazione Meteo Interattiva",
+    id: "whatsapp-case-study",
+    title: "WhatsApp UX Case Study",
     description:
-      "App web interattiva per le previsioni meteo con visualizzazioni animate e interfaccia personalizzabile.",
-    image: "/placeholder.svg?height=600&width=800&text=Weather+App",
-    tags: ["Web App", "UI Design", "Development"],
-    category: "Web App",
+      "Analisi di usabilità dell'app WhatsApp con focus sulle opportunità di miglioramento dell'esperienza utente.",
+    image: "/WhatsappStudy.png",
+    tags: ["Case Study", "UX Research", "Product"],
+    category: "Case Study",
     year: "2023",
-    client: "WeatherTech",
+    client: "Ricerca personale",
   },
   {
-    id: "learning-platform",
-    title: "Piattaforma di Apprendimento",
-    description: "Piattaforma educativa con interfaccia intuitiva, tracciamento dei progressi e contenuti interattivi.",
-    image: "/placeholder.svg?height=600&width=800&text=Learning+Platform",
-    tags: ["UI Design", "UX Research", "Web Platform"],
-    category: "Web Platform",
+    id: "mavi-pesca",
+    title: "Mavi Pesca",
+    description:
+      "App progettata per un'azienda ittica per gestire gli ordini dei clienti e ottimizzare il processo di vendita.",
+    image: "/MavipescaStudy.png",
+    tags: ["Case Study", "Product Design", "Mobile"],
+    category: "Case Study",
+    year: "2023",
+    client: "Mavi Pesca",
+  },
+  {
+    id: "catmatildabeat",
+    title: "CatMatildaBeat Marketplace",
+    description:
+      "Marketplace per un beatmaker con catalogo tracce e call-to-action verso BeatStars e contenuti YouTube.",
+    image: "/CatMatildabeat_Dsk.png",
+    tags: ["Website", "Marketplace", "Music"],
+    category: "Website",
     year: "2022",
-    client: "EduTech Solutions",
+    client: "CatMatildaBeat",
   },
 ]
 
-const categories = ["Tutti", "Mobile App", "Web App", "Website", "Web Platform"]
+const categories = ["Tutti", "Website", "Case Study"]
 
 export default function ProjectsPage() {
   const [selectedCategory, setSelectedCategory] = useState("Tutti")
@@ -113,7 +103,7 @@ export default function ProjectsPage() {
       <section className="py-8">
         <div className="container">
           <div className="mx-auto max-w-4xl">
-            <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-start md:justify-center md:gap-4">
               <div className="relative flex-1 max-w-md">
                 <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -123,21 +113,18 @@ export default function ProjectsPage() {
                   className="pl-10"
                 />
               </div>
-              <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-muted-foreground" />
-                <div className="flex flex-wrap gap-2">
-                  {categories.map((category) => (
-                    <Button
-                      key={category}
-                      variant={selectedCategory === category ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedCategory(category)}
-                      className="rounded-full"
-                    >
-                      {category}
-                    </Button>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-2">
+                {categories.map((category) => (
+                  <Button
+                    key={category}
+                    variant={selectedCategory === category ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setSelectedCategory(category)}
+                    className="rounded-full"
+                  >
+                    {category}
+                  </Button>
+                ))}
               </div>
             </div>
           </div>

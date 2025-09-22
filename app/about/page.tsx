@@ -3,7 +3,101 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Users } from "lucide-react"
+
+const experiences = [
+  {
+    id: "greatpixel",
+    role: "UX/UI Designer – Greatpixel",
+    period: "02/2025 – Presente",
+    location: "Remoto",
+    highlights: [
+      "Supporto la progettazione di interfacce web ottimizzate per l'usabilità, contribuendo a wireframe, micro-copy e revisione dei layout.",
+      "Collaboro con il team per analizzare flussi e punti critici, riducendo la frizione e chiarendo le azioni chiave (form, pulsanti, funnel di contatto).",
+      "Utilizzo Eyequant per studiare attenzione visiva e chiarezza del design, individuando interventi per potenziare le call-to-action.",
+    ],
+  },
+  {
+    id: "relybytes",
+    role: "UX/UI Designer – Relybytes",
+    period: "02/2024 – 01/2025",
+    location: "Remoto",
+    highlights: [
+      "Ho collaborato alla progettazione di una piattaforma SaaS modulare (CRM, HR, website builder, to-do list), contribuendo ai flussi principali e alla struttura dei moduli.",
+      "Ho creato un design system riutilizzabile in Figma, migliorando la coerenza tra le sezioni e velocizzando lo sviluppo front-end.",
+      "In team con sviluppatori e PM ho supportato il passaggio da wireframe a prototipo interattivo, validando layout e componenti in modo iterativo.",
+      "Mi sono approcciato a user journey semplificati e metriche di task completion, analizzando i percorsi utente per renderli più efficienti e chiari.",
+    ],
+  },
+  {
+    id: "softstrategy",
+    role: "UX/UI Designer – Softstrategy (via Oneblade)",
+    period: "01/2024 – 01/2025",
+    location: "Remoto",
+    highlights: [
+      "Ho fatto parte del team incaricato del redesign di una piattaforma legacy per Edenred, concentrandomi sulla semplificazione dei flussi.",
+      "Ho riprogettato sezioni critiche del portale, ottimizzando navigazione e leggibilità per scenari ad alta frequenza d'uso.",
+      "Ho collaborato con business analyst e stakeholder per allineare il design alle logiche di business e ai vincoli tecnici enterprise.",
+      "Ho lavorato in modo iterativo, producendo prototipi navigabili in Figma valutati internamente e testati rapidamente con gli utenti finali.",
+    ],
+  },
+  {
+    id: "galileo146",
+    role: "UX/UI Designer – Galileo146",
+    period: "02/2023 – 02/2024",
+    location: "Remoto",
+    highlights: [
+      "Ho realizzato wireframe e prototipi per siti istituzionali e piattaforme informative, con attenzione a usabilità mobile e accessibilità di base.",
+      "Ho raccolto feedback diretti dai clienti per adattare le soluzioni alle esigenze reali.",
+      "Ho supportato il team nella creazione di pattern di design condivisi, standardizzando componenti ricorrenti.",
+      "Ho applicato gerarchia visiva, microcopy UX e layout semplificati per migliorare la comprensione immediata dell'utente.",
+    ],
+  },
+  {
+    id: "topos-network",
+    role: "Front-end / UI Designer – Topos Network",
+    period: "01/2022 – 02/2023",
+    location: "Remoto",
+    highlights: [
+      "Ho progettato e sviluppato l'interfaccia del sito aziendale e della piattaforma Topos Finance con React, HTML/CSS e Webflow.",
+      "Ho collaborato costantemente con il team di sviluppo per tradurre i prototipi UI in codice funzionale e responsive.",
+      "Ho ottimizzato interazioni e gerarchia visiva in contesti crypto/fintech.",
+      "Ho applicato principi di mobile first, scalabilità e coerenza UI, contribuendo alla documentazione del design system interno.",
+    ],
+  },
+]
+
+const education = [
+  {
+    id: "idf",
+    school: "Interaction Design Foundation",
+    title: "User Experience Design",
+    period: "2024",
+    description: "Percorso avanzato focalizzato su metodologie e strumenti di UX design.",
+  },
+  {
+    id: "develhope",
+    school: "Develhope, Palermo",
+    title: "Web Development",
+    period: "2021 – 2022",
+    description: "Programma intensivo di sviluppo web front-end e back-end.",
+  },
+  {
+    id: "aba",
+    school: "Accademia di Belle Arti Santa Giulia, Brescia",
+    title: "Web e Comunicazione d'Impresa",
+    period: "2017 – 2020",
+    description: "Corso triennale centrato su web design, comunicazione visiva e branding.",
+  },
+  {
+    id: "liceo",
+    school: "Liceo Artistico, Palermo",
+    title: "Indirizzo Artistico",
+    period: "2003 – 2007",
+    description: "Formazione di base in discipline artistiche e progettuali.",
+  },
+]
 
 export default function AboutPage() {
   return (
@@ -12,7 +106,7 @@ export default function AboutPage() {
       <section className="py-20">
         <div className="container">
           <div className="grid gap-12 md:grid-cols-2">
-            <div>
+            <div className="order-2 md:order-1">
               <Badge className="mb-4">About Me</Badge>
               <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
                 Ciao, sono <span className="gradient-text">Davide</span>
@@ -42,9 +136,9 @@ export default function AboutPage() {
                 </Button>
               </div>
             </div>
-            <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl bg-muted">
+            <div className="order-1 md:order-2 relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl bg-muted">
               <Image
-                src="/placeholder.svg?height=600&width=600"
+                src="/Me-About.gif"
                 alt="Davide - UI/UX Designer"
                 fill
                 className="object-cover"
@@ -168,14 +262,10 @@ export default function AboutPage() {
                   </li>
                   <li className="flex items-center gap-2">
                     <Badge variant="outline" className="font-normal">
-                      Tailwind CSS
+                      Wordpress
                     </Badge>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <Badge variant="outline" className="font-normal">
-                      Responsive Web
-                    </Badge>
-                  </li>
+                  
                 </ul>
               </CardContent>
             </Card>
@@ -195,51 +285,44 @@ export default function AboutPage() {
           </div>
 
           <div className="mx-auto max-w-3xl">
-            <div className="relative border-l border-muted pl-8 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-10 before:bg-gradient-to-b before:from-background before:to-transparent before:content-['']">
-              <div className="mb-12 relative">
-                <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <Briefcase className="h-3 w-3" />
-                </div>
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="text-xl font-bold">Senior UI/UX Designer</h3>
-                  <Badge variant="outline">2021 - Presente</Badge>
-                </div>
-                <p className="mb-2 text-muted-foreground">DigitalCraft Studio</p>
-                <p className="text-muted-foreground">
-                  Progettazione di interfacce utente per applicazioni web e mobile, creazione di sistemi di design,
-                  conduzione di ricerche utente e test di usabilità, collaborazione con team di sviluppo.
-                </p>
-              </div>
+            <Accordion type="single" collapsible className="md:hidden">
+              {experiences.map((experience) => (
+                <AccordionItem key={experience.id} value={experience.id}>
+                  <AccordionTrigger className="text-left text-base font-semibold">
+                    <span className="flex flex-col text-left">
+                      <span>{experience.role}</span>
+                      <span className="text-sm font-normal text-muted-foreground">{experience.period} · {experience.location}</span>
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <ul className="list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+                      {experience.highlights.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
 
-              <div className="mb-12 relative">
-                <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <Briefcase className="h-3 w-3" />
+            <div className="relative hidden border-l border-muted pl-8 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-10 before:bg-gradient-to-b before:from-background before:to-transparent before:content-[''] md:block">
+              {experiences.map((experience) => (
+                <div key={experience.id} className="relative mb-12">
+                  <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                    <Briefcase className="h-3 w-3" />
+                  </div>
+                  <div className="mb-2 flex items-center justify-between">
+                    <h3 className="text-xl font-bold">{experience.role}</h3>
+                    <Badge variant="outline">{experience.period}</Badge>
+                  </div>
+                  <p className="mb-2 text-muted-foreground">{experience.location}</p>
+                  <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+                    {experience.highlights.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
                 </div>
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="text-xl font-bold">UI Designer</h3>
-                  <Badge variant="outline">2018 - 2021</Badge>
-                </div>
-                <p className="mb-2 text-muted-foreground">TechInnovate</p>
-                <p className="text-muted-foreground">
-                  Progettazione di interfacce utente per prodotti digitali, creazione di prototipi interattivi,
-                  collaborazione con team di UX e sviluppo.
-                </p>
-              </div>
-
-              <div className="mb-12 relative">
-                <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <Briefcase className="h-3 w-3" />
-                </div>
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="text-xl font-bold">Web Designer</h3>
-                  <Badge variant="outline">2016 - 2018</Badge>
-                </div>
-                <p className="mb-2 text-muted-foreground">CreativeWeb Agency</p>
-                <p className="text-muted-foreground">
-                  Progettazione di siti web responsive, creazione di banner e materiali grafici, ottimizzazione
-                  dell'esperienza utente.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
@@ -257,49 +340,37 @@ export default function AboutPage() {
           </div>
 
           <div className="mx-auto max-w-3xl">
-            <div className="relative border-l border-muted pl-8 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-10 before:bg-gradient-to-b before:from-background before:to-transparent before:content-['']">
-              <div className="mb-12 relative">
-                <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <GraduationCap className="h-3 w-3" />
-                </div>
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="text-xl font-bold">Master in User Experience Design</h3>
-                  <Badge variant="outline">2015 - 2016</Badge>
-                </div>
-                <p className="mb-2 text-muted-foreground">Politecnico di Milano</p>
-                <p className="text-muted-foreground">
-                  Specializzazione in progettazione dell'esperienza utente, ricerca utente, architettura
-                  dell'informazione e usabilità.
-                </p>
-              </div>
+            <Accordion type="single" collapsible className="md:hidden">
+              {education.map((entry) => (
+                <AccordionItem key={entry.id} value={entry.id}>
+                  <AccordionTrigger className="text-left text-base font-semibold">
+                    <span className="flex flex-col text-left">
+                      <span>{entry.school}</span>
+                      <span className="text-sm font-normal text-muted-foreground">{entry.period}</span>
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-sm text-muted-foreground">{entry.title}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">{entry.description}</p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
 
-              <div className="mb-12 relative">
-                <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <GraduationCap className="h-3 w-3" />
+            <div className="relative hidden border-l border-muted pl-8 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-10 before:bg-gradient-to-b before:from-background before:to-transparent before:content-[''] md:block">
+              {education.map((entry) => (
+                <div key={entry.id} className="relative mb-12">
+                  <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                    {entry.id === "liceo" ? <BookOpen className="h-3 w-3" /> : <GraduationCap className="h-3 w-3" />}
+                  </div>
+                  <div className="mb-2 flex items-center justify-between">
+                    <h3 className="text-xl font-bold">{entry.school}</h3>
+                    <Badge variant="outline">{entry.period}</Badge>
+                  </div>
+                  <p className="mb-2 text-muted-foreground">{entry.title}</p>
+                  <p className="text-muted-foreground">{entry.description}</p>
                 </div>
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="text-xl font-bold">Laurea in Design della Comunicazione</h3>
-                  <Badge variant="outline">2012 - 2015</Badge>
-                </div>
-                <p className="mb-2 text-muted-foreground">Università degli Studi di Milano</p>
-                <p className="text-muted-foreground">
-                  Formazione in design grafico, comunicazione visiva, tipografia, branding e web design.
-                </p>
-              </div>
-
-              <div className="mb-12 relative">
-                <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                  <BookOpen className="h-3 w-3" />
-                </div>
-                <div className="mb-2 flex items-center justify-between">
-                  <h3 className="text-xl font-bold">Certificazione in UI/UX Design</h3>
-                  <Badge variant="outline">2014</Badge>
-                </div>
-                <p className="mb-2 text-muted-foreground">Interaction Design Foundation</p>
-                <p className="text-muted-foreground">
-                  Corso specializzato in design dell'interfaccia utente e dell'esperienza utente.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </div>

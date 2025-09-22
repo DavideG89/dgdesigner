@@ -16,31 +16,55 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const form = e.currentTarget
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Ottieni i dati dal form
-    const formData = new FormData(e.currentTarget)
-
     try {
-      // Usa l'endpoint Formspree fornito
-      const response = await fetch("https://formspree.io/f/xkgrooej", {
+
+      const formData = new FormData(form)
+      const payload = {
+        name: formData.get("name")?.toString() ?? "",
+        email: formData.get("email")?.toString() ?? "",
+        subject: formData.get("subject")?.toString() ?? "",
+        service: formData.get("service")?.toString() ?? "",
+        message: formData.get("message")?.toString() ?? "",
+        company: formData.get("company")?.toString() ?? "",
+      }
+
+      const response = await fetch("/api/contact", {
         method: "POST",
-        body: formData,
         headers: {
+          "Content-Type": "application/json",
           Accept: "application/json",
         },
+        body: JSON.stringify(payload),
       })
+
+      let data: Record<string, unknown> = {}
+      try {
+        data = await response.json()
+      } catch (jsonError) {
+        console.error("Errore lettura risposta", jsonError)
+      }
 
       if (response.ok) {
         toast({
           title: "Messaggio inviato!",
-          description: "Grazie per avermi contattato. Ti risponderò al più presto.",
+          description:
+            typeof data.message === "string"
+              ? data.message
+              : "Grazie per avermi contattato. Ti risponderò al più presto.",
         })
-        e.currentTarget.reset()
+        form.reset()
       } else {
-        const data = await response.json()
-        throw new Error(data.error || "Si è verificato un errore durante l'invio del messaggio.")
+        const errorMessage =
+          typeof data.error === "string"
+            ? data.error
+            : typeof data.message === "string"
+              ? data.message
+              : "Si è verificato un errore durante l'invio del messaggio."
+        throw new Error(errorMessage)
       }
     } catch (error) {
       toast({
@@ -62,6 +86,10 @@ export default function ContactForm() {
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
+          <div className="hidden" aria-hidden="true">
+            <Label htmlFor="company">Azienda</Label>
+            <Input id="company" name="company" tabIndex={-1} autoComplete="off" />
+          </div>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="name">Nome</Label>

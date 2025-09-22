@@ -54,8 +54,7 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      {/* Sezione demo nascosta temporaneamente */}
-      <section className="hidden" aria-hidden="true">
+      <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <Badge className="mb-4">Servizi</Badge>
@@ -159,57 +158,50 @@ export default function Home() {
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             <ProjectCard
-              title="E-commerce App Redesign"
-              description="Riprogettazione completa dell'interfaccia utente di un'app di e-commerce per migliorare l'esperienza di acquisto."
-              image="/placeholder.svg?height=600&width=800"
-              tags={["UI Design", "UX Design", "Mobile App"]}
-              link="/projects/ecommerce-app"
+              title="Topos Network"
+              description="Una startup innovativa nel settore finance e crypto che porta pagamenti digitali decentralizzati nei paesi in via di sviluppo."
+              image="/Topos Network_Dsk.png"
+              tags={["Website", "Fintech", "Crypto"]}
+              link="/projects/topos-network"
             />
 
             <ProjectCard
-              title="Dashboard Analytics"
-              description="Design di una dashboard analitica intuitiva per aiutare le aziende a monitorare le loro prestazioni in tempo reale."
-              image="/placeholder.svg?height=600&width=800"
-              tags={["UI Design", "Data Visualization", "Web App"]}
-              link="/projects/dashboard-analytics"
+              title="Palermointour"
+              description="Sito web realizzato per una guida turistica con l'obiettivo di aumentare la visibilità e le prenotazioni online."
+              image="/Palermointour website.png"
+              tags={["Web", "Branding", "Tourism"]}
+              link="/projects/palermointour"
             />
 
             <ProjectCard
-              title="Portfolio Fotografico"
-              description="Sito web minimalista per un fotografo professionista con galleria responsive e sistema di prenotazione."
-              image="/placeholder.svg?height=600&width=800"
-              tags={["Web Design", "Development", "Branding"]}
-              link="/projects/photography-portfolio"
+              title="WhatsApp UX Case Study"
+              description="Analisi dell'usabilità di WhatsApp con focus su opportunità di miglioramento per ottimizzare l'esperienza utente."
+              image="/WhatsappStudy.png"
+              tags={["Case Study", "UX Research", "Product"]}
+              link="/projects/whatsapp-case-study"
             />
 
             <ProjectCard
-              title="App di Fitness"
-              description="App mobile per il tracciamento dell'attività fisica con interfaccia intuitiva e visualizzazione dei progressi."
-              image="/placeholder.svg?height=600&width=800"
-              tags={["UI Design", "UX Design", "Mobile App"]}
-              link="/projects/fitness-app"
+              title="Mavi Pesca"
+              description="App mobile progettata per un'azienda ittica per gestire ordini dei clienti e ottimizzare l'intero processo di vendita."
+              image="/MavipescaStudy.png"
+              tags={["Case Study", "Product Design", "Mobile"]}
+              link="/projects/mavi-pesca"
             />
 
             <ProjectCard
-              title="Applicazione Meteo Interattiva"
-              description="App web interattiva per le previsioni meteo con visualizzazioni animate e interfaccia personalizzabile."
-              image="/placeholder.svg?height=600&width=800"
-              tags={["Web App", "UI Design", "Development"]}
-              link="/projects/weather-app"
+              title="CatMatildaBeat Marketplace"
+              description="Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube." 
+              image="/CatMatildabeat_Dsk.png"
+              tags={["Marketplace", "Music", "Branding"]}
+              link="/projects/catmatildabeat"
             />
 
-            <ProjectCard
-              title="Piattaforma di Apprendimento"
-              description="Piattaforma educativa con interfaccia intuitiva, tracciamento dei progressi e contenuti interattivi."
-              image="/placeholder.svg?height=600&width=800"
-              tags={["UI Design", "UX Research", "Web Platform"]}
-              link="/projects/learning-platform"
-            />
           </div>
 
           <div className="mt-12 text-center">
             <Button asChild variant="outline" size="lg" className="rounded-full">
-              <Link href="/projects">
+              <Link href="https://www.behance.net/davidegiuliano89bdff" target="_blank" rel="noopener noreferrer">
                 Vedi tutti i progetti
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -219,7 +211,7 @@ export default function Home() {
       </section>
 
       {/* Interactive Demo Section */}
-      <section className="py-20">
+      <section className="hidden" aria-hidden="true">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <Badge className="mb-4">Demo Interattive</Badge>

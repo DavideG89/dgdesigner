@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { Github, Linkedin, Mail, Twitter } from "lucide-react"
 
@@ -8,9 +9,7 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="flex items-center">
-              <span className="font-space text-2xl font-bold">
-                <span className="text-primary">dg</span>designer
-              </span>
+              <Image src="/logo.png" alt="DG Designer logo" width={48} height={48} className="h-12 w-12" priority />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
               Crafting impactful User Experiences, one pixel at a time.
@@ -98,10 +97,10 @@ export default function Footer() {
             <h3 className="text-lg font-medium">Contatti</h3>
             <ul className="mt-4 space-y-2">
               <li className="text-sm text-muted-foreground">
-                <strong>Email:</strong> info@dgdesigner.site
+                <strong>Email:</strong> davidegiuliano.free@gmail.com
               </li>
               <li className="text-sm text-muted-foreground">
-                <strong>Telefono:</strong> +39 123 456 7890
+                <strong>Telefono:</strong> 320 567 1678
               </li>
               <li className="text-sm text-muted-foreground">
                 <strong>Località:</strong> Italia
@@ -110,9 +109,10 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 border-t pt-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} DG Designer. Tutti i diritti riservati.
-          </p>
+          <div className="flex flex-col items-center gap-3 text-sm text-muted-foreground md:flex-row md:justify-center">
+            <Image src="/logo.png" alt="DG Designer logo" width={32} height={32} className="h-8 w-8" />
+            <span>© {new Date().getFullYear()} DG Designer. Tutti i diritti riservati.</span>
+          </div>
         </div>
       </div>
     </footer>
