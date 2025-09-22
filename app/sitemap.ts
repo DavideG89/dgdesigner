@@ -11,8 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/projects",
     "/contact",
-    "/demos/interactive-pricing",
-    "/demos/color-palette-generator",
   ]
 
   return routes.map((path) => ({
