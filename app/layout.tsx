@@ -6,10 +6,62 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dgdesigner.site"
+
 export const metadata: Metadata = {
-  title: "DG Designer | UI/UX Designer",
-  description: "Portfolio di Davide, UI/UX designer freelancer che crea esperienze digitali intuitive ed efficaci.",
-  generator: "v0.app",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "DG Designer | UI/UX Designer",
+    template: "%s | DG Designer",
+  },
+  description: "Portfolio di Davide Giuliano, UI/UX designer e front-end developer che crea esperienze digitali intuitive, accessibili ed efficaci.",
+  generator: "Next.js",
+  keywords: [
+    "UI designer",
+    "UX designer",
+    "Davide Giuliano",
+    "designer freelance",
+    "product design",
+    "design system",
+    "Sicily designer",
+  ],
+  authors: [{ name: "Davide Giuliano" }],
+  creator: "Davide Giuliano",
+  openGraph: {
+    type: "website",
+    locale: "it_IT",
+    url: siteUrl,
+    siteName: "DG Designer",
+    title: "DG Designer | UI/UX Designer",
+    description: "Scopri i progetti e i servizi di Davide Giuliano, designer UX/UI e front-end developer.",
+    images: [
+      {
+        url: `${siteUrl}/Topos%20Network_Dsk.png`,
+        width: 1280,
+        height: 720,
+        alt: "DG Designer portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DG Designer | UI/UX Designer",
+    description: "Portfolio di Davide Giuliano, designer UX/UI e front-end developer.",
+    creator: "@davidegiuliano",
+    images: [`${siteUrl}/Topos%20Network_Dsk.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 }
 
 export default function RootLayout({

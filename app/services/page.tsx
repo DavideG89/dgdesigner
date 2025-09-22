@@ -1,8 +1,15 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Code, Figma, Layers, Smartphone, Zap } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Servizi",
+  description:
+    "UI design, UX research, sviluppo front-end e branding: scopri come Davide Giuliano può supportare il tuo progetto digitale.",
+}
 
 export default function ServicesPage() {
   return (

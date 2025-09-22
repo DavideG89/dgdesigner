@@ -1,6 +1,13 @@
+import type { Metadata } from "next"
 import { Badge } from "@/components/ui/badge"
 import ContactForm from "@/components/contact-form"
 import { Mail, MapPin, Phone } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Contatti",
+  description:
+    "Contatta Davide Giuliano per collaborazioni, preventivi o consulenze UX/UI e sviluppo front-end.",
+}
 
 export default function ContactPage() {
   return (

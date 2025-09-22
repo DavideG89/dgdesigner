@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -5,6 +6,12 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Users } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Chi sono",
+  description:
+    "Esperienza, valori e formazione di Davide Giuliano: UX/UI designer e front-end developer con focus su design system, ricerca e usabilità.",
+}
 
 const experiences = [
   {

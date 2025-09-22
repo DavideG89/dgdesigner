@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -8,14 +9,20 @@ import ProjectCard from "@/components/project-card"
 import TestimonialCard from "@/components/testimonial-card"
 import ContactForm from "@/components/contact-form"
 
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Portfolio di Davide Giuliano: designer UX/UI e front-end developer specializzato in esperienze digitali intuitive per brand e startup.",
+}
+
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 md:py-32">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.1),transparent_50%)]"></div>
-        <div className="container grid items-center gap-6 md:grid-cols-2 md:gap-12">
-          <div className="flex flex-col gap-4">
+        <div className="container grid items-center gap-8 md:grid-cols-2 md:gap-12">
+          <div className="order-2 flex flex-col gap-4 md:order-1">
             <Badge className="w-fit" variant="outline">
               UI/UX Designer & Developer
             </Badge>
@@ -38,14 +45,14 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <div className="relative mx-auto aspect-square w-full max-w-md rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 p-4 md:p-8">
+          <div className="order-1 relative mx-auto aspect-square w-full max-w-md rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 p-4 md:order-2 md:p-8">
             <div className="relative h-full w-full overflow-hidden rounded-full bg-muted">
               <Image
                 src="/Me-Gif.gif"
                 alt="Davide - UI/UX Designer"
                 width={500}
                 height={500}
-                className="h-full w-full object-contain object-center grayscale"
+                className="h-full w-full object-cover object-center grayscale"
                 priority
               />
             </div>
