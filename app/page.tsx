@@ -39,13 +39,13 @@ export default function Home() {
             </div>
           </div>
           <div className="relative mx-auto aspect-square w-full max-w-md rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 p-4 md:p-8">
-            <div className="overflow-hidden rounded-full bg-muted">
+            <div className="relative h-full w-full overflow-hidden rounded-full bg-muted">
               <Image
-                src="https://sjc.microlink.io/9Qa8bimCNS-LbYiRCeZ0g3DboqmVnThIjPV6dNjizFgINuG6sZbwT_CNlfQlHKIjMSMtF9wmF0qbkPSqS9I_Fw.jpeg"
+                src="/Me-Gif.gif"
                 alt="Davide - UI/UX Designer"
                 width={500}
                 height={500}
-                className="h-full w-full object-cover grayscale"
+                className="h-full w-full object-contain object-center grayscale"
                 priority
               />
             </div>
@@ -54,7 +54,8 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20">
+      {/* Sezione demo nascosta temporaneamente */}
+      <section className="hidden" aria-hidden="true">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <Badge className="mb-4">Servizi</Badge>

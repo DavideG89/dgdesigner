@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
@@ -49,9 +50,14 @@ export default function Header() {
         <nav className="container mx-auto flex items-center justify-between py-4">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <span className="font-space text-2xl font-bold">
-                <span className="text-primary">dg</span>
-              </span>
+              <Image
+                src="/favicon.png"
+                alt="DG Designer logo"
+                width={32}
+                height={32}
+                className="h-8 w-8"
+                priority
+              />
             </Link>
           </div>
 
@@ -121,8 +127,9 @@ export default function Header() {
         }`}
       >
         <div className="flex items-center justify-between border-b p-4">
-          <span className="font-space text-xl font-bold">
-            <span className="text-primary">dg</span>designer
+          <span className="flex items-center gap-2 font-space text-xl font-bold">
+            <Image src="/favicon.png" alt="DG Designer logo" width={24} height={24} className="h-6 w-6" />
+            designer
           </span>
           <button
             type="button"
