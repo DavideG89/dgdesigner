@@ -169,7 +169,7 @@ export default function Home() {
               description="Una startup innovativa nel settore finance e crypto che porta pagamenti digitali decentralizzati nei paesi in via di sviluppo."
               image="/Topos Network_Dsk.png"
               tags={["Website", "Fintech", "Crypto"]}
-              link="/projects/topos-network"
+              link="https://www.topos.com.ng/"
             />
 
             <ProjectCard
@@ -177,7 +177,7 @@ export default function Home() {
               description="Sito web realizzato per una guida turistica con l'obiettivo di aumentare la visibilità e le prenotazioni online."
               image="/Palermointour website.png"
               tags={["Web", "Branding", "Tourism"]}
-              link="/projects/palermointour"
+              link="palermointour.com"
             />
 
             <ProjectCard
@@ -185,7 +185,7 @@ export default function Home() {
               description="Analisi dell'usabilità di WhatsApp con focus su opportunità di miglioramento per ottimizzare l'esperienza utente."
               image="/WhatsappStudy.png"
               tags={["Case Study", "UX Research", "Product"]}
-              link="/projects/whatsapp-case-study"
+              link="https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience"
             />
 
             <ProjectCard
@@ -193,7 +193,7 @@ export default function Home() {
               description="App mobile progettata per un'azienda ittica per gestire ordini dei clienti e ottimizzare l'intero processo di vendita."
               image="/MavipescaStudy.png"
               tags={["Case Study", "Product Design", "Mobile"]}
-              link="/projects/mavi-pesca"
+              link="https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX"
             />
 
             <ProjectCard
@@ -201,7 +201,7 @@ export default function Home() {
               description="Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube." 
               image="/CatMatildabeat_Dsk.png"
               tags={["Marketplace", "Music", "Branding"]}
-              link="/projects/catmatildabeat"
+              link="https://www.catmatildabeat.com/"
             />
 
           </div>
@@ -277,7 +277,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* 
+      Testimonials
       <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
@@ -312,6 +313,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+    */}
 
       {/* Contact Section */}
       <section className="py-20">
