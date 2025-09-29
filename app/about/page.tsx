@@ -10,7 +10,10 @@ import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Users } from "lu
 export const metadata: Metadata = {
   title: "Chi sono",
   description:
-    "Esperienza, valori e formazione di Davide Giuliano: UX/UI designer e front-end developer con focus su design system, ricerca e usabilità.",
+    "Esperienza, valori e formazione di Davide Giuliano: UX/UI designer e Web Designer con focus su design system, ricerca e usabilità.",
+  alternates: {
+    canonical: "/about",
+  },
 }
 
 const experiences = [

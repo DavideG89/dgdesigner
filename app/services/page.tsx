@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Servizi",
   description:
     "UI design, UX research, sviluppo front-end e branding: scopri come Davide Giuliano può supportare il tuo progetto digitale.",
+  alternates: {
+    canonical: "/services",
+  },
 }
 
 export default function ServicesPage() {

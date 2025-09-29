@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: "DG Designer | UI/UX Designer",
     template: "%s | DG Designer",
   },
-  description: "Portfolio di Davide Giuliano, UI/UX designer e front-end developer che crea esperienze digitali intuitive, accessibili ed efficaci.",
+  description: "Portfolio di Davide Giuliano, UI/UX designer e Web Designer che crea esperienze digitali intuitive, accessibili ed efficaci.",
   generator: "Next.js",
   keywords: [
     "UI designer",
@@ -53,9 +53,6 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: siteUrl,
   },
   icons: {
     icon: "/favicon.png",

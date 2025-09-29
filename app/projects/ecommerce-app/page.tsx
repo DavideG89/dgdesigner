@@ -1,9 +1,19 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { ArrowLeft, ArrowRight, ExternalLink, Calendar, User, Clock, Target } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "E-commerce App Redesign",
+  description:
+    "Case study del redesign di un'app e-commerce con focus su UX, UI e incremento delle conversioni.",
+  alternates: {
+    canonical: "/projects/ecommerce-app",
+  },
+}
 
 const otherProjects = [
   {

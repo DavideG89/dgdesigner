@@ -6,7 +6,10 @@ import { Mail, MapPin, Phone } from "lucide-react"
 export const metadata: Metadata = {
   title: "Contatti",
   description:
-    "Contatta Davide Giuliano per collaborazioni, preventivi o consulenze UX/UI e sviluppo front-end.",
+    "Contattami per collaborazioni, preventivi o consulenze UX/UI e WebDesign.",
+  alternates: {
+    canonical: "/contact",
+  },
 }
 
 export default function ContactPage() {

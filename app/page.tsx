@@ -12,7 +12,10 @@ import ContactForm from "@/components/contact-form"
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Portfolio di Davide Giuliano: designer UX/UI e front-end developer specializzato in esperienze digitali intuitive per brand e startup.",
+    "Portfolio di Davide Giuliano: designer UX/UI e Web Designer specializzato in esperienze digitali intuitive per brand e startup.",
+  alternates: {
+    canonical: "/",
+  },
 }
 
 export default function Home() {
