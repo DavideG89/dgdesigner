@@ -177,7 +177,7 @@ export default function Home() {
               description="Sito web realizzato per una guida turistica con l'obiettivo di aumentare la visibilità e le prenotazioni online."
               image="/Palermointour website.png"
               tags={["Web", "Branding", "Tourism"]}
-              link="palermointour.com"
+              link="https://palermointour.com"
             />
 
             <ProjectCard

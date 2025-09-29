@@ -19,6 +19,7 @@ const projects = [
     category: "Website",
     year: "2024",
     client: "Topos Network",
+    link: "https://www.topos.com.ng/",
   },
   {
     id: "palermointour",
@@ -30,6 +31,7 @@ const projects = [
     category: "Website",
     year: "2024",
     client: "Palermointour",
+    link: "https://palermointour.com",
   },
   {
     id: "whatsapp-case-study",
@@ -41,6 +43,7 @@ const projects = [
     category: "Case Study",
     year: "2023",
     client: "Ricerca personale",
+    link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
   },
   {
     id: "mavi-pesca",
@@ -52,6 +55,7 @@ const projects = [
     category: "Case Study",
     year: "2023",
     client: "Mavi Pesca",
+    link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
   },
   {
     id: "catmatildabeat",
@@ -63,6 +67,7 @@ const projects = [
     category: "Website",
     year: "2022",
     client: "CatMatildaBeat",
+    link: "https://www.catmatildabeat.com/",
   },
 ]
 
@@ -155,7 +160,7 @@ export default function ProjectsPage() {
                     description={project.description}
                     image={project.image}
                     tags={project.tags}
-                    link={`/projects/${project.id}`}
+                    link={project.link}
                   />
                 </div>
               ))}
@@ -179,8 +184,8 @@ export default function ProjectsPage() {
           )}
         </div>
       </section>
-
-      {/* Stats Section */}
+{/*  
+      Stats Section
       <section className="py-20">
         <div className="container">
           <div className="grid gap-8 md:grid-cols-4">
@@ -203,7 +208,7 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
-
+      /*}
       {/* CTA Section */}
       <section className="py-20">
         <div className="container">

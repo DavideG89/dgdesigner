@@ -13,6 +13,11 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ title, description, image, tags, link }: ProjectCardProps) {
+  const isExternal = /^https?:\/\//i.test(link)
+  const linkProps = isExternal
+    ? { target: "_blank", rel: "noopener noreferrer", prefetch: false as const }
+    : {}
+
   return (
     <Card className="group overflow-hidden border-0 bg-muted/50 transition-all hover:bg-muted">
       <div className="relative aspect-video overflow-hidden">
@@ -32,7 +37,7 @@ export default function ProjectCard({ title, description, image, tags, link }: P
           ))}
         </div>
         <h3 className="mb-2 text-xl font-bold group-hover:text-primary">
-          <Link href={link} className="flex items-center gap-1">
+          <Link href={link} className="flex items-center gap-1" {...linkProps}>
             {title}
             <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
           </Link>

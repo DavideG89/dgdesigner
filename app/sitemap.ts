@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next"
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dgdesigner.site"
+const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dgdesigner.site"
+const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl.slice(0, -1) : rawBaseUrl
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
   const routes = [
-    "",
+    "/",
     "/about",
     "/services",
     "/projects",
@@ -14,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   return routes.map((path) => ({
-    url: `${baseUrl}${path}`,
+    url: path === "/" ? baseUrl : `${baseUrl}${path}`,
     lastModified,
   }))
 }
