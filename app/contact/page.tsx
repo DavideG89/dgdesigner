@@ -3,29 +3,134 @@ import { Badge } from "@/components/ui/badge"
 import ContactForm from "@/components/contact-form"
 import { Mail, MapPin, Phone } from "lucide-react"
 
-export const metadata: Metadata = {
-  title: "Contatti",
-  description:
-    "Contattami per collaborazioni, preventivi o consulenze UX/UI e WebDesign.",
-  alternates: {
-    canonical: "/contact",
+import { getLanguage, type SupportedLanguage } from "@/lib/i18n"
+
+interface ContactDetail {
+  icon: typeof Mail
+  title: string
+  value: string
+  note: string
+}
+
+const pageCopy: Record<SupportedLanguage, {
+  metadata: { title: string; description: string }
+  heroBadge: string
+  heroTitlePrefix: string
+  heroTitleHighlight: string
+  heroDescription: string
+  contactInfoTitle: string
+  contactInfoDescription: string
+  followMe: string
+  mapAlt: string
+  formTitle: string
+  details: ContactDetail[]
+}> = {
+  it: {
+    metadata: {
+      title: "Contatti",
+      description: "Contattami per collaborazioni, preventivi o consulenze UX/UI e WebDesign.",
+    },
+    heroBadge: "Contatti",
+    heroTitlePrefix: "Parliamo del tuo",
+    heroTitleHighlight: "progetto",
+    heroDescription:
+      "Hai un'idea o un progetto in mente? Contattami per discuterne e trasformarla in realtà.",
+    contactInfoTitle: "Informazioni di contatto",
+    contactInfoDescription:
+      "Sono sempre disponibile per nuove opportunità di collaborazione. Non esitare a contattarmi per qualsiasi domanda o proposta.",
+    followMe: "Seguimi",
+    mapAlt: "Mappa di Milano",
+    formTitle: "Inviami un messaggio",
+    details: [
+      {
+        icon: Mail,
+        title: "Email",
+        value: "info@dgdesigner.site",
+        note: "Rispondo entro 24 ore",
+      },
+      {
+        icon: Phone,
+        title: "Telefono",
+        value: "+39 123 456 7890",
+        note: "Lun-Ven, 9:00-18:00 CET",
+      },
+      {
+        icon: MapPin,
+        title: "Località",
+        value: "Italia",
+        note: "Disponibile per lavoro remoto",
+      },
+    ],
+  },
+  en: {
+    metadata: {
+      title: "Contact",
+      description: "Get in touch for collaborations, quotes, or UX/UI and web design consultations.",
+    },
+    heroBadge: "Contact",
+    heroTitlePrefix: "Let's talk about your",
+    heroTitleHighlight: "project",
+    heroDescription:
+      "Have an idea or a project in mind? Reach out so we can turn it into reality.",
+    contactInfoTitle: "Contact information",
+    contactInfoDescription:
+      "I'm always open to new collaboration opportunities. Feel free to contact me with any question or proposal.",
+    followMe: "Follow me",
+    mapAlt: "Map of Milan",
+    formTitle: "Send me a message",
+    details: [
+      {
+        icon: Mail,
+        title: "Email",
+        value: "info@dgdesigner.site",
+        note: "I reply within 24 hours",
+      },
+      {
+        icon: Phone,
+        title: "Phone",
+        value: "+39 123 456 7890",
+        note: "Mon-Fri, 9:00-18:00 CET",
+      },
+      {
+        icon: MapPin,
+        title: "Location",
+        value: "Italy",
+        note: "Available for remote work",
+      },
+    ],
   },
 }
 
-export default function ContactPage() {
+type PageProps = {
+  searchParams?: Record<string, string | string[] | undefined>
+}
+
+export function generateMetadata({ searchParams }: PageProps): Metadata {
+  const lang = getLanguage(searchParams)
+  return {
+    ...pageCopy[lang].metadata,
+    alternates: {
+      canonical: "/contact",
+    },
+  }
+}
+
+export default function ContactPage({ searchParams }: PageProps) {
+  const lang = getLanguage(searchParams)
+  const copy = pageCopy[lang]
+
   return (
     <>
       {/* Hero Section */}
       <section className="py-20">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge className="mb-4">Contatti</Badge>
+            <Badge className="mb-4">{copy.heroBadge}</Badge>
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
-              Parliamo del tuo <span className="gradient-text">progetto</span>
+              {copy.heroTitlePrefix}{" "}
+              <span className="gradient-text">{copy.heroTitleHighlight}</span>
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Hai un'idea o un progetto in mente? Contattami per discuterne e trasformarla in realtà.
-            </p>
+            <p className="text-xl text-muted-foreground">{copy.heroDescription}</p>
           </div>
         </div>
       </section>
@@ -35,49 +140,29 @@ export default function ContactPage() {
         <div className="container">
           <div className="grid gap-12 md:grid-cols-2">
             <div>
-              <h2 className="mb-6 text-2xl font-bold">Informazioni di contatto</h2>
-              <p className="mb-8 text-muted-foreground">
-                Sono sempre disponibile per nuove opportunità di collaborazione. Non esitare a contattarmi per qualsiasi
-                domanda o proposta.
-              </p>
+              <h2 className="mb-6 text-2xl font-bold">{copy.contactInfoTitle}</h2>
+              <p className="mb-8 text-muted-foreground">{copy.contactInfoDescription}</p>
 
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="rounded-full bg-primary/10 p-3 text-primary">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Email</h3>
-                    <p className="text-muted-foreground">info@dgdesigner.site</p>
-                    <p className="text-sm text-muted-foreground">Rispondo entro 24 ore</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="rounded-full bg-primary/10 p-3 text-primary">
-                    <Phone className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Telefono</h3>
-                    <p className="text-muted-foreground">+39 123 456 7890</p>
-                    <p className="text-sm text-muted-foreground">Lun-Ven, 9:00-18:00 CET</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="rounded-full bg-primary/10 p-3 text-primary">
-                    <MapPin className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold">Località</h3>
-                    <p className="text-muted-foreground">Italia</p>
-                    <p className="text-sm text-muted-foreground">Disponibile per lavoro remoto</p>
-                  </div>
-                </div>
+                {copy.details.map((detail) => {
+                  const Icon = detail.icon
+                  return (
+                    <div key={detail.title} className="flex items-start gap-4">
+                      <div className="rounded-full bg-primary/10 p-3 text-primary">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold">{detail.title}</h3>
+                        <p className="text-muted-foreground">{detail.value}</p>
+                        <p className="text-sm text-muted-foreground">{detail.note}</p>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
 
               <div className="mt-12">
-                <h3 className="mb-4 text-xl font-bold">Seguimi</h3>
+                <h3 className="mb-4 text-xl font-bold">{copy.followMe}</h3>
                 <div className="flex space-x-4">
                   <a
                     href="https://twitter.com"
@@ -116,8 +201,8 @@ export default function ContactPage() {
             </div>
 
             <div>
-              <h2 className="mb-6 text-2xl font-bold">Inviami un messaggio</h2>
-              <ContactForm />
+              <h2 className="mb-6 text-2xl font-bold">{copy.formTitle}</h2>
+              <ContactForm key={lang} />
             </div>
           </div>
         </div>
@@ -135,6 +220,7 @@ export default function ContactPage() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              title={copy.mapAlt}
             ></iframe>
           </div>
         </div>

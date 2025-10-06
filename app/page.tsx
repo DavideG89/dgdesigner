@@ -5,20 +5,395 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Code, Figma, Layers, Rocket, Smartphone, Zap } from "lucide-react"
+
+import { appendLanguageParam, getLanguage, type SupportedLanguage } from "@/lib/i18n"
 import ProjectCard from "@/components/project-card"
-import TestimonialCard from "@/components/testimonial-card"
 import ContactForm from "@/components/contact-form"
 
-export const metadata: Metadata = {
-  title: "Home",
-  description:
-    "Portfolio di Davide Giuliano: designer UX/UI e Web Designer specializzato in esperienze digitali intuitive per brand e startup.",
-  alternates: {
-    canonical: "/",
+interface ServiceCardCopy {
+  title: string
+  description: string
+}
+
+interface ShowcaseProject {
+  title: string
+  description: string
+  image: string
+  tags: string[]
+  link: string
+}
+
+const heroCopy: Record<SupportedLanguage, {
+  badge: string
+  titlePrefix: string
+  titleHighlight: string
+  titleSuffix: string
+  description: string
+  primaryCta: string
+  secondaryCta: string
+}> = {
+  it: {
+    badge: "UI/UX Designer & Developer",
+    titlePrefix: "Crafting",
+    titleHighlight: "impactful",
+    titleSuffix: "User Experiences",
+    description:
+      "Ciao! Sono Davide, un designer UX/UI che ama creare esperienze digitali intuitive, funzionali ed esteticamente piacevoli.",
+    primaryCta: "Iniziamo a collaborare",
+    secondaryCta: "Esplora i progetti",
+  },
+  en: {
+    badge: "UI/UX Designer & Developer",
+    titlePrefix: "Crafting",
+    titleHighlight: "impactful",
+    titleSuffix: "User Experiences",
+    description:
+      "Hi! I'm Davide, a UX/UI designer who loves crafting digital experiences that are intuitive, functional, and visually refined.",
+    primaryCta: "Let's start working together",
+    secondaryCta: "Explore my projects",
   },
 }
 
-export default function Home() {
+const servicesCopy: Array<{
+  icon: typeof Layers
+  copy: Record<SupportedLanguage, ServiceCardCopy>
+}> = [
+  {
+    icon: Layers,
+    copy: {
+      it: {
+        title: "UI Design",
+        description:
+          "Interfacce utente intuitive e accattivanti che migliorano l'esperienza dell'utente e aumentano la conversione.",
+      },
+      en: {
+        title: "UI Design",
+        description:
+          "Intuitive, captivating interfaces that enhance the user experience and boost conversion.",
+      },
+    },
+  },
+  {
+    icon: Figma,
+    copy: {
+      it: {
+        title: "UX Design",
+        description:
+          "Ricerca utente, wireframing e prototyping per creare esperienze utente fluide e coinvolgenti.",
+      },
+      en: {
+        title: "UX Design",
+        description:
+          "User research, wireframing, and prototyping to build seamless, engaging experiences.",
+      },
+    },
+  },
+  {
+    icon: Code,
+    copy: {
+      it: {
+        title: "Web Development",
+        description:
+          "Sviluppo di siti web moderni, reattivi e ottimizzati per le prestazioni utilizzando le tecnologie più recenti.",
+      },
+      en: {
+        title: "Web Development",
+        description:
+          "Modern, responsive websites optimised for performance with the latest technologies.",
+      },
+    },
+  },
+  {
+    icon: Smartphone,
+    copy: {
+      it: {
+        title: "App Design",
+        description:
+          "Design di applicazioni mobile intuitive e funzionali per iOS e Android che gli utenti adoreranno.",
+      },
+      en: {
+        title: "App Design",
+        description:
+          "Intuitive, high-performing mobile app design for iOS and Android that people love to use.",
+      },
+    },
+  },
+  {
+    icon: Zap,
+    copy: {
+      it: {
+        title: "Branding",
+        description:
+          "Creazione di identità di marca distintive che comunicano i valori e la personalità del tuo business.",
+      },
+      en: {
+        title: "Branding",
+        description:
+          "Distinctive brand identities that communicate your values and personality.",
+      },
+    },
+  },
+  {
+    icon: Rocket,
+    copy: {
+      it: {
+        title: "Consulenza UX",
+        description:
+          "Analisi e ottimizzazione delle tue interfacce esistenti per migliorare l'usabilità e la conversione.",
+      },
+      en: {
+        title: "UX Consulting",
+        description:
+          "Analysis and optimisation of your existing interfaces to improve usability and conversion.",
+      },
+    },
+  },
+]
+
+const servicesSectionCopy: Record<SupportedLanguage, {
+  badge: string
+  title: string
+  description: string
+}> = {
+  it: {
+    badge: "Servizi",
+    title: "Soluzioni creative per ogni esigenza digitale",
+    description:
+      "Offro una gamma completa di servizi di design per aiutarti a creare esperienze digitali eccezionali.",
+  },
+  en: {
+    badge: "Services",
+    title: "Creative solutions for every digital challenge",
+    description:
+      "I offer a full spectrum of design services to help you craft outstanding digital experiences.",
+  },
+}
+
+const projectsSectionCopy: Record<SupportedLanguage, {
+  badge: string
+  title: string
+  description: string
+  viewAll: string
+}> = {
+  it: {
+    badge: "Progetti",
+    title: "Lavori recenti",
+    description:
+      "Esplora alcuni dei miei progetti più recenti e scopri come ho aiutato i miei clienti a raggiungere i loro obiettivi.",
+    viewAll: "Vedi tutti i progetti",
+  },
+  en: {
+    badge: "Projects",
+    title: "Recent work",
+    description:
+      "Explore a selection of my latest projects and see how I've helped clients reach their goals.",
+    viewAll: "View all projects",
+  },
+}
+
+const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
+  it: [
+    {
+      title: "Topos Network",
+      description:
+        "Startup innovativa nel settore finance e crypto che porta soluzioni di pagamento decentralizzate nei paesi in via di sviluppo.",
+      image: "/Topos Network_Dsk.png",
+      tags: ["Website", "Fintech", "Crypto"],
+      link: "https://www.topos.com.ng/",
+    },
+    {
+      title: "Palermointour",
+      description:
+        "Sito web dedicato a una guida turistica palermitana per aumentare la visibilità online e favorire le prenotazioni.",
+      image: "/Palermointour website.png",
+      tags: ["Web", "Branding", "Tourism"],
+      link: "https://palermointour.com",
+    },
+    {
+      title: "WhatsApp UX Case Study",
+      description:
+        "Analisi dell'usabilità di WhatsApp con focus su opportunità di miglioramento per ottimizzare l'esperienza utente.",
+      image: "/WhatsappStudy.png",
+      tags: ["Case Study", "UX Research", "Product"],
+      link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
+    },
+    {
+      title: "Mavi Pesca",
+      description:
+        "App mobile progettata per un'azienda ittica per gestire ordini dei clienti e ottimizzare l'intero processo di vendita.",
+      image: "/MavipescaStudy.png",
+      tags: ["Case Study", "Product Design", "Mobile"],
+      link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
+    },
+    {
+      title: "CatMatildaBeat Marketplace",
+      description:
+        "Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube.",
+      image: "/CatMatildabeat_Dsk.png",
+      tags: ["Marketplace", "Music", "Branding"],
+      link: "https://www.catmatildabeat.com/",
+    },
+  ],
+  en: [
+    {
+      title: "Topos Network",
+      description:
+        "Innovative fintech and crypto startup bringing decentralised payment solutions to developing countries.",
+      image: "/Topos Network_Dsk.png",
+      tags: ["Website", "Fintech", "Crypto"],
+      link: "https://www.topos.com.ng/",
+    },
+    {
+      title: "Palermointour",
+      description:
+        "Website for a Palermo tour guide, built to boost online visibility and drive bookings.",
+      image: "/Palermointour website.png",
+      tags: ["Web", "Branding", "Tourism"],
+      link: "https://palermointour.com",
+    },
+    {
+      title: "WhatsApp UX Case Study",
+      description:
+        "Usability analysis of WhatsApp, highlighting opportunities to optimise the user experience.",
+      image: "/WhatsappStudy.png",
+      tags: ["Case Study", "UX Research", "Product"],
+      link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
+    },
+    {
+      title: "Mavi Pesca",
+      description:
+        "Mobile app designed for a seafood company to manage customer orders and streamline the sales process.",
+      image: "/MavipescaStudy.png",
+      tags: ["Case Study", "Product Design", "Mobile"],
+      link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
+    },
+    {
+      title: "CatMatildaBeat Marketplace",
+      description:
+        "Custom marketplace for a beatmaker with a track catalogue and calls to action for BeatStars and YouTube.",
+      image: "/CatMatildabeat_Dsk.png",
+      tags: ["Marketplace", "Music", "Branding"],
+      link: "https://www.catmatildabeat.com/",
+    },
+  ],
+}
+
+const demosSectionCopy: Record<SupportedLanguage, {
+  badge: string
+  title: string
+  description: string
+  demos: Array<{ title: string; description: string; linkLabel: string; href: string; iframe: string }>
+}> = {
+  it: {
+    badge: "Demo Interattive",
+    title: "Prova le mie applicazioni",
+    description:
+      "Esplora alcune delle applicazioni interattive che ho creato per mostrare le mie competenze di design e sviluppo.",
+    demos: [
+      {
+        title: "Generatore di Palette Colori",
+        description:
+          "Uno strumento interattivo per generare palette di colori armoniose per i tuoi progetti di design.",
+        linkLabel: "Apri demo completa",
+        href: "/demos/color-palette-generator",
+        iframe: "/color-palette-generator",
+      },
+      {
+        title: "Componente di Prezzo Interattivo",
+        description:
+          "Un componente di prezzo interattivo con slider per selezionare diversi piani di abbonamento.",
+        linkLabel: "Apri demo completa",
+        href: "/demos/interactive-pricing",
+        iframe: "/interactive-pricing",
+      },
+    ],
+  },
+  en: {
+    badge: "Interactive demos",
+    title: "Try my applications",
+    description:
+      "Explore interactive applications I've built to showcase my design and development skills.",
+    demos: [
+      {
+        title: "Color Palette Generator",
+        description:
+          "An interactive tool for generating harmonious colour palettes for your design projects.",
+        linkLabel: "Open full demo",
+        href: "/demos/color-palette-generator",
+        iframe: "/color-palette-generator",
+      },
+      {
+        title: "Interactive Pricing Component",
+        description:
+          "An interactive pricing component with sliders for exploring different subscription plans.",
+        linkLabel: "Open full demo",
+        href: "/demos/interactive-pricing",
+        iframe: "/interactive-pricing",
+      },
+    ],
+  },
+}
+
+const contactSectionCopy: Record<SupportedLanguage, {
+  badge: string
+  title: string
+  description: string
+}> = {
+  it: {
+    badge: "Contatti",
+    title: "Hai un progetto in mente?",
+    description:
+      "Contattami per discutere del tuo progetto e scoprire come posso aiutarti a realizzare la tua visione.",
+  },
+  en: {
+    badge: "Contact",
+    title: "Have a project in mind?",
+    description:
+      "Get in touch to discuss your project and discover how I can help bring your vision to life.",
+  },
+}
+
+type HomePageProps = {
+  searchParams?: Record<string, string | string[] | undefined>
+}
+
+export function generateMetadata({ searchParams }: HomePageProps): Metadata {
+  const lang = getLanguage(searchParams)
+
+  if (lang === "en") {
+    return {
+      title: "Home",
+      description:
+        "Portfolio of Davide Giuliano: UX/UI designer and web designer specialising in intuitive digital experiences for brands and startups.",
+      alternates: {
+        canonical: "/",
+      },
+    }
+  }
+
+  return {
+    title: "Home",
+    description:
+      "Portfolio di Davide Giuliano: designer UX/UI e Web Designer specializzato in esperienze digitali intuitive per brand e startup.",
+    alternates: {
+      canonical: "/",
+    },
+  }
+}
+
+export default function Home({ searchParams }: HomePageProps) {
+  const lang = getLanguage(searchParams)
+  const hero = heroCopy[lang]
+  const servicesSection = servicesSectionCopy[lang]
+  const servicesCards = servicesCopy.map(({ icon: Icon, copy }) => ({ icon: Icon, ...copy[lang] }))
+  const projectsSection = projectsSectionCopy[lang]
+  const projects = projectsCopy[lang]
+  const demosSection = demosSectionCopy[lang]
+  const contactSection = contactSectionCopy[lang]
+
+  const contactHref = appendLanguageParam("/contact", lang)
+  const projectsHref = appendLanguageParam("/projects", lang)
+
   return (
     <>
       {/* Hero Section */}
@@ -27,24 +402,23 @@ export default function Home() {
         <div className="container grid items-center gap-8 md:grid-cols-2 md:gap-12">
           <div className="order-2 flex flex-col gap-4 md:order-1">
             <Badge className="w-fit" variant="outline">
-              UI/UX Designer & Developer
+              {hero.badge}
             </Badge>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              Crafting <span className="gradient-text">impactful</span> User Experiences
+              {hero.titlePrefix}{" "}
+              <span className="gradient-text">{hero.titleHighlight}</span>{" "}
+              {hero.titleSuffix}
             </h1>
-            <p className="text-xl text-muted-foreground">
-              Ciao! Sono Davide, un designer UX/UI che ama creare esperienze digitali intuitive, funzionali ed
-              esteticamente piacevoli.
-            </p>
+            <p className="text-xl text-muted-foreground">{hero.description}</p>
             <div className="mt-4 flex flex-col gap-4 sm:flex-row">
               <Button asChild size="lg" className="rounded-full">
-                <Link href="/contact">
-                  Iniziamo a collaborare
+                <Link href={contactHref}>
+                  {hero.primaryCta}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full">
-                <Link href="/projects">Esplora i progetti</Link>
+                <Link href={projectsHref}>{hero.secondaryCta}</Link>
               </Button>
             </div>
           </div>
@@ -67,89 +441,23 @@ export default function Home() {
       <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">Servizi</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Soluzioni creative per ogni esigenza digitale
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Offro una gamma completa di servizi di design per aiutarti a creare esperienze digitali eccezionali.
-            </p>
+            <Badge className="mb-4">{servicesSection.badge}</Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{servicesSection.title}</h2>
+            <p className="mt-4 text-lg text-muted-foreground">{servicesSection.description}</p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="border-0 bg-muted/50 transition-all hover:bg-muted">
-              <CardContent className="flex flex-col items-start gap-4 p-6">
-                <div className="rounded-full bg-primary/10 p-3 text-primary">
-                  <Layers className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">UI Design</h3>
-                <p className="text-muted-foreground">
-                  Interfacce utente intuitive e accattivanti che migliorano l'esperienza dell'utente e aumentano la
-                  conversione.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 bg-muted/50 transition-all hover:bg-muted">
-              <CardContent className="flex flex-col items-start gap-4 p-6">
-                <div className="rounded-full bg-primary/10 p-3 text-primary">
-                  <Figma className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">UX Design</h3>
-                <p className="text-muted-foreground">
-                  Ricerca utente, wireframing e prototyping per creare esperienze utente fluide e coinvolgenti.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 bg-muted/50 transition-all hover:bg-muted">
-              <CardContent className="flex flex-col items-start gap-4 p-6">
-                <div className="rounded-full bg-primary/10 p-3 text-primary">
-                  <Code className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">Web Development</h3>
-                <p className="text-muted-foreground">
-                  Sviluppo di siti web moderni, reattivi e ottimizzati per le prestazioni utilizzando le tecnologie più
-                  recenti.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 bg-muted/50 transition-all hover:bg-muted">
-              <CardContent className="flex flex-col items-start gap-4 p-6">
-                <div className="rounded-full bg-primary/10 p-3 text-primary">
-                  <Smartphone className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">App Design</h3>
-                <p className="text-muted-foreground">
-                  Design di applicazioni mobile intuitive e funzionali per iOS e Android che gli utenti adoreranno.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 bg-muted/50 transition-all hover:bg-muted">
-              <CardContent className="flex flex-col items-start gap-4 p-6">
-                <div className="rounded-full bg-primary/10 p-3 text-primary">
-                  <Zap className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">Branding</h3>
-                <p className="text-muted-foreground">
-                  Creazione di identità di marca distintive che comunicano i valori e la personalità del tuo business.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 bg-muted/50 transition-all hover:bg-muted">
-              <CardContent className="flex flex-col items-start gap-4 p-6">
-                <div className="rounded-full bg-primary/10 p-3 text-primary">
-                  <Rocket className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-bold">Consulenza UX</h3>
-                <p className="text-muted-foreground">
-                  Analisi e ottimizzazione delle tue interfacce esistenti per migliorare l'usabilità e la conversione.
-                </p>
-              </CardContent>
-            </Card>
+            {servicesCards.map(({ icon: Icon, title, description }) => (
+              <Card key={title} className="border-0 bg-muted/50 transition-all hover:bg-muted">
+                <CardContent className="flex flex-col items-start gap-4 p-6">
+                  <div className="rounded-full bg-primary/10 p-3 text-primary">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-xl font-bold">{title}</h3>
+                  <p className="text-muted-foreground">{description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -158,61 +466,25 @@ export default function Home() {
       <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">Progetti</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Lavori recenti</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Esplora alcuni dei miei progetti più recenti e scopri come ho aiutato i miei clienti a raggiungere i loro
-              obiettivi.
-            </p>
+            <Badge className="mb-4">{projectsSection.badge}</Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{projectsSection.title}</h2>
+            <p className="mt-4 text-lg text-muted-foreground">{projectsSection.description}</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <ProjectCard
-              title="Topos Network"
-              description="Una startup innovativa nel settore finance e crypto che porta pagamenti digitali decentralizzati nei paesi in via di sviluppo."
-              image="/Topos Network_Dsk.png"
-              tags={["Website", "Fintech", "Crypto"]}
-              link="https://www.topos.com.ng/"
-            />
-
-            <ProjectCard
-              title="Palermointour"
-              description="Sito web realizzato per una guida turistica con l'obiettivo di aumentare la visibilità e le prenotazioni online."
-              image="/Palermointour website.png"
-              tags={["Web", "Branding", "Tourism"]}
-              link="https://palermointour.com"
-            />
-
-            <ProjectCard
-              title="WhatsApp UX Case Study"
-              description="Analisi dell'usabilità di WhatsApp con focus su opportunità di miglioramento per ottimizzare l'esperienza utente."
-              image="/WhatsappStudy.png"
-              tags={["Case Study", "UX Research", "Product"]}
-              link="https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience"
-            />
-
-            <ProjectCard
-              title="Mavi Pesca"
-              description="App mobile progettata per un'azienda ittica per gestire ordini dei clienti e ottimizzare l'intero processo di vendita."
-              image="/MavipescaStudy.png"
-              tags={["Case Study", "Product Design", "Mobile"]}
-              link="https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX"
-            />
-
-            <ProjectCard
-              title="CatMatildaBeat Marketplace"
-              description="Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube." 
-              image="/CatMatildabeat_Dsk.png"
-              tags={["Marketplace", "Music", "Branding"]}
-              link="https://www.catmatildabeat.com/"
-            />
-
+            {projects.map((project) => (
+              <ProjectCard key={project.title} {...project} />
+            ))}
           </div>
 
           <div className="mt-12 text-center">
             <Button asChild variant="outline" size="lg" className="rounded-full">
-              <Link href="https://www.behance.net/davidegiuliano89bdff" target="_blank" rel="noopener noreferrer">
-                Vedi tutti i progetti
+              <Link
+                href="https://www.behance.net/davidegiuliano89bdff"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {projectsSection.viewAll}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -224,113 +496,44 @@ export default function Home() {
       <section className="hidden" aria-hidden="true">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">Demo Interattive</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Prova le mie applicazioni</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Esplora alcune delle applicazioni interattive che ho creato per mostrare le mie competenze di design e
-              sviluppo.
-            </p>
+            <Badge className="mb-4">{demosSection.badge}</Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{demosSection.title}</h2>
+            <p className="mt-4 text-lg text-muted-foreground">{demosSection.description}</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2">
-            <Card className="overflow-hidden">
-              <div className="aspect-video bg-muted">
-                <iframe
-                  src="/color-palette-generator"
-                  title="Color Palette Generator"
-                  className="h-full w-full border-0"
-                ></iframe>
-              </div>
-              <CardContent className="p-6">
-                <h3 className="mb-2 text-xl font-bold">Generatore di Palette Colori</h3>
-                <p className="mb-4 text-muted-foreground">
-                  Uno strumento interattivo per generare palette di colori armoniose per i tuoi progetti di design.
-                </p>
-                <Button asChild variant="outline" className="rounded-full">
-                  <Link href="/demos/color-palette-generator">
-                    Apri demo completa
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden">
-              <div className="aspect-video bg-muted">
-                <iframe
-                  src="/interactive-pricing"
-                  title="Interactive Pricing Component"
-                  className="h-full w-full border-0"
-                ></iframe>
-              </div>
-              <CardContent className="p-6">
-                <h3 className="mb-2 text-xl font-bold">Componente di Prezzo Interattivo</h3>
-                <p className="mb-4 text-muted-foreground">
-                  Un componente di prezzo interattivo con slider per selezionare diversi piani di abbonamento.
-                </p>
-                <Button asChild variant="outline" className="rounded-full">
-                  <Link href="/demos/interactive-pricing">
-                    Apri demo completa
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </CardContent>
-            </Card>
+            {demosSection.demos.map((demo) => (
+              <Card key={demo.title} className="overflow-hidden">
+                <div className="aspect-video bg-muted">
+                  <iframe src={demo.iframe} title={demo.title} className="h-full w-full border-0"></iframe>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="mb-2 text-xl font-bold">{demo.title}</h3>
+                  <p className="mb-4 text-muted-foreground">{demo.description}</p>
+                  <Button asChild variant="outline" className="rounded-full">
+                    <Link href={appendLanguageParam(demo.href, lang)}>
+                      {demo.linkLabel}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* 
-      Testimonials
-      <section className="py-20">
-        <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">Testimonianze</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Cosa dicono i clienti</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Scopri cosa pensano i miei clienti del mio lavoro e della mia collaborazione.
-            </p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <TestimonialCard
-              quote="Davide ha trasformato completamente il nostro sito web. Il design è moderno, intuitivo e ha aumentato significativamente le nostre conversioni."
-              author="Marco Rossi"
-              role="CEO, TechSolutions"
-              image="/placeholder.svg?height=100&width=100"
-            />
-
-            <TestimonialCard
-              quote="Lavorare con Davide è stato un piacere. Ha compreso perfettamente le nostre esigenze e ha consegnato un prodotto che ha superato le nostre aspettative."
-              author="Laura Bianchi"
-              role="Marketing Director, CreativeAgency"
-              image="/placeholder.svg?height=100&width=100"
-            />
-
-            <TestimonialCard
-              quote="Il redesign della nostra app ha migliorato drasticamente l'esperienza utente. I nostri clienti adorano la nuova interfaccia e l'usabilità."
-              author="Giovanni Verdi"
-              role="Product Manager, AppInnovation"
-              image="/placeholder.svg?height=100&width=100"
-            />
-          </div>
-        </div>
-      </section>
-    */}
 
       {/* Contact Section */}
-      <section className="py-20">
+      <section className="py-20" id="contact">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">Contatti</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Hai un progetto in mente?</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Contattami per discutere del tuo progetto e scoprire come posso aiutarti a realizzare la tua visione.
-            </p>
+            <Badge className="mb-4">{contactSection.badge}</Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{contactSection.title}</h2>
+            <p className="mt-4 text-lg text-muted-foreground">{contactSection.description}</p>
           </div>
 
           <div className="mx-auto max-w-3xl">
-            <ContactForm />
+            <ContactForm key={lang} />
           </div>
         </div>
       </section>

@@ -17,5 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((path) => ({
     url: path === "/" ? baseUrl : `${baseUrl}${path}`,
     lastModified,
+    alternates: {
+      languages: {
+        it: path === "/" ? baseUrl : `${baseUrl}${path}`,
+        en: path === "/" ? `${baseUrl}?lang=en` : `${baseUrl}${path}?lang=en`,
+      },
+    },
   }))
 }

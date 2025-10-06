@@ -1,23 +1,56 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "Chi sono", href: "/about" },
-  { name: "Servizi", href: "/services" },
-  { name: "Progetti", href: "/projects" },
-]
+import { appendLanguageParam, type SupportedLanguage } from "@/lib/i18n"
+
+interface NavigationItem {
+  name: string
+  href: string
+}
+
+const navigationItems: Record<SupportedLanguage, NavigationItem[]> = {
+  it: [
+    { name: "Home", href: "/" },
+    { name: "Chi sono", href: "/about" },
+    { name: "Servizi", href: "/services" },
+    { name: "Progetti", href: "/projects" },
+  ],
+  en: [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Projects", href: "/projects" },
+  ],
+}
+
+const ctaCopy: Record<SupportedLanguage, string> = {
+  it: "Contattami",
+  en: "Let's Connect",
+}
+
+function buildLanguageHref(pathname: string, searchParams: URLSearchParams, lang: SupportedLanguage) {
+  const params = new URLSearchParams(searchParams)
+  if (lang === "en") {
+    params.set("lang", "en")
+  } else {
+    params.delete("lang")
+  }
+  const queryString = params.toString()
+  return queryString ? `${pathname}?${queryString}` : pathname
+}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const lang: SupportedLanguage = searchParams.get("lang") === "en" ? "en" : "it"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +61,6 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Impedisce lo scroll del body quando il menu mobile è aperto
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden"
@@ -40,6 +72,9 @@ export default function Header() {
     }
   }, [mobileMenuOpen])
 
+  const items = useMemo(() => navigationItems[lang], [lang])
+  const contactHref = appendLanguageParam("/contact", lang)
+
   return (
     <>
       <header
@@ -49,7 +84,7 @@ export default function Header() {
       >
         <nav className="container mx-auto flex items-center justify-between py-4">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
+            <Link href={appendLanguageParam("/", lang)} className="flex items-center">
               <Image
                 src="/favicon.png"
                 alt="DG Designer logo"
@@ -63,10 +98,10 @@ export default function Header() {
 
           {/* Desktop navigation */}
           <div className="hidden md:flex md:items-center md:gap-x-8">
-            {navigation.map((item) => (
+            {items.map((item) => (
               <Link
                 key={item.name}
-                href={item.href}
+                href={appendLanguageParam(item.href, lang)}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
                   pathname === item.href ? "text-primary" : "text-foreground/80"
                 }`}
@@ -78,15 +113,25 @@ export default function Header() {
 
           <div className="hidden md:flex md:items-center md:gap-x-4">
             <div className="flex space-x-2">
-              <Link href="/?lang=it" className="flex h-8 w-8 items-center justify-center">
-                <span className="text-sm">🇮🇹</span>
+              <Link
+                href={buildLanguageHref(pathname, new URLSearchParams(searchParams), "it")}
+                className="flex h-8 w-8 items-center justify-center"
+              >
+                <span className="text-sm" role="img" aria-label="Italiano">
+                  🇮🇹
+                </span>
               </Link>
-              <Link href="/?lang=en" className="flex h-8 w-8 items-center justify-center">
-                <span className="text-sm">🇺🇸</span>
+              <Link
+                href={buildLanguageHref(pathname, new URLSearchParams(searchParams), "en")}
+                className="flex h-8 w-8 items-center justify-center"
+              >
+                <span className="text-sm" role="img" aria-label="English">
+                  🇺🇸
+                </span>
               </Link>
             </div>
             <Button asChild className="rounded-full">
-              <Link href="/contact">Let&apos;s Connect</Link>
+              <Link href={contactHref}>{ctaCopy[lang]}</Link>
             </Button>
           </div>
 
@@ -110,16 +155,16 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* Mobile menu overlay - separato dall'header per evitare problemi di scroll */}
+      {/* Mobile menu overlay */}
       <div
         className={`fixed inset-0 z-50 bg-background/80 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          mobileMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          mobileMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setMobileMenuOpen(false)}
         aria-hidden="true"
       ></div>
 
-      {/* Mobile menu slide-in panel - separato dall'header per evitare problemi di scroll */}
+      {/* Mobile menu panel */}
       <div
         id="mobile-menu"
         className={`fixed top-0 right-0 bottom-0 z-50 w-64 bg-background shadow-xl transition-transform duration-300 ease-in-out md:hidden ${
@@ -141,10 +186,10 @@ export default function Header() {
           </button>
         </div>
         <div className="space-y-1 p-4">
-          {navigation.map((item) => (
+          {items.map((item) => (
             <Link
               key={item.name}
-              href={item.href}
+              href={appendLanguageParam(item.href, lang)}
               className={`block rounded-md px-3 py-2 text-base font-medium ${
                 pathname === item.href
                   ? "bg-primary/10 text-primary"
@@ -157,16 +202,28 @@ export default function Header() {
           ))}
           <div className="mt-4 border-t pt-4">
             <div className="flex items-center space-x-2 px-3 py-2">
-              <Link href="/?lang=it" className="flex h-8 w-8 items-center justify-center">
-                <span className="text-sm">🇮🇹</span>
+              <Link
+                href={buildLanguageHref(pathname, new URLSearchParams(searchParams), "it")}
+                className="flex h-8 w-8 items-center justify-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="text-sm" role="img" aria-label="Italiano">
+                  🇮🇹
+                </span>
               </Link>
-              <Link href="/?lang=en" className="flex h-8 w-8 items-center justify-center">
-                <span className="text-sm">🇺🇸</span>
+              <Link
+                href={buildLanguageHref(pathname, new URLSearchParams(searchParams), "en")}
+                className="flex h-8 w-8 items-center justify-center"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="text-sm" role="img" aria-label="English">
+                  🇺🇸
+                </span>
               </Link>
             </div>
             <Button asChild size="sm" className="mt-2 w-full rounded-full">
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                Let&apos;s Connect
+              <Link href={contactHref} onClick={() => setMobileMenuOpen(false)}>
+                {ctaCopy[lang]}
               </Link>
             </Button>
           </div>
