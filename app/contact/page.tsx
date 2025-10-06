@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Suspense } from "react"
 import { Badge } from "@/components/ui/badge"
 import ContactForm from "@/components/contact-form"
 import { Mail, MapPin, Phone } from "lucide-react"
@@ -202,7 +203,9 @@ export default function ContactPage({ searchParams }: PageProps) {
 
             <div>
               <h2 className="mb-6 text-2xl font-bold">{copy.formTitle}</h2>
-              <ContactForm key={lang} />
+              <Suspense fallback={null}>
+                <ContactForm key={lang} />
+              </Suspense>
             </div>
           </div>
         </div>

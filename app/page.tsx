@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
+import { Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -533,7 +534,9 @@ export default function Home({ searchParams }: HomePageProps) {
           </div>
 
           <div className="mx-auto max-w-3xl">
-            <ContactForm key={lang} />
+            <Suspense fallback={null}>
+              <ContactForm key={lang} />
+            </Suspense>
           </div>
         </div>
       </section>
