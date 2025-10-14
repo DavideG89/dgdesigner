@@ -232,7 +232,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
         "Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube.",
       image: "/CatMatildabeat_Dsk.png",
       tags: ["Marketplace", "Music", "Branding"],
-      link: "https://www.catmatildabeat.com/",
+      link: "https://www.matildathecat.com/",
     },
   ],
   en: [
