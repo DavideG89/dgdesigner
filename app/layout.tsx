@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     description: "Scopri i progetti e i servizi di Davide Giuliano, designer UX/UI e front-end developer.",
     images: [
       {
-        url: `${siteUrl}/Topos%20Network_Dsk.png`,
+        url: `${siteUrl}/Me-About.gif`,
         width: 1280,
         height: 720,
-        alt: "DG Designer portfolio",
+        alt: "Davide Giuliano - UI/UX Designer",
       },
     ],
   },
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "DG Designer | UI/UX Designer",
     description: "Portfolio di Davide Giuliano, designer UX/UI e front-end developer.",
     creator: "@davidegiuliano",
-    images: [`${siteUrl}/Topos%20Network_Dsk.png`],
+    images: [`${siteUrl}/Me-About.gif`],
   },
   robots: {
     index: true,
