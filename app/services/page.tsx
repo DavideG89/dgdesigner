@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
@@ -10,10 +11,10 @@ import { appendLanguageParam, getLanguage, type SupportedLanguage } from "@/lib/
 interface ServiceSection {
   id: string
   icon: typeof Layers
-  mediaFirst?: boolean
   title: string
   paragraphs: string[]
   bullets: string[]
+  image?: string
 }
 
 interface ProcessStep {
@@ -87,11 +88,11 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Design responsive",
           "Ottimizzazione dell'usabilità",
         ],
+        image: "/UI_bg.png",
       },
       {
         id: "ux-design",
         icon: Figma,
-        mediaFirst: true,
         title: "UX Design",
         paragraphs: [
           "Conduco ricerche utente, creo wireframe e prototipi per garantire esperienze utente fluide e coinvolgenti.",
@@ -103,26 +104,27 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Test di usabilità",
           "Architettura dell'informazione",
         ],
+        image: "/UX_bg.png",
       },
       {
         id: "web-design",
         icon: Code,
-        title: "Web Development",
+        title: "Web Design",
         paragraphs: [
           "Sviluppo siti web moderni, reattivi e ottimizzati per le prestazioni utilizzando le tecnologie più recenti.",
           "Creo siti web che non solo sono belli da vedere, ma anche veloci, accessibili e facili da gestire, utilizzando le migliori pratiche di sviluppo web.",
         ],
         bullets: [
-          "Sviluppo frontend con React e Next.js",
+          "Creazione frontend con Webflow, Wordpress",
           "Siti web responsive",
           "Ottimizzazione delle prestazioni",
           "Accessibilità web",
         ],
+        image: "/WebDesign.png",
       },
       {
         id: "app-design",
         icon: Smartphone,
-        mediaFirst: true,
         title: "App Design",
         paragraphs: [
           "Progetto applicazioni mobile intuitive e funzionali per iOS e Android che gli utenti adoreranno.",
@@ -134,6 +136,7 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Design di icone e assets",
           "Ottimizzazione per diverse dimensioni di schermo",
         ],
+        image: "/Appdesign.png",
       },
       {
         id: "branding",
@@ -149,6 +152,7 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Linee guida del brand",
           "Materiali di marketing",
         ],
+        image: "/Brand.png",
       },
     ],
     processBadge: "Processo",
@@ -286,11 +290,11 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Responsive design",
           "Usability optimisation",
         ],
+        image: "/UI_bg.png",
       },
       {
         id: "ux-design",
         icon: Figma,
-        mediaFirst: true,
         title: "UX Design",
         paragraphs: [
           "I conduct user research and craft wireframes and prototypes to deliver smooth, engaging experiences.",
@@ -302,6 +306,7 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Usability testing",
           "Information architecture",
         ],
+        image: "/UX_bg.png",
       },
       {
         id: "web-design",
@@ -312,16 +317,16 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Every site I deliver looks great, loads fast, stays accessible, and is easy to maintain thanks to web development best practices.",
         ],
         bullets: [
-          "Front-end development with React and Next.js",
+          "Front-end development with Webflow, Wordpress",
           "Responsive websites",
           "Performance optimisation",
           "Web accessibility",
         ],
+        image: "/WebDesign.png",
       },
       {
         id: "app-design",
         icon: Smartphone,
-        mediaFirst: true,
         title: "App Design",
         paragraphs: [
           "I craft intuitive, high-performing mobile apps for iOS and Android that people love to use.",
@@ -333,6 +338,7 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Icon and asset design",
           "Optimisation for multiple screen sizes",
         ],
+        image: "/Appdesign.png",
       },
       {
         id: "branding",
@@ -348,6 +354,7 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Brand guidelines",
           "Marketing collateral",
         ],
+        image: "/Brand.png",
       },
     ],
     processBadge: "Process",
@@ -518,12 +525,13 @@ export default function ServicesPage({ searchParams }: ServicesPageProps) {
       <section className="py-12">
         <div className="container">
           <div className="grid gap-12">
-            {content.sections.map((section) => {
+            {content.sections.map((section, index) => {
               const MediaIcon = section.icon
+              const imageFirst = index % 2 === 1
 
               return (
                 <div key={section.id} className="grid gap-8 md:grid-cols-2" id={section.id}>
-                  <div className={section.mediaFirst ? "order-1 md:order-2" : ""}>
+                  <div className={imageFirst ? "order-1 md:order-2" : ""}>
                     <div className="mb-4 w-fit rounded-full bg-primary/10 p-3">
                       <MediaIcon className="h-6 w-6 text-primary" />
                     </div>
@@ -548,12 +556,23 @@ export default function ServicesPage({ searchParams }: ServicesPageProps) {
                       </Link>
                     </Button>
                   </div>
-                  <div
-                    className={`rounded-xl bg-muted/50 p-6 ${
-                      section.mediaFirst ? "order-2 md:order-1" : ""
-                    }`}
-                  >
-                    <div className="aspect-video rounded-lg bg-muted"></div>
+                  <div className={`rounded-xl p-6 ${imageFirst ? "order-2 md:order-1" : ""}`}>
+                    <div className="relative aspect-video overflow-hidden rounded-lg ">
+                      {section.image ? (
+                        <Image
+                          src={section.image}
+                          alt={section.title}
+                          fill
+                          className="object-cover"
+                          sizes="(min-width: 1024px) 560px, (min-width: 768px) 50vw, 100vw"
+                          priority={index === 0}
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+                          {lang === "en" ? "Image coming soon" : "Immagine in arrivo"}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               )
@@ -587,7 +606,7 @@ export default function ServicesPage({ searchParams }: ServicesPageProps) {
         </div>
       </section>
 
-      {/* Pricing Section */}
+      {/* Pricing Section 
       <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
@@ -641,7 +660,7 @@ export default function ServicesPage({ searchParams }: ServicesPageProps) {
           </div>
         </div>
       </section>
-
+      */}
       {/* FAQ Section */}
       <section className="py-20">
         <div className="container">

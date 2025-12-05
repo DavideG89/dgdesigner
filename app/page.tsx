@@ -34,7 +34,7 @@ const heroCopy: Record<SupportedLanguage, {
   secondaryCta: string
 }> = {
   it: {
-    badge: "UI/UX Designer & Developer",
+    badge: "UI/UX & Web Designer",
     titlePrefix: "Crafting",
     titleHighlight: "impactful",
     titleSuffix: "User Experiences",
@@ -44,7 +44,7 @@ const heroCopy: Record<SupportedLanguage, {
     secondaryCta: "Esplora i progetti",
   },
   en: {
-    badge: "UI/UX Designer & Developer",
+    badge: "UI/UX & Web Designer",
     titlePrefix: "Crafting",
     titleHighlight: "impactful",
     titleSuffix: "User Experiences",
@@ -93,12 +93,12 @@ const servicesCopy: Array<{
     icon: Code,
     copy: {
       it: {
-        title: "Web Development",
+        title: "Web Designer",
         description:
           "Sviluppo di siti web moderni, reattivi e ottimizzati per le prestazioni utilizzando le tecnologie più recenti.",
       },
       en: {
-        title: "Web Development",
+        title: "Web Designer",
         description:
           "Modern, responsive websites optimised for performance with the latest technologies.",
       },
@@ -355,11 +355,12 @@ const contactSectionCopy: Record<SupportedLanguage, {
 }
 
 type HomePageProps = {
-  searchParams?: Record<string, string | string[] | undefined>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export function generateMetadata({ searchParams }: HomePageProps): Metadata {
-  const lang = getLanguage(searchParams)
+export async function generateMetadata({ searchParams }: HomePageProps): Promise<Metadata> {
+  const params = await searchParams
+  const lang = getLanguage(params)
 
   if (lang === "en") {
     return {
@@ -382,8 +383,9 @@ export function generateMetadata({ searchParams }: HomePageProps): Metadata {
   }
 }
 
-export default function Home({ searchParams }: HomePageProps) {
-  const lang = getLanguage(searchParams)
+export default async function Home({ searchParams }: HomePageProps) {
+  const params = await searchParams
+  const lang = getLanguage(params)
   const hero = heroCopy[lang]
   const servicesSection = servicesSectionCopy[lang]
   const servicesCards = servicesCopy.map(({ icon: Icon, copy }) => ({ icon: Icon, ...copy[lang] }))
