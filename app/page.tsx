@@ -198,7 +198,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       title: "Topos Network",
       description:
         "Startup innovativa nel settore finance e crypto che porta soluzioni di pagamento decentralizzate nei paesi in via di sviluppo.",
-      image: "/Topos Network_Dsk.png",
+      image: "/Topos.png",
       tags: ["Website", "Fintech", "Crypto"],
       link: "https://www.topos.com.ng/",
     },
@@ -240,7 +240,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       title: "Topos Network",
       description:
         "Innovative fintech and crypto startup bringing decentralised payment solutions to developing countries.",
-      image: "/Topos Network_Dsk.png",
+      image: "/Topos.png",
       tags: ["Website", "Fintech", "Crypto"],
       link: "https://www.topos.com.ng/",
     },
