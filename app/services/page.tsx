@@ -473,11 +473,12 @@ const servicesTranslations: Record<SupportedLanguage, {
 }
 
 type ServicesPageProps = {
-  searchParams?: Record<string, string | string[] | undefined>
+  searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export function generateMetadata({ searchParams }: ServicesPageProps): Metadata {
-  const lang = getLanguage(searchParams)
+export async function generateMetadata({ searchParams }: ServicesPageProps): Promise<Metadata> {
+  const params = await searchParams
+  const lang = getLanguage(params)
 
   if (lang === "en") {
     return {
@@ -500,8 +501,9 @@ export function generateMetadata({ searchParams }: ServicesPageProps): Metadata 
   }
 }
 
-export default function ServicesPage({ searchParams }: ServicesPageProps) {
-  const lang = getLanguage(searchParams)
+export default async function ServicesPage({ searchParams }: ServicesPageProps) {
+  const params = await searchParams
+  const lang = getLanguage(params)
   const content = servicesTranslations[lang]
   const contactHref = appendLanguageParam("/contact", lang)
 

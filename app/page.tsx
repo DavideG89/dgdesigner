@@ -39,7 +39,7 @@ const heroCopy: Record<SupportedLanguage, {
     titleHighlight: "impactful",
     titleSuffix: "User Experiences",
     description:
-      "Ciao! Sono Davide, un designer UX/UI che ama creare esperienze digitali intuitive, funzionali ed esteticamente piacevoli.",
+      "Ciao! Sono Davide, UX/UI & Web Designer che ama creare esperienze digitali intuitive, funzionali ed esteticamente piacevoli.",
     primaryCta: "Iniziamo a collaborare",
     secondaryCta: "Esplora i progetti",
   },
@@ -49,7 +49,7 @@ const heroCopy: Record<SupportedLanguage, {
     titleHighlight: "impactful",
     titleSuffix: "User Experiences",
     description:
-      "Hi! I'm Davide, a UX/UI designer who loves crafting digital experiences that are intuitive, functional, and visually refined.",
+      "Hi! I'm Davide, a UX/UI & Web designer who loves crafting digital experiences that are intuitive, functional, and visually refined.",
     primaryCta: "Let's start working together",
     secondaryCta: "Explore my projects",
   },
@@ -231,7 +231,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube.",
       image: "/CatMatildabeat_Dsk.png",
-      tags: ["Marketplace", "Music", "Branding"],
+      tags: ["Web","Marketplace", "Music", "Branding"],
       link: "https://www.matildathecat.com/",
     },
   ],

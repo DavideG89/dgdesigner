@@ -92,19 +92,15 @@ export default function Footer() {
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">{copy.tagline}</p>
             <div className="mt-4 flex space-x-4">
-              <Link href="https://twitter.com" className="text-foreground/60 hover:text-primary">
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </Link>
               <Link href="https://github.com" className="text-foreground/60 hover:text-primary">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
-              <Link href="https://linkedin.com" className="text-foreground/60 hover:text-primary">
+              <Link href="https://www.linkedin.com/in/dav-giu/" className="text-foreground/60 hover:text-primary">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
-              <Link href="mailto:info@dgdesigner.site" className="text-foreground/60 hover:text-primary">
+              <Link href="mailto:davidegiuliano.free@gmail.com" className="text-foreground/60 hover:text-primary">
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
