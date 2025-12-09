@@ -484,7 +484,7 @@ export async function generateMetadata({ searchParams }: ServicesPageProps): Pro
     return {
       title: "Services",
       description:
-        "UI design, UX research, front-end development, and branding: discover how Davide Giuliano can elevate your digital project.",
+        "Web design, UI/UX design and branding: discover how Davide Giuliano can elevate your digital project.",
       alternates: {
         canonical: "/services",
       },
@@ -494,7 +494,7 @@ export async function generateMetadata({ searchParams }: ServicesPageProps): Pro
   return {
     title: "Servizi",
     description:
-      "UI design, UX research, sviluppo front-end e branding: scopri come Davide Giuliano può supportare il tuo progetto digitale.",
+      "Web design, UI/UX design e branding: scopri come Davide Giuliano può supportare il tuo progetto digitale.",
     alternates: {
       canonical: "/services",
     },

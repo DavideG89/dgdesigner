@@ -364,9 +364,9 @@ export async function generateMetadata({ searchParams }: HomePageProps): Promise
 
   if (lang === "en") {
     return {
-      title: "Home",
+      title: "Davide Giuliano | UI/Web Designer",
       description:
-        "Portfolio of Davide Giuliano: UX/UI designer and web designer specialising in intuitive digital experiences for brands and startups.",
+        "Hi! I’m Davide, a UX/UI Designer passionate about creating intuitive, functional, and visually refined digital experiences.",
       alternates: {
         canonical: "/",
       },
@@ -374,9 +374,9 @@ export async function generateMetadata({ searchParams }: HomePageProps): Promise
   }
 
   return {
-    title: "Home",
+    title: "Davide Giuliano | UI/Web Designer",
     description:
-      "Portfolio di Davide Giuliano: designer UX/UI e Web Designer specializzato in esperienze digitali intuitive per brand e startup.",
+      "Ciao! Sono Davide, un designer UX/UI che ama creare esperienze digitali intuitive, funzionali ed esteticamente piacevoli.",
     alternates: {
       canonical: "/",
     },
