@@ -199,7 +199,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Startup innovativa nel settore finance e crypto che porta soluzioni di pagamento decentralizzate nei paesi in via di sviluppo.",
       image: "/Topos.png",
-      tags: ["Website", "Fintech", "Crypto"],
+      tags: ["Website", "Webflow", "Fintech", "Crypto"],
       link: "https://www.topos.com.ng/",
     },
     {
@@ -207,7 +207,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Sito web dedicato a una guida turistica palermitana per aumentare la visibilità online e favorire le prenotazioni.",
       image: "/Palermointour website.png",
-      tags: ["Web", "Branding", "Tourism"],
+      tags: ["Website","Wordpress","Branding", "Tourism"],
       link: "https://palermointour.com",
     },
     {
@@ -231,7 +231,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube.",
       image: "/CatMatildabeat_Dsk.png",
-      tags: ["Web","Marketplace", "Music", "Branding"],
+      tags: ["Website","Marketplace", "Music", "Branding"],
       link: "https://www.matildathecat.com/",
     },
   ],
@@ -241,7 +241,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Innovative fintech and crypto startup bringing decentralised payment solutions to developing countries.",
       image: "/Topos.png",
-      tags: ["Website", "Fintech", "Crypto"],
+      tags: ["Website","Webflow", "Fintech", "Crypto"],
       link: "https://www.topos.com.ng/",
     },
     {
@@ -249,7 +249,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Website for a Palermo tour guide, built to boost online visibility and drive bookings.",
       image: "/Palermointour website.png",
-      tags: ["Web", "Branding", "Tourism"],
+      tags: ["Website","Wordpress", "Branding", "Tourism"],
       link: "https://palermointour.com",
     },
     {
@@ -273,7 +273,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Custom marketplace for a beatmaker with a track catalogue and calls to action for BeatStars and YouTube.",
       image: "/CatMatildabeat_Dsk.png",
-      tags: ["Marketplace", "Music", "Branding"],
+      tags: ["Website", "Marketplace", "Music", "Branding"],
       link: "https://www.matildathecat.com/",
     },
   ],
