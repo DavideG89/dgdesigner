@@ -227,7 +227,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
     },
     {
-      title: "CatMatildaBeat Marketplace",
+      title: "Matilda The Cat Beat Marketplace",
       description:
         "Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube.",
       image: "/CatMatildabeat_Dsk.png",
@@ -269,12 +269,12 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
     },
     {
-      title: "CatMatildaBeat Marketplace",
+      title: "Matilda The Cat Beat Marketplace",
       description:
         "Custom marketplace for a beatmaker with a track catalogue and calls to action for BeatStars and YouTube.",
       image: "/CatMatildabeat_Dsk.png",
       tags: ["Marketplace", "Music", "Branding"],
-      link: "https://www.catmatildabeat.com/",
+      link: "https://www.matildathecat.com/",
     },
   ],
 }

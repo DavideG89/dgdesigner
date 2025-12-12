@@ -311,7 +311,7 @@ const servicesTranslations: Record<SupportedLanguage, {
       {
         id: "web-design",
         icon: Code,
-        title: "Web Development",
+        title: "Web Design",
         paragraphs: [
           "I build modern, responsive websites optimised for performance with the latest technologies.",
           "Every site I deliver looks great, loads fast, stays accessible, and is easy to maintain thanks to web development best practices.",
