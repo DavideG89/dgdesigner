@@ -75,15 +75,15 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
     },
     {
       id: "catmatildabeat",
-      title: "CatMatildaBeat Marketplace",
+      title: "Matilda The Cat Marketplace",
       description:
         "Marketplace per un beatmaker con catalogo tracce e call-to-action verso BeatStars e contenuti YouTube.",
       image: "/CatMatildabeat_Dsk.png",
       tags: ["Website", "Marketplace", "Music"],
       category: "Website",
       year: "2022",
-      client: "CatMatildabeat",
-      link: "https://www.catmatildabeat.com/",
+      client: "Matilda The Cat",
+      link: "https://www.matildathecat.com/",
     },
   ],
   en: [
@@ -137,7 +137,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
     },
     {
       id: "catmatildabeat",
-      title: "CatMatildaBeat Marketplace",
+      title: "Matilda The Cat Marketplace",
       description:
         "Marketplace for a beatmaker featuring a track catalogue and calls to action leading to BeatStars and YouTube.",
       image: "/CatMatildabeat_Dsk.png",
@@ -145,7 +145,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
       category: "Website",
       year: "2022",
       client: "CatMatildabeat",
-      link: "https://www.catmatildabeat.com/",
+      link: "https://www.matildathecat.com/",
     },
   ],
 }
