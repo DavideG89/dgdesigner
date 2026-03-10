@@ -115,48 +115,47 @@ export default function DeliveryLandingPage() {
     <main className="bg-background text-foreground">
 
       {/* ── INTRO FREELANCER ──────────────────────────────────── */}
-      <section className="border-b border-border/50 py-14 md:py-18">
-        <div className="container">
-          <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[auto_1fr]">
-            {/* Avatar */}
-            <div className="relative mx-auto h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-primary/30 md:mx-0 md:h-28 md:w-28">
-              <Image
-                src="/Me-About.gif"
-                alt="Davide Giuliano – Designer e sviluppatore freelance"
-                fill
-                className="object-cover"
-              />
-            </div>
-            {/* Testo intro */}
-            <div className="space-y-4 text-center md:text-left">
-              <Badge variant="outline" className="w-fit">
-                <User className="mr-1.5 h-3 w-3" />
-                Freelancer
-              </Badge>
-              <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                Ciao, sono{" "}
-                <span className="text-primary">Davide Giuliano</span>
-              </h2>
-              <p className="max-w-2xl text-pretty text-muted-foreground leading-relaxed">
-                Sono un designer e sviluppatore freelance con oltre 5 anni di esperienza nella
-                progettazione di interfacce digitali. Lavoro con ristoratori, piccole imprese e
-                startup per trasformare idee in prodotti web concreti, curati nei dettagli e
-                pronti a generare fatturato dal primo giorno.
-              </p>
-              <p className="max-w-2xl text-pretty text-muted-foreground leading-relaxed">
-                Negli ultimi anni ho sviluppato un prodotto specifico pensato per il settore
-                della ristorazione: una web app delivery su misura che ti permette di ricevere
-                ordini online in autonomia, senza cedere commissioni a nessuno.
-              </p>
-              <div className="flex flex-wrap items-center gap-2 justify-center md:justify-start pt-1">
-                {["UX/UI Design", "Web Development", "React & Next.js", "Figma", "Stripe"].map(
-                  (skill) => (
-                    <Badge key={skill} variant="secondary" className="font-normal">
-                      {skill}
-                    </Badge>
-                  )
-                )}
-              </div>
+      <section className="relative flex min-h-[480px] overflow-hidden border-b border-border/50">
+        {/* Left: image ~40%, h-full */}
+        <div className="relative hidden w-[40%] shrink-0 md:block">
+          <Image
+            src="/Me-About.gif"
+            alt="Davide Giuliano – Designer e sviluppatore freelance"
+            fill
+            className="object-cover object-top"
+          />
+        </div>
+
+        {/* Right: text ~60% */}
+        <div className="flex w-full flex-col justify-center px-6 py-14 md:w-[60%] md:px-12 lg:px-16">
+          <div className="space-y-4">
+            <Badge variant="outline" className="w-fit">
+              <User className="mr-1.5 h-3 w-3" />
+              Freelancer
+            </Badge>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
+              Ciao, sono{" "}
+              <span className="text-primary">Davide Giuliano</span>
+            </h2>
+            <p className="max-w-xl text-pretty text-muted-foreground leading-relaxed">
+              Sono un designer e sviluppatore freelance con oltre 5 anni di esperienza nella
+              progettazione di interfacce digitali. Lavoro con ristoratori, piccole imprese e
+              startup per trasformare idee in prodotti web concreti, curati nei dettagli e
+              pronti a generare fatturato dal primo giorno.
+            </p>
+            <p className="max-w-xl text-pretty text-muted-foreground leading-relaxed">
+              Negli ultimi anni ho sviluppato un prodotto specifico pensato per il settore
+              della ristorazione: una web app delivery su misura che ti permette di ricevere
+              ordini online in autonomia, senza cedere commissioni a nessuno.
+            </p>
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              {["UX/UI Design", "Web Development", "React & Next.js", "Figma", "Stripe"].map(
+                (skill) => (
+                  <Badge key={skill} variant="secondary" className="font-normal">
+                    {skill}
+                  </Badge>
+                )
+              )}
             </div>
           </div>
         </div>
