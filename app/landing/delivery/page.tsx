@@ -1,29 +1,25 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Suspense } from "react"
 import {
   ArrowRight,
   Check,
   ShoppingBag,
   BarChart3,
-  Smartphone,
-  Globe,
-  Ban,
-  Bell,
-  Utensils,
-  ChefHat,
-  Star,
   User,
   Clock,
   MapPin,
-  TrendingUp,
   BookOpen,
   Layers,
-  Settings2,
-  Sparkles,
-  LayoutDashboard,
-  SlidersHorizontal,
+  Utensils,
+  ChefHat,
+  Star,
+  Smartphone,
+  QrCode,
+  Users,
+  PhoneOff,
+  ClipboardList,
+  RefreshCcw,
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
@@ -34,108 +30,104 @@ import ContactForm from "@/components/contact-form"
 export const metadata: Metadata = {
   title: "Web App Delivery per Ristoranti | Davide Giuliano – DG Designer",
   description:
-    "Sono Davide Giuliano, designer e sviluppatore freelance. Realizzo web app delivery su misura per ristoratori che vogliono gestire ordini online senza pagare commissioni a intermediari.",
+    "Ricevi ordini online direttamente dal tuo ristorante. Un sistema semplice per gestire delivery, pickup e ordini dal tavolo, controllato da una dashboard facile da usare.",
   alternates: {
     canonical: "/landing/delivery",
   },
   openGraph: {
     title: "Web App Delivery per Ristoranti | Davide Giuliano – DG Designer",
     description:
-      "Designer e sviluppatore freelance. Web app delivery su misura per ristoratori: ordini diretti, menu digitale, dashboard admin. Zero commissioni.",
+      "Ricevi ordini online direttamente dal tuo ristorante. Delivery, pickup, QR menu e ordini dal tavolo — tutto in una dashboard.",
   },
 }
 
-const dashboardModules = [
+const features = [
   {
     icon: ShoppingBag,
-    title: "Gestione ordini",
+    title: "Delivery con rider del ristorante",
     description:
-      "Visualizza ogni ordine in tempo reale con stato aggiornabile: nuovo, in preparazione, pronto, consegnato. Storico completo e filtri per data.",
-    tag: "Core",
+      "I clienti ordinano online e tu gestisci la consegna con i tuoi rider. Nessuna piattaforma di mezzo.",
   },
   {
-    icon: BookOpen,
-    title: "Menu digitale",
+    icon: Utensils,
+    title: "Ordini da asporto (pickup)",
     description:
-      "Aggiungi, modifica o rimuovi piatti, categorie e varianti in autonomia. Foto, descrizioni, prezzi e disponibilita giornaliera tutto in un click.",
-    tag: "Core",
+      "Il cliente prenota il ritiro direttamente dall'app. Arriva, ritira e va. Niente attese inutili al telefono.",
   },
   {
-    icon: Clock,
-    title: "Orari di apertura",
+    icon: QrCode,
+    title: "Menu digitale con QR code",
     description:
-      "Imposta gli orari di servizio per ogni giorno della settimana. Il menu si disattiva automaticamente fuori orario, senza interventi manuali.",
-    tag: "Automatico",
+      "Un QR code sul tavolo apre il menu digitale dal telefono. Sempre aggiornato, senza stampare niente.",
   },
   {
-    icon: MapPin,
-    title: "Zone di consegna",
+    icon: ClipboardList,
+    title: "Ordini direttamente dal tavolo",
     description:
-      "Definisci le aree geografiche coperte dal tuo delivery, con costi di spedizione personalizzati per zona e distanza dal locale.",
-    tag: "Logistics",
-  },
-  {
-    icon: Sparkles,
-    title: "Upselling intelligente",
-    description:
-      "Scegli quali prodotti mostrare come suggerimenti durante l'ordine. Aumenta il valore medio del carrello senza sforzo, controllando tu la logica.",
-    tag: "Revenue",
-  },
-  {
-    icon: Bell,
-    title: "Notifiche real-time",
-    description:
-      "Ogni nuovo ordine ti arriva immediatamente via notifica push, email o WhatsApp. Zero ritardi, massima reattivita in cucina.",
-    tag: "Automatico",
+      "I clienti al tavolo possono ordinare e pagare dal proprio smartphone, riducendo il carico sui camerieri.",
   },
   {
     icon: BarChart3,
-    title: "Statistiche e report",
+    title: "Dashboard per gestire gli ordini",
     description:
-      "Monitora vendite, piatti piu ordinati, fasce orarie di punta e andamento mensile. Dati tuoi, sempre accessibili.",
-    tag: "Analytics",
+      "Tutti gli ordini in un unico pannello, con stato aggiornabile in tempo reale. Niente fogli, niente confusione.",
   },
   {
-    icon: SlidersHorizontal,
-    title: "Impostazioni generali",
+    icon: BookOpen,
+    title: "Menu aggiornabile in autonomia",
     description:
-      "Personalizza info del ristorante, metodi di pagamento accettati, messaggi al cliente e comportamento del sistema in pochi click.",
-    tag: "Config",
+      "Aggiungi, modifica o rimuovi piatti in qualsiasi momento. Nessun tecnico necessario, lo fai tu direttamente.",
   },
-]
-
-const included = [
-  "Web app responsive (mobile, tablet, desktop)",
-  "Menu digitale personalizzato con foto e categorie",
-  "Sistema di ordini con stato (nuovo, in preparazione, pronto)",
-  "Dashboard admin per gestire ordini e menu",
-  "Integrazione pagamenti online (Stripe)",
-  "Notifiche ordini via email o WhatsApp",
-  "Dominio e hosting per il primo anno inclusi",
-  "Assistenza post-lancio per 30 giorni",
 ]
 
 const steps = [
   {
     number: "01",
-    icon: Utensils,
-    title: "Analisi e brief",
+    icon: ChefHat,
+    title: "Configuriamo il sistema per il tuo ristorante",
     description:
-      "Capiamo insieme le esigenze del tuo ristorante: menu, fasce orarie, zone di consegna e flusso degli ordini.",
+      "Capiamo insieme le esigenze specifiche: tipologia di servizio, menu, zone di consegna e flusso degli ordini.",
   },
   {
     number: "02",
-    icon: ChefHat,
-    title: "Design e sviluppo",
+    icon: Layers,
+    title: "Carichiamo il menu e impostiamo ordini e consegne",
     description:
-      "Progetto l'interfaccia e sviluppo la web app su misura per il tuo brand. Ogni dettaglio rispecchia la tua identita.",
+      "Preparo il menu digitale con foto e categorie, configuro i metodi di pagamento e le impostazioni di consegna.",
   },
   {
     number: "03",
     icon: Star,
-    title: "Lancio e supporto",
+    title: "I clienti possono iniziare a ordinare online",
     description:
-      "Messa online, test completi e formazione per usare la dashboard in autonomia. Poi gestisci tutto tu.",
+      "Il sistema va online, testato e pronto. Ti mostro come usare la dashboard e poi gestisci tutto in autonomia.",
+  },
+]
+
+const benefits = [
+  {
+    icon: PhoneOff,
+    title: "Meno telefonate durante il servizio",
+    description:
+      "Gli ordini arrivano direttamente nella dashboard. Niente piu interruzioni in cucina o errori da trascrizione.",
+  },
+  {
+    icon: ClipboardList,
+    title: "Ordini piu chiari e organizzati",
+    description:
+      "Ogni ordine e scritto, dettagliato e tracciabile. Elimini gli errori e servi meglio i tuoi clienti.",
+  },
+  {
+    icon: RefreshCcw,
+    title: "Menu aggiornabile facilmente",
+    description:
+      "Hai piena autonomia sul menu. Cambi prezzi, aggiungi piatti del giorno o disattivi temporaneamente un prodotto.",
+  },
+  {
+    icon: Users,
+    title: "Possibilita di conoscere i propri clienti",
+    description:
+      "Il sistema raccoglie dati sugli ordini: chi compra, cosa ordina, quando. Informazioni che le piattaforme terze non ti danno mai.",
   },
 ]
 
@@ -144,8 +136,7 @@ export default function DeliveryLandingPage() {
     <main className="bg-background text-foreground">
 
       {/* ── INTRO FREELANCER ──────────────────────────────────── */}
-      <section className="relative flex min-h-[480px] overflow-hidden border-b border-border/50">
-        {/* Left: image ~40%, h-full */}
+      <section className="relative flex min-h-[440px] overflow-hidden border-b border-border/50">
         <div className="relative hidden w-[40%] shrink-0 md:block">
           <Image
             src="/Me-About.gif"
@@ -154,8 +145,6 @@ export default function DeliveryLandingPage() {
             className="object-cover object-top"
           />
         </div>
-
-        {/* Right: text ~60% */}
         <div className="flex w-full flex-col justify-center px-6 py-14 md:w-[60%] md:px-12 lg:px-16">
           <div className="space-y-4">
             <Badge variant="outline" className="w-fit">
@@ -170,12 +159,12 @@ export default function DeliveryLandingPage() {
               Sono un designer e sviluppatore freelance con oltre 5 anni di esperienza nella
               progettazione di interfacce digitali. Lavoro con ristoratori, piccole imprese e
               startup per trasformare idee in prodotti web concreti, curati nei dettagli e
-              pronti a generare fatturato dal primo giorno.
+              pronti a generare risultati fin dal primo giorno.
             </p>
             <p className="max-w-xl text-pretty text-muted-foreground leading-relaxed">
-              Negli ultimi anni ho sviluppato un prodotto specifico pensato per il settore
-              della ristorazione: una web app delivery su misura che ti permette di ricevere
-              ordini online in autonomia, senza cedere commissioni a nessuno.
+              Ho sviluppato un sistema di ordinazione digitale pensato specificamente per i
+              ristoranti — e in questa pagina ti spiego esattamente cosa fa e come puo
+              aiutare il tuo locale.
             </p>
             <div className="flex flex-wrap items-center gap-2 pt-1">
               {["UX/UI Design", "Web Development", "React & Next.js", "Figma", "Stripe"].map(
@@ -192,25 +181,24 @@ export default function DeliveryLandingPage() {
 
       {/* ── HERO ──────────────────────────────────────────────── */}
       <section className="relative overflow-hidden py-20 md:py-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(217,133,83,0.1),transparent_60%)]" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(217,133,83,0.08),transparent_60%)]" />
         <div className="container">
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="mx-auto max-w-3xl text-center">
             <Badge className="mb-6 w-fit" variant="outline">
-              Web App Delivery per Ristoratori
+              Web App per Ristoratori
             </Badge>
             <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-              Il tuo delivery,{" "}
-              <span className="gradient-text">senza intermediari</span>
+              Ricevi ordini online{" "}
+              <span className="gradient-text">direttamente dal tuo ristorante</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground leading-relaxed">
-              Ti costruisco una web app delivery professionale e su misura per il tuo
-              ristorante. Ordini diretti, menu digitale e dashboard gestionale. Smetti di
-              pagare il 15–30% a Glovo e JustEat su ogni singolo ordine.
+            <p className="mx-auto mt-6 max-w-xl text-pretty text-lg text-muted-foreground leading-relaxed">
+              Un sistema semplice per gestire delivery, pickup e ordini dal tavolo.
+              Tutto controllato da una dashboard facile da usare.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="rounded-full px-8">
                 <Link href="#contact">
-                  Richiedi un preventivo gratuito
+                  Richiedi una demo
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
@@ -218,32 +206,33 @@ export default function DeliveryLandingPage() {
                 <Link href="#come-funziona">Scopri come funziona</Link>
               </Button>
             </div>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Risposta entro 24 ore · Consulenza gratuita e senza impegno
-            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+              {["Delivery", "Pickup", "QR Menu", "Ordini dal tavolo"].map((tag, i, arr) => (
+                <span key={tag} className="flex items-center gap-4">
+                  <span>{tag}</span>
+                  {i < arr.length - 1 && <span className="h-1 w-1 rounded-full bg-border" />}
+                </span>
+              ))}
+            </div>
           </div>
 
-          {/* Real product screenshots */}
-          <div className="mx-auto mt-14 max-w-5xl">
-            <div className="grid gap-4 md:grid-cols-[1fr_2fr] items-end">
-              {/* Mobile client app */}
-              <div className="flex justify-center md:justify-end">
-                <div className="overflow-hidden rounded-[2rem] border-[6px] border-foreground/10 shadow-2xl w-[220px]">
-                  <Image
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-03-09%20at%2001.12.03-g5uQvwnIkJrJ0gscueniL2pKjslOJY.jpeg"
-                    alt="Web app cliente – Amico Fritto esempio"
-                    width={440}
-                    height={880}
-                    className="w-full"
-                    priority
-                  />
-                </div>
+          {/* Real screenshots */}
+          <div className="mx-auto mt-16 max-w-5xl">
+            <div className="grid items-end gap-6 md:grid-cols-[180px_1fr]">
+              <div className="mx-auto w-[180px] overflow-hidden rounded-[2rem] border-[6px] border-foreground/10 shadow-2xl">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-03-09%20at%2001.12.03-g5uQvwnIkJrJ0gscueniL2pKjslOJY.jpeg"
+                  alt="App cliente – esempio Amico Fritto"
+                  width={440}
+                  height={880}
+                  className="w-full"
+                  priority
+                />
               </div>
-              {/* Admin dashboard */}
               <div className="overflow-hidden rounded-2xl border border-border/50 shadow-2xl">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-uPojBG4aiDMJ7b4HHXgGTharwKY5dG.png"
-                  alt="Dashboard admin ristoratore – Amico Fritto esempio"
+                  alt="Dashboard admin ristoratore – esempio Amico Fritto"
                   width={1200}
                   height={750}
                   className="w-full"
@@ -252,70 +241,69 @@ export default function DeliveryLandingPage() {
               </div>
             </div>
             <p className="mt-4 text-center text-xs text-muted-foreground">
-              Esempio reale: web app e dashboard admin di{" "}
+              Esempio reale:{" "}
               <span className="font-medium text-foreground">Amico Fritto</span>
+              {" "}— web app cliente e dashboard admin ristoratore
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ── STATS BAR ─────────────────────────────────────────── */}
-      <section className="border-y border-border/50 bg-muted/20 py-8">
-        <div className="container">
-          <div className="grid grid-cols-2 gap-6 text-center md:grid-cols-4">
-            {[
-              { value: "0%", label: "Commissioni sugli ordini" },
-              { value: "~30gg", label: "Dal brief al lancio" },
-              { value: "100%", label: "Proprieta del tuo brand" },
-              { value: "5+", label: "Anni di esperienza" },
-            ].map((stat) => (
-              <div key={stat.label} className="space-y-1">
-                <p className="text-3xl font-bold text-primary">{stat.value}</p>
-                <p className="text-sm text-muted-foreground">{stat.label}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* ── IL PROBLEMA ───────────────────────────────────────── */}
-      <section className="py-16 md:py-20">
-        <div className="container grid gap-12 md:grid-cols-2 md:items-center">
-          <div className="space-y-6">
-            <div className="space-y-3">
-              <Badge variant="outline" className="w-fit">Il problema</Badge>
-              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                Stai cedendo una fetta del tuo incasso ogni giorno
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Le piattaforme terze ti danno visibilita, ma a un costo enorme. Ogni ordine
-                che arriva tramite loro e un ricavo che si assottiglia.
+      <section className="border-t border-border/50 bg-muted/20 py-16 md:py-20">
+        <div className="container">
+          <div className="mx-auto max-w-3xl space-y-6 text-center">
+            <Badge variant="outline" className="w-fit">Il problema</Badge>
+            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+              Gestire gli ordini non dovrebbe essere complicato
+            </h2>
+            <div className="space-y-4 text-left text-muted-foreground leading-relaxed">
+              <p>
+                Molti ristoranti ricevono ordini tramite telefonate, messaggi o WhatsApp.
+                Questo spesso crea confusione, errori negli ordini e perdita di tempo durante
+                il servizio.
+              </p>
+              <p>
+                Un sistema di ordinazione digitale permette di organizzare tutto in modo semplice.
               </p>
             </div>
-            <ul className="space-y-3">
-              {[
-                "Paghi il 15–30% di commissioni a Glovo, JustEat o Deliveroo su ogni ordine",
-                "Non hai accesso ai dati e ai contatti dei tuoi clienti",
-                "Non puoi costruire fedelta e programmi di retention",
-                "Il tuo brand e schiacciato dentro piattaforme di terzi",
-                "Non controlli recensioni e comunicazione col cliente",
-              ].map((point) => (
-                <li key={point} className="flex items-start gap-3">
-                  <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-destructive/10 text-destructive">
-                    <Ban className="h-3 w-3" />
-                  </span>
-                  <span className="text-sm text-foreground">{point}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="rounded-xl bg-primary/10 px-4 py-3 text-sm font-medium text-primary">
-              Con una web app tua, tieni il 100% di ogni ordine.
-            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── LA SOLUZIONE ──────────────────────────────────────── */}
+      <section className="py-16 md:py-20">
+        <div className="container grid gap-12 md:grid-cols-2 md:items-center">
+          <div className="space-y-5">
+            <Badge variant="outline" className="w-fit">La soluzione</Badge>
+            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+              Un sistema di ordinazione pensato per i ristoranti
+            </h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>
+                Ho sviluppato una web app che permette ai ristoranti di ricevere e gestire
+                gli ordini online in modo semplice.
+              </p>
+              <p>
+                I clienti possono vedere il menu, scegliere cosa ordinare e inviare l'ordine
+                direttamente al ristorante.
+              </p>
+              <p>
+                Il ristorante riceve tutto nella dashboard e puo gestire ogni ordine in
+                pochi secondi.
+              </p>
+            </div>
+            <Button asChild className="rounded-full px-6">
+              <Link href="#contact">
+                Richiedi una demo
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
           </div>
           <div className="overflow-hidden rounded-2xl border border-border/50 shadow-xl">
             <Image
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-uPojBG4aiDMJ7b4HHXgGTharwKY5dG.png"
-              alt="Dashboard admin ristoratore con ordini e statistiche"
+              alt="Dashboard admin ristoratore"
               width={700}
               height={520}
               className="w-full"
@@ -324,291 +312,122 @@ export default function DeliveryLandingPage() {
         </div>
       </section>
 
-      {/* ── DASHBOARD MODULES ─────────────────────────────────── */}
-      <section className="py-16 md:py-20">
+      {/* ── COSA PUO FARE ─────────────────────────────────────── */}
+      <section className="border-t border-border/50 bg-muted/20 py-16 md:py-20">
         <div className="container">
           <div className="mb-12 space-y-3 text-center">
-            <Badge variant="outline" className="w-fit">
-              <LayoutDashboard className="mr-1.5 h-3 w-3" />
-              La tua dashboard
-            </Badge>
+            <Badge variant="outline" className="w-fit">Funzionalita</Badge>
             <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Gestisci tutto dal tuo pannello
+              Cosa puo fare il sistema
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
-              Una dashboard pensata per i ristoratori, non per i tecnici. Ogni modulo
-              e intuitivo e ti da il controllo completo sulla tua attivita.
-            </p>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {dashboardModules.map((mod) => {
-              const Icon = mod.icon
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => {
+              const Icon = feature.icon
               return (
                 <Card
-                  key={mod.title}
+                  key={feature.title}
                   className="group border border-border/60 bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
                 >
                   <CardContent className="space-y-3 p-5">
-                    <div className="flex items-start justify-between">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                        {mod.tag}
-                      </span>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <h3 className="font-semibold leading-snug">{mod.title}</h3>
+                    <h3 className="font-semibold leading-snug">{feature.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      {mod.description}
+                      {feature.description}
                     </p>
                   </CardContent>
                 </Card>
               )
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PERSONALIZZAZIONE ────────────────────────────────── */}
-      <section className="bg-muted/20 py-16 md:py-20">
-        <div className="container">
-          <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2">
-            <div className="space-y-5">
-              <Badge variant="outline" className="w-fit">
-                <Layers className="mr-1.5 h-3 w-3" />
-                Personalizzazione
-              </Badge>
-              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                La tua app, con il tuo brand
-              </h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Ogni web app che costruisco si adatta all'identita visiva del tuo ristorante.
-                Colori, logo, font e tonalita vengono configurati su misura — come Amico Fritto,
-                che ha il suo giallo e il suo stile riconoscibile.
-              </p>
-              <div className="space-y-3">
-                {[
-                  { label: "Colori primari e secondari", yes: true },
-                  { label: "Logo e icone del brand", yes: true },
-                  { label: "Tipografia personalizzata", yes: true },
-                  { label: "Foto e contenuti del menu", yes: true },
-                  { label: "Struttura dell'app e funzionalita core", yes: false },
-                  { label: "Layout e navigazione di base", yes: false },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-3 text-sm">
-                    <span
-                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
-                        item.yes
-                          ? "bg-primary/15 text-primary"
-                          : "bg-muted text-muted-foreground"
-                      }`}
-                    >
-                      {item.yes ? "S" : "N"}
-                    </span>
-                    <span className={item.yes ? "text-foreground" : "text-muted-foreground"}>
-                      {item.label}
-                    </span>
-                    <span className="ml-auto text-xs text-muted-foreground">
-                      {item.yes ? "Personalizzabile" : "Fisso"}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Side-by-side screenshots */}
-            <div className="flex items-end justify-center gap-4">
-              <div className="overflow-hidden rounded-[1.75rem] border-[5px] border-foreground/10 shadow-xl w-[180px]">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-03-09%20at%2001.12.03-g5uQvwnIkJrJ0gscueniL2pKjslOJY.jpeg"
-                  alt="Esempio app cliente brandizzata – Amico Fritto"
-                  width={360}
-                  height={720}
-                  className="w-full"
-                />
-              </div>
-              <div className="flex-1 overflow-hidden rounded-xl border border-border/50 shadow-lg">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-uPojBG4aiDMJ7b4HHXgGTharwKY5dG.png"
-                  alt="Esempio dashboard admin brandizzata – Amico Fritto"
-                  width={600}
-                  height={400}
-                  className="w-full"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CHECKLIST ─────────────────────────────────────────── */}
-      <section className="bg-muted/20 py-16 md:py-20">
-        <div className="container">
-          <div className="mx-auto max-w-3xl">
-            <div className="mb-10 space-y-3 text-center">
-              <Badge variant="outline" className="w-fit">Nel pacchetto</Badge>
-              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                Cosa ricevi con il tuo progetto
-              </h2>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {included.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-3 rounded-xl border border-border/50 bg-background px-4 py-3"
-                >
-                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                    <Check className="h-3 w-3" />
-                  </span>
-                  <span className="text-sm">{item}</span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
       {/* ── COME FUNZIONA ─────────────────────────────────────── */}
-      <section className="py-16 md:py-20" id="come-funziona">
+      <section id="come-funziona" className="py-16 md:py-20">
         <div className="container">
           <div className="mb-12 space-y-3 text-center">
             <Badge variant="outline" className="w-fit">Come funziona</Badge>
             <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Dal brief al lancio in tre fasi
+              Tre passi per partire
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
-              Un processo semplice e trasparente. Sai sempre a che punto siamo e cosa aspettarti.
-            </p>
           </div>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-3">
             {steps.map((step) => {
               const Icon = step.icon
               return (
-                <Card key={step.title} className="relative border-0 bg-muted/30 shadow-lg">
-                  <CardContent className="space-y-4 p-6">
-                    <div className="flex items-center justify-between">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <span className="text-4xl font-bold text-primary/20">{step.number}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {step.description}
-                    </p>
-                  </CardContent>
-                </Card>
+                <div key={step.number} className="space-y-4 text-center">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <span className="block text-sm font-mono font-medium text-muted-foreground">
+                    {step.number}
+                  </span>
+                  <h3 className="text-pretty font-semibold leading-snug">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
               )
             })}
           </div>
         </div>
       </section>
 
-      {/* ── ROI EXAMPLE ───────────────────────────────────────── */}
-      <section className="py-16 md:py-20">
+      {/* ── VANTAGGI ──────────────────────────────────────────── */}
+      <section className="border-t border-border/50 bg-muted/20 py-16 md:py-20">
         <div className="container">
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-10 space-y-3 text-center">
-              <Badge variant="outline" className="w-fit">Perche vale l'investimento</Badge>
-              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                I numeri parlano chiaro
-              </h2>
-            </div>
-            <Card className="border-0 bg-primary/5 shadow-xl">
-              <CardContent className="grid gap-8 p-8 md:grid-cols-2 md:items-center">
-                <div className="space-y-4">
-                  <p className="text-sm font-medium uppercase tracking-widest text-primary">
-                    Esempio reale
-                  </p>
-                  <p className="text-2xl font-bold">Una pizzeria a domicilio</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    Una pizzeria tipica con 50 ordini a settimana su Glovo paga circa{" "}
-                    <strong className="text-foreground">€300–500 al mese</strong> solo di
-                    commissioni. Con una web app propria, quegli stessi clienti ordinano
-                    direttamente, azzerando il costo per ogni ordine ricevuto.
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  <div className="rounded-xl border border-primary/20 bg-background p-4">
-                    <p className="text-sm font-semibold text-primary">Ritorno sull'investimento</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      Con il risparmio sulle commissioni, il costo della web app si recupera
-                      spesso entro i primi 3–6 mesi. Dal secondo anno, e tutto guadagno netto.
+          <div className="mb-12 space-y-3 text-center">
+            <Badge variant="outline" className="w-fit">Vantaggi</Badge>
+            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+              Vantaggi per il ristorante
+            </h2>
+          </div>
+          <div className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
+            {benefits.map((benefit) => {
+              const Icon = benefit.icon
+              return (
+                <div
+                  key={benefit.title}
+                  className="flex gap-4 rounded-2xl border border-border/50 bg-background p-5"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <h3 className="font-semibold leading-snug">{benefit.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {benefit.description}
                     </p>
                   </div>
-                  <div className="rounded-xl border border-border/50 bg-background p-4">
-                    <p className="text-sm font-semibold">Chi ci guadagna di piu</p>
-                    <ul className="mt-2 space-y-1">
-                      {[
-                        "Pizzerie e trattorie con servizio a domicilio",
-                        "Dark kitchen e cloud kitchen",
-                        "Bar con menu da ordinare online",
-                        "Catene con piu punti vendita",
-                      ].map((item) => (
-                        <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                          <Check className="h-3.5 w-3.5 shrink-0 text-primary" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
                 </div>
-              </CardContent>
-            </Card>
+              )
+            })}
           </div>
         </div>
       </section>
 
-      {/* ── CTA BANNER ────────────────────────────────────────── */}
-      <section className="py-16 md:py-20">
+      {/* ── CTA FINALE ────────────────────────────────────────── */}
+      <section id="contact" className="py-16 md:py-20">
         <div className="container">
-          <Card className="border-0 bg-primary text-primary-foreground shadow-2xl">
-            <CardContent className="flex flex-col items-center gap-6 p-10 text-center md:p-16">
-              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-                Parliamoci. Senza impegno.
-              </h2>
-              <p className="max-w-2xl text-pretty text-primary-foreground/80 leading-relaxed">
-                Descrivimi come funziona oggi il tuo delivery e ti mostro concretamente
-                come posso aiutarti a renderlo piu redditizio e indipendente.
-                La consulenza iniziale e gratuita.
-              </p>
-              <Button
-                asChild
-                size="lg"
-                variant="secondary"
-                className="rounded-full bg-background px-8 text-foreground hover:bg-background/90"
-              >
-                <Link href="#contact">
-                  Scrivimi adesso
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <p className="text-sm text-primary-foreground/60">
-                Risposta entro 24 ore · Nessun impegno
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* ── CONTACT ───────────────────────────────────────────── */}
-      <section className="py-20" id="contact">
-        <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">Contattami</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Parliamo del tuo ristorante
+          <div className="mx-auto max-w-2xl text-center">
+            <Badge variant="outline" className="mb-6 w-fit">Contatti</Badge>
+            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+              Parliamone
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Compila il form e ti rispondo entro 24 ore con una proposta su misura.
+            <p className="mx-auto mt-4 max-w-lg text-pretty text-muted-foreground leading-relaxed">
+              Raccontami il tuo ristorante. Ti rispondo entro 24 ore con una valutazione
+              gratuita e senza impegno.
             </p>
           </div>
-          <div className="mx-auto max-w-3xl">
-            <Suspense fallback={null}>
-              <ContactForm />
-            </Suspense>
+          <div className="mx-auto mt-10 max-w-lg">
+            <ContactForm />
           </div>
         </div>
       </section>
+
     </main>
   )
 }
