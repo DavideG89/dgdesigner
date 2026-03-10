@@ -15,6 +15,15 @@ import {
   ChefHat,
   Star,
   User,
+  Clock,
+  MapPin,
+  TrendingUp,
+  BookOpen,
+  Layers,
+  Settings2,
+  Sparkles,
+  LayoutDashboard,
+  SlidersHorizontal,
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
@@ -36,42 +45,62 @@ export const metadata: Metadata = {
   },
 }
 
-const features = [
+const dashboardModules = [
   {
     icon: ShoppingBag,
-    title: "Ordini diretti",
+    title: "Gestione ordini",
     description:
-      "I clienti ordinano direttamente dal tuo sito. Nessun intermediario, nessuna commissione da pagare.",
+      "Visualizza ogni ordine in tempo reale con stato aggiornabile: nuovo, in preparazione, pronto, consegnato. Storico completo e filtri per data.",
+    tag: "Core",
   },
   {
-    icon: Smartphone,
-    title: "Mobile-first",
-    description:
-      "Esperienza ottimizzata per smartphone. I tuoi clienti ordinano in pochi tap da qualsiasi dispositivo.",
-  },
-  {
-    icon: BarChart3,
-    title: "Dashboard ordini",
-    description:
-      "Pannello di controllo per gestire ordini in tempo reale, visualizzare lo storico e monitorare le vendite.",
-  },
-  {
-    icon: Globe,
+    icon: BookOpen,
     title: "Menu digitale",
     description:
-      "Menu sempre aggiornabile con foto, descrizioni e prezzi. Modificabile in autonomia, senza tecnici.",
+      "Aggiungi, modifica o rimuovi piatti, categorie e varianti in autonomia. Foto, descrizioni, prezzi e disponibilita giornaliera tutto in un click.",
+    tag: "Core",
+  },
+  {
+    icon: Clock,
+    title: "Orari di apertura",
+    description:
+      "Imposta gli orari di servizio per ogni giorno della settimana. Il menu si disattiva automaticamente fuori orario, senza interventi manuali.",
+    tag: "Automatico",
+  },
+  {
+    icon: MapPin,
+    title: "Zone di consegna",
+    description:
+      "Definisci le aree geografiche coperte dal tuo delivery, con costi di spedizione personalizzati per zona e distanza dal locale.",
+    tag: "Logistics",
+  },
+  {
+    icon: Sparkles,
+    title: "Upselling intelligente",
+    description:
+      "Scegli quali prodotti mostrare come suggerimenti durante l'ordine. Aumenta il valore medio del carrello senza sforzo, controllando tu la logica.",
+    tag: "Revenue",
   },
   {
     icon: Bell,
     title: "Notifiche real-time",
     description:
-      "Ricevi una notifica immediata a ogni nuovo ordine. Zero ritardi, massima reattivita in cucina.",
+      "Ogni nuovo ordine ti arriva immediatamente via notifica push, email o WhatsApp. Zero ritardi, massima reattivita in cucina.",
+    tag: "Automatico",
   },
   {
-    icon: Ban,
-    title: "Zero commissioni",
+    icon: BarChart3,
+    title: "Statistiche e report",
     description:
-      "Paghi solo lo sviluppo, una volta sola. Nessuna percentuale sugli ordini, nessun abbonamento nascosto.",
+      "Monitora vendite, piatti piu ordinati, fasce orarie di punta e andamento mensile. Dati tuoi, sempre accessibili.",
+    tag: "Analytics",
+  },
+  {
+    icon: SlidersHorizontal,
+    title: "Impostazioni generali",
+    description:
+      "Personalizza info del ristorante, metodi di pagamento accettati, messaggi al cliente e comportamento del sistema in pochi click.",
+    tag: "Config",
   },
 ]
 
@@ -278,34 +307,42 @@ export default function DeliveryLandingPage() {
         </div>
       </section>
 
-      {/* ── FEATURES ──────────────────────────────────────────── */}
+      {/* ── DASHBOARD MODULES ─────────────────────────────────── */}
       <section className="py-16 md:py-20">
         <div className="container">
           <div className="mb-12 space-y-3 text-center">
-            <Badge variant="outline" className="w-fit">Cosa include</Badge>
+            <Badge variant="outline" className="w-fit">
+              <LayoutDashboard className="mr-1.5 h-3 w-3" />
+              La tua dashboard
+            </Badge>
             <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
-              Tutto quello che serve al tuo ristorante
+              Gestisci tutto dal tuo pannello
             </h2>
             <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
-              Una soluzione completa, progettata su misura per la tua attivita.
-              Nessun template generico, nessuna funzione inutile.
+              Una dashboard pensata per i ristoratori, non per i tecnici. Ogni modulo
+              e intuitivo e ti da il controllo completo sulla tua attivita.
             </p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => {
-              const Icon = feature.icon
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {dashboardModules.map((mod) => {
+              const Icon = mod.icon
               return (
                 <Card
-                  key={feature.title}
-                  className="border border-border/60 bg-card shadow-sm transition-shadow hover:shadow-md"
+                  key={mod.title}
+                  className="group border border-border/60 bg-card shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
                 >
-                  <CardContent className="space-y-3 p-6">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                      <Icon className="h-5 w-5" />
+                  <CardContent className="space-y-3 p-5">
+                    <div className="flex items-start justify-between">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                        {mod.tag}
+                      </span>
                     </div>
-                    <h3 className="text-lg font-semibold">{feature.title}</h3>
+                    <h3 className="font-semibold leading-snug">{mod.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      {feature.description}
+                      {mod.description}
                     </p>
                   </CardContent>
                 </Card>
