@@ -162,24 +162,23 @@ export default function DeliveryLandingPage() {
       </section>
 
       {/* ── HERO ──────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top_left,rgba(217,133,83,0.1),transparent_60%)]" />
-        <div className="flex min-h-[600px] md:min-h-[700px]">
-          {/* Left: text content ~60% */}
-          <div className="flex w-full flex-col justify-center px-6 py-20 md:w-[60%] md:px-12 lg:px-20">
+        <div className="container">
+          <div className="mx-auto max-w-4xl text-center">
             <Badge className="mb-6 w-fit" variant="outline">
               Web App Delivery per Ristoratori
             </Badge>
-            <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               Il tuo delivery,{" "}
               <span className="gradient-text">senza intermediari</span>
             </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg text-muted-foreground leading-relaxed">
+            <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg text-muted-foreground leading-relaxed">
               Ti costruisco una web app delivery professionale e su misura per il tuo
               ristorante. Ordini diretti, menu digitale e dashboard gestionale. Smetti di
               pagare il 15–30% a Glovo e JustEat su ogni singolo ordine.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Button asChild size="lg" className="rounded-full px-8">
                 <Link href="#contact">
                   Richiedi un preventivo gratuito
@@ -195,15 +194,17 @@ export default function DeliveryLandingPage() {
             </p>
           </div>
 
-          {/* Right: image ~40%, h-full */}
-          <div className="relative hidden md:block md:w-[40%]">
-            <Image
-              src="/delivery-app-mockup.jpg"
-              alt="Mockup web app delivery per ristoranti"
-              fill
-              className="object-cover"
-              priority
-            />
+          <div className="mx-auto mt-14 max-w-5xl">
+            <div className="overflow-hidden rounded-2xl border border-border/50 bg-muted/20 shadow-2xl">
+              <Image
+                src="/delivery-app-mockup.jpg"
+                alt="Mockup web app delivery per ristoranti"
+                width={1200}
+                height={700}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
