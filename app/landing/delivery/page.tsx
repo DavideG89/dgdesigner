@@ -223,17 +223,38 @@ export default function DeliveryLandingPage() {
             </p>
           </div>
 
+          {/* Real product screenshots */}
           <div className="mx-auto mt-14 max-w-5xl">
-            <div className="overflow-hidden rounded-2xl border border-border/50 bg-muted/20 shadow-2xl">
-              <Image
-                src="/delivery-app-mockup.jpg"
-                alt="Mockup web app delivery per ristoranti"
-                width={1200}
-                height={700}
-                className="h-full w-full object-cover"
-                priority
-              />
+            <div className="grid gap-4 md:grid-cols-[1fr_2fr] items-end">
+              {/* Mobile client app */}
+              <div className="flex justify-center md:justify-end">
+                <div className="overflow-hidden rounded-[2rem] border-[6px] border-foreground/10 shadow-2xl w-[220px]">
+                  <Image
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-03-09%20at%2001.12.03-g5uQvwnIkJrJ0gscueniL2pKjslOJY.jpeg"
+                    alt="Web app cliente – Amico Fritto esempio"
+                    width={440}
+                    height={880}
+                    className="w-full"
+                    priority
+                  />
+                </div>
+              </div>
+              {/* Admin dashboard */}
+              <div className="overflow-hidden rounded-2xl border border-border/50 shadow-2xl">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-uPojBG4aiDMJ7b4HHXgGTharwKY5dG.png"
+                  alt="Dashboard admin ristoratore – Amico Fritto esempio"
+                  width={1200}
+                  height={750}
+                  className="w-full"
+                  priority
+                />
+              </div>
             </div>
+            <p className="mt-4 text-center text-xs text-muted-foreground">
+              Esempio reale: web app e dashboard admin di{" "}
+              <span className="font-medium text-foreground">Amico Fritto</span>
+            </p>
           </div>
         </div>
       </section>
@@ -291,19 +312,15 @@ export default function DeliveryLandingPage() {
               Con una web app tua, tieni il 100% di ogni ordine.
             </p>
           </div>
-          <Card className="border-0 bg-muted/30 shadow-xl">
-            <CardContent className="p-0">
-              <div className="overflow-hidden rounded-2xl">
-                <Image
-                  src="/delivery-dashboard-mockup.jpg"
-                  alt="Dashboard ordini del ristorante"
-                  width={700}
-                  height={520}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            </CardContent>
-          </Card>
+          <div className="overflow-hidden rounded-2xl border border-border/50 shadow-xl">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-uPojBG4aiDMJ7b4HHXgGTharwKY5dG.png"
+              alt="Dashboard admin ristoratore con ordini e statistiche"
+              width={700}
+              height={520}
+              className="w-full"
+            />
+          </div>
         </div>
       </section>
 
@@ -348,6 +365,77 @@ export default function DeliveryLandingPage() {
                 </Card>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PERSONALIZZAZIONE ────────────────────────────────── */}
+      <section className="bg-muted/20 py-16 md:py-20">
+        <div className="container">
+          <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2">
+            <div className="space-y-5">
+              <Badge variant="outline" className="w-fit">
+                <Layers className="mr-1.5 h-3 w-3" />
+                Personalizzazione
+              </Badge>
+              <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+                La tua app, con il tuo brand
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Ogni web app che costruisco si adatta all'identita visiva del tuo ristorante.
+                Colori, logo, font e tonalita vengono configurati su misura — come Amico Fritto,
+                che ha il suo giallo e il suo stile riconoscibile.
+              </p>
+              <div className="space-y-3">
+                {[
+                  { label: "Colori primari e secondari", yes: true },
+                  { label: "Logo e icone del brand", yes: true },
+                  { label: "Tipografia personalizzata", yes: true },
+                  { label: "Foto e contenuti del menu", yes: true },
+                  { label: "Struttura dell'app e funzionalita core", yes: false },
+                  { label: "Layout e navigazione di base", yes: false },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center gap-3 text-sm">
+                    <span
+                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold ${
+                        item.yes
+                          ? "bg-primary/15 text-primary"
+                          : "bg-muted text-muted-foreground"
+                      }`}
+                    >
+                      {item.yes ? "S" : "N"}
+                    </span>
+                    <span className={item.yes ? "text-foreground" : "text-muted-foreground"}>
+                      {item.label}
+                    </span>
+                    <span className="ml-auto text-xs text-muted-foreground">
+                      {item.yes ? "Personalizzabile" : "Fisso"}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Side-by-side screenshots */}
+            <div className="flex items-end justify-center gap-4">
+              <div className="overflow-hidden rounded-[1.75rem] border-[5px] border-foreground/10 shadow-xl w-[180px]">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-03-09%20at%2001.12.03-g5uQvwnIkJrJ0gscueniL2pKjslOJY.jpeg"
+                  alt="Esempio app cliente brandizzata – Amico Fritto"
+                  width={360}
+                  height={720}
+                  className="w-full"
+                />
+              </div>
+              <div className="flex-1 overflow-hidden rounded-xl border border-border/50 shadow-lg">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-uPojBG4aiDMJ7b4HHXgGTharwKY5dG.png"
+                  alt="Esempio dashboard admin brandizzata – Amico Fritto"
+                  width={600}
+                  height={400}
+                  className="w-full"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
