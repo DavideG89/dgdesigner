@@ -10,6 +10,7 @@ import { ArrowRight, Code, Figma, Layers, Rocket, Smartphone, Zap } from "lucide
 import { appendLanguageParam, getLanguage, type SupportedLanguage } from "@/lib/i18n"
 import ProjectCard from "@/components/project-card"
 import ContactForm from "@/components/contact-form"
+import { describe } from "node:test"
 
 interface ServiceCardCopy {
   title: string
@@ -207,7 +208,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Sito web dedicato a una guida turistica palermitana per aumentare la visibilità online e favorire le prenotazioni.",
       image: "/Palermointour website.png",
-      tags: ["Website","Wordpress","Branding", "Tourism"],
+      tags: ["Website", "Wordpress", "Branding", "Tourism"],
       link: "https://palermointour.com",
     },
     {
@@ -231,8 +232,15 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube.",
       image: "/CatMatildabeat_Dsk.png",
-      tags: ["Website","Marketplace", "Music", "Branding"],
+      tags: ["Website", "Marketplace", "Music", "Branding"],
       link: "https://www.matildathecat.com/",
+    },
+   {
+    title: 'Amico Fritto Delivery App',
+    description: ' App di delivery progettata per un takeaway di Misilmeri, con un’interfaccia semplice e intuitiva che permette agli utenti di sfogliare il menu, personalizzare i prodotti e ordinare rapidamente.',
+    image:'Logo-Amico-Fritto.jpg',
+    tags: ['App Design', 'UX/UI', 'Food Delivery', 'Branding'],
+    link: 'https://amicofritto.store',
     },
   ],
   en: [
@@ -241,7 +249,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Innovative fintech and crypto startup bringing decentralised payment solutions to developing countries.",
       image: "/Topos.png",
-      tags: ["Website","Webflow", "Fintech", "Crypto"],
+      tags: ["Website", "Webflow", "Fintech", "Crypto"],
       link: "https://www.topos.com.ng/",
     },
     {
@@ -249,7 +257,7 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Website for a Palermo tour guide, built to boost online visibility and drive bookings.",
       image: "/Palermointour website.png",
-      tags: ["Website","Wordpress", "Branding", "Tourism"],
+      tags: ["Website", "Wordpress", "Branding", "Tourism"],
       link: "https://palermointour.com",
     },
     {
@@ -275,6 +283,13 @@ const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       image: "/CatMatildabeat_Dsk.png",
       tags: ["Website", "Marketplace", "Music", "Branding"],
       link: "https://www.matildathecat.com/",
+    },
+     {
+    title: 'Amico Fritto Delivery App',
+    description: ' Delivery app designed for a takeaway in Misilmeri, featuring a simple and intuitive interface that allows users to browse the menu, customize items, and place orders quickly.',
+    image:'Logo-Amico-Fritto.jpg',
+    tags: ['App Design', 'UX/UI', 'Food Delivery', 'Branding'],
+    link: 'https://amicofritto.store',
     },
   ],
 }

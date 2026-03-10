@@ -17,7 +17,7 @@ interface Project {
   description: string
   image: string
   tags: string[]
-  category: string
+  category: string[]
   year: string
   client: string
   link: string
@@ -32,7 +32,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Startup innovativa nel settore finance e crypto che porta soluzioni di pagamento decentralizzate nei paesi in via di sviluppo.",
       image: "/Topos.png",
       tags: ["Website", "Fintech", "Crypto"],
-      category: "Website",
+      category: ["Website"],
       year: "2024",
       client: "Topos Network",
       link: "https://www.topos.com.ng/",
@@ -44,7 +44,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Sito web dedicato a una guida turistica palermitana per aumentare la visibilità online e favorire le prenotazioni.",
       image: "/Palermointour website.png",
       tags: ["Website", "Branding", "Tourism"],
-      category: "Website",
+      category: ["Website"],
       year: "2024",
       client: "Palermointour",
       link: "https://palermointour.com",
@@ -56,7 +56,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Analisi di usabilità dell'app WhatsApp con focus sulle opportunità di miglioramento dell'esperienza utente.",
       image: "/WhatsappStudy.png",
       tags: ["Case Study", "UX Research", "Product"],
-      category: "Case Study",
+      category: ["Case Study"],
       year: "2023",
       client: "Ricerca personale",
       link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
@@ -68,7 +68,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "App progettata per un'azienda ittica per gestire gli ordini dei clienti e ottimizzare il processo di vendita.",
       image: "/MavipescaStudy.png",
       tags: ["Case Study", "Product Design", "Mobile"],
-      category: "Case Study",
+      category: ["Case Study"],
       year: "2023",
       client: "Mavi Pesca",
       link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
@@ -80,10 +80,21 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Marketplace per un beatmaker con catalogo tracce e call-to-action verso BeatStars e contenuti YouTube.",
       image: "/CatMatildabeat_Dsk.png",
       tags: ["Website", "Marketplace", "Music"],
-      category: "Website",
+      category: ["Website"],
       year: "2022",
       client: "Matilda The Cat",
       link: "https://www.matildathecat.com/",
+    },
+      {
+    id: "amicofritto-delivery-app",
+    title: 'Amico Fritto Delivery App',
+    description: ' App di delivery progettata per un takeaway di Misilmeri, con un’interfaccia semplice e intuitiva che permette agli utenti di sfogliare il menu, personalizzare i prodotti e ordinare rapidamente.',
+    image:'Logo-Amico-Fritto.jpg',
+    tags: ['App Design', 'UX/UI', 'Food Delivery', 'Branding'],
+    category: ["Case Study", "Website"],
+    year: "2026",
+    client: 'Amico Fritto',
+    link: 'https://amicofritto.store',
     },
   ],
   en: [
@@ -94,7 +105,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Innovative fintech and crypto startup bringing decentralised payment solutions to developing countries.",
       image: "/Topos.png",
       tags: ["Website", "Fintech", "Crypto"],
-      category: "Website",
+      category: ["Website"],
       year: "2024",
       client: "Topos Network",
       link: "https://www.topos.com.ng/",
@@ -106,7 +117,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Website for a Palermo tour guide, built to increase online visibility and drive bookings.",
       image: "/Palermointour website.png",
       tags: ["Website", "Branding", "Tourism"],
-      category: "Website",
+      category: ["Website"],
       year: "2024",
       client: "Palermointour",
       link: "https://palermointour.com",
@@ -118,7 +129,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Usability analysis of WhatsApp highlighting opportunities to enhance the user experience.",
       image: "/WhatsappStudy.png",
       tags: ["Case Study", "UX Research", "Product"],
-      category: "Case Study",
+      category: ["Case Study"],
       year: "2023",
       client: "Self-initiated research",
       link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
@@ -130,7 +141,7 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Mobile app designed for a seafood company to manage customer orders and streamline the sales process.",
       image: "/MavipescaStudy.png",
       tags: ["Case Study", "Product Design", "Mobile"],
-      category: "Case Study",
+      category: ["Case Study"],
       year: "2023",
       client: "Mavi Pesca",
       link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
@@ -142,10 +153,21 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
         "Marketplace for a beatmaker featuring a track catalogue and calls to action leading to BeatStars and YouTube.",
       image: "/CatMatildabeat_Dsk.png",
       tags: ["Website", "Marketplace", "Music"],
-      category: "Website",
+      category: ["Website"],
       year: "2022",
       client: "CatMatildabeat",
       link: "https://www.matildathecat.com/",
+    },
+     {
+    id: "amicofritto-delivery-app",
+    title: 'Amico Fritto Delivery App',
+    description: ' Delivery app designed for a takeaway in Misilmeri, featuring a simple and intuitive interface that allows users to browse the menu, customize items, and place orders quickly.',
+    image:'Logo-Amico-Fritto.jpg',
+    tags: ['App Design', 'UX/UI', 'Food Delivery', 'Branding'],
+    category: ["Case Study", "Website"],
+    year: "2026",
+    client: 'Amico Fritto',
+    link: 'https://amicofritto.store',
     },
   ],
 }
@@ -223,7 +245,7 @@ export default function ProjectsPage() {
   }, [lang, copy.allLabel])
 
   const filteredProjects = projects.filter((project) => {
-    const matchesCategory = selectedCategory === copy.allLabel || project.category === selectedCategory
+    const matchesCategory = selectedCategory === copy.allLabel || project.category.includes(selectedCategory)
     const matchesSearch =
       project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
