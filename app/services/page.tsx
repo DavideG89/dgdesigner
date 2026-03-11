@@ -8,6 +8,9 @@ import { ArrowRight, Code, Figma, Layers, Smartphone, Zap } from "lucide-react"
 
 import { appendLanguageParam, getLanguage, type SupportedLanguage } from "@/lib/i18n"
 
+const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dgdesigner.site"
+const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl.slice(0, -1) : rawBaseUrl
+
 interface ServiceSection {
   id: string
   icon: typeof Layers
@@ -506,9 +509,67 @@ export default async function ServicesPage({ searchParams }: ServicesPageProps) 
   const lang = getLanguage(params)
   const content = servicesTranslations[lang]
   const contactHref = appendLanguageParam("/contact", lang)
+  const servicesName = lang === "en" ? "Services" : "Servizi"
+  const homeUrl = lang === "en" ? `${baseUrl}?lang=en` : baseUrl
+  const servicesUrl = lang === "en" ? `${baseUrl}/services?lang=en` : `${baseUrl}/services`
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${servicesUrl}#webpage`,
+        url: servicesUrl,
+        name: servicesName,
+        description: content.heroDescription,
+        inLanguage: lang === "en" ? "en" : "it",
+        isPartOf: {
+          "@type": "WebSite",
+          "@id": `${baseUrl}#website`,
+          url: baseUrl,
+          name: "DG Designer",
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${servicesUrl}#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: homeUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: servicesName,
+            item: servicesUrl,
+          },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${servicesUrl}#faq`,
+        inLanguage: lang === "en" ? "en" : "it",
+        url: servicesUrl,
+        mainEntity: content.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+      },
+    ],
+  }
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
+      />
       {/* Hero Section */}
       <section className="py-20">
         <div className="container">
