@@ -231,7 +231,7 @@ export default function DeliveryLandingPage() {
               </div>
               <div className="overflow-hidden rounded-2xl border border-border/50 shadow-2xl">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-uPojBG4aiDMJ7b4HHXgGTharwKY5dG.png"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-3pCtLtKAfHUkbVb27MV75G1O6sQU8N.png"
                   alt="Dashboard admin ristoratore – esempio Amico Fritto"
                   width={1200}
                   height={750}
@@ -302,7 +302,7 @@ export default function DeliveryLandingPage() {
           </div>
           <div className="overflow-hidden rounded-2xl border border-border/50 shadow-xl">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-uPojBG4aiDMJ7b4HHXgGTharwKY5dG.png"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-3pCtLtKAfHUkbVb27MV75G1O6sQU8N.png"
               alt="Dashboard admin ristoratore"
               width={700}
               height={520}
@@ -341,6 +341,67 @@ export default function DeliveryLandingPage() {
                 </Card>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── DASHBOARD SCREENSHOTS ─────────────────────────────── */}
+      <section className="py-16 md:py-20">
+        <div className="container">
+          <div className="mb-10 space-y-3 text-center">
+            <Badge variant="outline" className="w-fit">Vedi la dashboard</Badge>
+            <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl">
+              Un pannello per ogni aspetto del tuo ristorante
+            </h2>
+            <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
+              Ecco alcune schermate reali della dashboard di{" "}
+              <span className="font-medium text-foreground">Amico Fritto</span>.
+              Cosi capisci subito cosa gestisce il ristoratore ogni giorno.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2">
+            {[
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Dashboard-3pCtLtKAfHUkbVb27MV75G1O6sQU8N.png",
+                alt: "Dashboard – panoramica KPI e incassi giornalieri",
+                label: "Dashboard",
+                desc: "Panoramica con ordini totali, incasso del giorno e riepilogo incassi per data.",
+              },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Orders-desktop-tcyhiBwz6jYLQMielKFqxQOoFiU8Xw.png",
+                alt: "Gestione Ordini – lista ordini con stato in tempo reale",
+                label: "Gestione Ordini",
+                desc: "Tutti gli ordini in un colpo d'occhio, filtrabili per stato: in attesa, confermati, completati.",
+              },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Menu-order-UcnmR3fh9yM9m7AwqFrgrVh8TvYUwD.png",
+                alt: "Gestione Menu – categorie prodotti con foto e aggiunte",
+                label: "Gestione Menu",
+                desc: "Modifica categorie, prodotti, aggiunte ed extra in autonomia, senza toccare codice.",
+              },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Upsell-orders-1Iy7sFdryprd4Vx0hadxrWFlq7uGcA.png",
+                alt: "Upsell – selezione prodotti suggeriti al cliente",
+                label: "Upsell",
+                desc: "Scegli quali prodotti mostrare come suggerimenti durante l'ordine per aumentare lo scontrino medio.",
+              },
+            ].map((screen) => (
+              <div key={screen.label} className="group space-y-3">
+                <div className="overflow-hidden rounded-2xl border border-border/50 shadow-md transition-shadow group-hover:shadow-lg">
+                  <Image
+                    src={screen.src}
+                    alt={screen.alt}
+                    width={900}
+                    height={560}
+                    className="w-full"
+                  />
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">{screen.label}</p>
+                  <p className="text-sm text-muted-foreground">{screen.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
