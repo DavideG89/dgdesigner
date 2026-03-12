@@ -7,21 +7,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
 
   const routes = [
-    "/",
-    "/about",
-    "/services",
-    "/projects",
-    "/contact",
+    { path: "/", hasEnglishVariant: true },
+    { path: "/about", hasEnglishVariant: true },
+    { path: "/services", hasEnglishVariant: true },
+    { path: "/siti-web-per-ristoranti", hasEnglishVariant: false },
+    { path: "/projects", hasEnglishVariant: true },
+    { path: "/contact", hasEnglishVariant: true },
   ]
 
-  return routes.map((path) => ({
+  return routes.map(({ path, hasEnglishVariant }) => ({
     url: path === "/" ? baseUrl : `${baseUrl}${path}`,
     lastModified,
     alternates: {
-      languages: {
-        it: path === "/" ? baseUrl : `${baseUrl}${path}`,
-        en: path === "/" ? `${baseUrl}?lang=en` : `${baseUrl}${path}?lang=en`,
-      },
+      languages: hasEnglishVariant
+        ? {
+            it: path === "/" ? baseUrl : `${baseUrl}${path}`,
+            en: path === "/" ? `${baseUrl}?lang=en` : `${baseUrl}${path}?lang=en`,
+          }
+        : {
+            it: path === "/" ? baseUrl : `${baseUrl}${path}`,
+          },
     },
   }))
 }
