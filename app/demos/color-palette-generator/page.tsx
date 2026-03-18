@@ -1,23 +1,64 @@
 "use client"
 
-import { useState } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Copy, RefreshCw } from "lucide-react"
+import { Copy, RefreshCw, Share2, Users } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 type ColorMode = "analogous" | "monochromatic" | "triadic" | "complementary" | "split-complementary"
 
+interface SharedPalette {
+  id: string
+  name: string
+  author?: string
+  baseColor: string
+  mode: ColorMode
+  colors: string[]
+  createdAt: string
+}
+
+const paletteModeOptions: Array<{ value: ColorMode; label: string }> = [
+  { value: "analogous", label: "Analoga" },
+  { value: "monochromatic", label: "Monocromatica" },
+  { value: "triadic", label: "Triadica" },
+  { value: "complementary", label: "Complementare" },
+  { value: "split-complementary", label: "Split Complementare" },
+]
+
+const modeLabels: Record<ColorMode, string> = {
+  analogous: "Analoga",
+  monochromatic: "Monocromatica",
+  triadic: "Triadica",
+  complementary: "Complementare",
+  "split-complementary": "Split Complementare",
+}
+
+const isHexColor = (value: string) => /^#?[0-9a-fA-F]{6}$/.test(value)
+
+const normalizeHex = (value: string) => {
+  const prefixed = value.startsWith("#") ? value : `#${value}`
+  return prefixed.toUpperCase()
+}
+
 export default function ColorPaletteGenerator() {
   const { toast } = useToast()
-  const [baseColor, setBaseColor] = useState("#0070f3")
+  const [baseColor, setBaseColor] = useState("#0070F3")
   const [colorMode, setColorMode] = useState<ColorMode>("analogous")
   const [palette, setPalette] = useState<string[]>([])
 
-  const generatePalette = () => {
+  const [paletteName, setPaletteName] = useState("")
+  const [authorName, setAuthorName] = useState("")
+  const [isSharing, setIsSharing] = useState(false)
+  const [isLoadingShared, setIsLoadingShared] = useState(true)
+  const [sharedPalettes, setSharedPalettes] = useState<SharedPalette[]>([])
+
+  const safeBaseColor = isHexColor(baseColor) ? normalizeHex(baseColor) : "#0070F3"
+
+  const generatePalette = useCallback(() => {
     // Convert hex to HSL for easier manipulation
     const hexToHSL = (hex: string) => {
       // Remove the # if present
@@ -30,9 +71,9 @@ export default function ColorPaletteGenerator() {
 
       const max = Math.max(r, g, b)
       const min = Math.min(r, g, b)
-      let h = 0,
-        s = 0,
-        l = (max + min) / 2
+      let h = 0
+      let s = 0
+      let l = (max + min) / 2
 
       if (max !== min) {
         const d = max - min
@@ -62,7 +103,9 @@ export default function ColorPaletteGenerator() {
       s /= 100
       l /= 100
 
-      let r, g, b
+      let r: number
+      let g: number
+      let b: number
 
       if (s === 0) {
         r = g = b = l
@@ -86,66 +129,57 @@ export default function ColorPaletteGenerator() {
 
       const toHex = (x: number) => {
         const hex = Math.round(x * 255).toString(16)
-        return hex.length === 1 ? "0" + hex : hex
+        return hex.length === 1 ? `0${hex}` : hex
       }
 
-      return `#${toHex(r)}${toHex(g)}${toHex(b)}`
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase()
     }
 
-    const hsl = hexToHSL(baseColor)
+    const hsl = hexToHSL(safeBaseColor)
     let newPalette: string[] = []
 
     switch (colorMode) {
       case "analogous":
-        // Colors adjacent to each other on the color wheel
         newPalette = [
           hslToHex((hsl.h - 30 + 360) % 360, hsl.s, hsl.l),
           hslToHex((hsl.h - 15 + 360) % 360, hsl.s, hsl.l),
-          baseColor,
+          safeBaseColor,
           hslToHex((hsl.h + 15) % 360, hsl.s, hsl.l),
           hslToHex((hsl.h + 30) % 360, hsl.s, hsl.l),
         ]
         break
-
       case "monochromatic":
-        // Different shades and tints of the base color
         newPalette = [
           hslToHex(hsl.h, hsl.s, Math.max(0, hsl.l - 30)),
           hslToHex(hsl.h, hsl.s, Math.max(0, hsl.l - 15)),
-          baseColor,
+          safeBaseColor,
           hslToHex(hsl.h, hsl.s, Math.min(100, hsl.l + 15)),
           hslToHex(hsl.h, hsl.s, Math.min(100, hsl.l + 30)),
         ]
         break
-
       case "triadic":
-        // Three colors equally spaced on the color wheel
         newPalette = [
           hslToHex((hsl.h + 120) % 360, hsl.s, hsl.l),
           hslToHex((hsl.h + 60) % 360, hsl.s, hsl.l),
-          baseColor,
+          safeBaseColor,
           hslToHex((hsl.h + 240) % 360, hsl.s, hsl.l),
           hslToHex((hsl.h + 300) % 360, hsl.s, hsl.l),
         ]
         break
-
       case "complementary":
-        // Colors opposite each other on the color wheel
         newPalette = [
           hslToHex((hsl.h + 180) % 360, hsl.s, Math.max(0, hsl.l - 15)),
           hslToHex((hsl.h + 180) % 360, hsl.s, hsl.l),
-          baseColor,
+          safeBaseColor,
           hslToHex(hsl.h, hsl.s, Math.min(100, hsl.l + 15)),
           hslToHex((hsl.h + 180) % 360, hsl.s, Math.min(100, hsl.l + 15)),
         ]
         break
-
       case "split-complementary":
-        // Base color and two colors adjacent to its complement
         newPalette = [
           hslToHex((hsl.h + 150) % 360, hsl.s, hsl.l),
           hslToHex((hsl.h + 165) % 360, hsl.s, hsl.l),
-          baseColor,
+          safeBaseColor,
           hslToHex((hsl.h + 195) % 360, hsl.s, hsl.l),
           hslToHex((hsl.h + 210) % 360, hsl.s, hsl.l),
         ]
@@ -153,91 +187,357 @@ export default function ColorPaletteGenerator() {
     }
 
     setPalette(newPalette)
-  }
+  }, [colorMode, safeBaseColor])
 
-  const copyToClipboard = (color: string) => {
-    navigator.clipboard.writeText(color)
+  const loadSharedPalettes = useCallback(async () => {
+    try {
+      setIsLoadingShared(true)
+      const response = await fetch("/api/palettes", { cache: "no-store" })
+      const result = (await response.json()) as { palettes?: SharedPalette[]; error?: string }
+
+      if (!response.ok) {
+        throw new Error(result.error ?? "Errore nel caricamento.")
+      }
+
+      setSharedPalettes(result.palettes ?? [])
+    } catch (error) {
+      toast({
+        title: "Caricamento non riuscito",
+        description: error instanceof Error ? error.message : "Impossibile leggere le palette condivise.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsLoadingShared(false)
+    }
+  }, [toast])
+
+  useEffect(() => {
+    generatePalette()
+  }, [generatePalette])
+
+  useEffect(() => {
+    void loadSharedPalettes()
+  }, [loadSharedPalettes])
+
+  const copyToClipboard = (value: string) => {
+    navigator.clipboard.writeText(value)
     toast({
-      title: "Colore copiato!",
-      description: `${color} è stato copiato negli appunti.`,
+      title: "Copiato",
+      description: `${value} è stato copiato negli appunti.`,
     })
   }
 
-  // Generate palette on initial load and when parameters change
-  useState(() => {
-    generatePalette()
-  })
+  const copyPalette = (colors: string[]) => {
+    const text = colors.join(", ")
+    navigator.clipboard.writeText(text)
+    toast({
+      title: "Palette copiata",
+      description: "Hai copiato tutti i colori della palette.",
+    })
+  }
+
+  const useSharedPalette = (item: SharedPalette) => {
+    setBaseColor(item.baseColor)
+    setColorMode(item.mode)
+    setPalette(item.colors)
+
+    toast({
+      title: "Palette caricata",
+      description: `Hai applicato "${item.name}".`,
+    })
+  }
+
+  const sharePalette = async () => {
+    if (palette.length < 3) {
+      toast({
+        title: "Palette non pronta",
+        description: "Genera una palette prima di condividerla.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    const cleanName = paletteName.trim()
+    if (cleanName.length < 2) {
+      toast({
+        title: "Nome richiesto",
+        description: "Inserisci un nome palette di almeno 2 caratteri.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    try {
+      setIsSharing(true)
+
+      const response = await fetch("/api/palettes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: cleanName,
+          author: authorName.trim() || undefined,
+          baseColor: safeBaseColor,
+          mode: colorMode,
+          colors: palette,
+        }),
+      })
+
+      const result = (await response.json()) as {
+        success?: boolean
+        palette?: SharedPalette
+        error?: string
+      }
+
+      if (!response.ok || !result.palette) {
+        throw new Error(result.error ?? "Pubblicazione non riuscita.")
+      }
+
+      setSharedPalettes((prev) => [result.palette as SharedPalette, ...prev])
+      setPaletteName("")
+
+      toast({
+        title: "Palette condivisa",
+        description: "La tua palette è ora visibile a tutti.",
+      })
+    } catch (error) {
+      toast({
+        title: "Errore condivisione",
+        description: error instanceof Error ? error.message : "Riprova tra qualche istante.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSharing(false)
+    }
+  }
+
+  const dateFormatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat("it-IT", {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }),
+    [],
+  )
 
   return (
-    <div className="container py-12">
-      <div className="mx-auto max-w-3xl">
-        <div className="mb-8 text-center">
-          <h1 className="mb-2 text-3xl font-bold">Generatore di Palette Colori</h1>
-          <p className="text-muted-foreground">Crea palette di colori armoniose per i tuoi progetti di design.</p>
+    <div className="container py-8 sm:py-12">
+      <div className="mx-auto max-w-6xl space-y-8">
+        <div className="text-center">
+          <h1 className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl">Generatore di Palette Colori</h1>
+          <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base">
+            Crea palette armoniose, pubblicale nella bacheca condivisa e riusa quelle della community.
+          </p>
         </div>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="mb-6 grid gap-4 md:grid-cols-2">
-              <div>
-                <Label htmlFor="base-color">Colore Base</Label>
-                <div className="mt-1.5 flex gap-2">
-                  <Input
-                    id="base-color"
-                    type="color"
-                    value={baseColor}
-                    onChange={(e) => setBaseColor(e.target.value)}
-                    className="h-10 w-10 cursor-pointer p-0"
-                  />
-                  <Input
-                    type="text"
-                    value={baseColor}
-                    onChange={(e) => setBaseColor(e.target.value)}
-                    className="flex-1"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label>Tipo di Palette</Label>
-                <Tabs
-                  defaultValue="analogous"
-                  value={colorMode}
-                  onValueChange={(value) => setColorMode(value as ColorMode)}
-                  className="mt-1.5"
-                >
-                  <TabsList className="grid w-full grid-cols-2 md:grid-cols-3">
-                    <TabsTrigger value="analogous">Analoga</TabsTrigger>
-                    <TabsTrigger value="monochromatic">Monocromatica</TabsTrigger>
-                    <TabsTrigger value="triadic">Triadica</TabsTrigger>
-                    <TabsTrigger value="complementary">Complementare</TabsTrigger>
-                    <TabsTrigger value="split-complementary">Split Complementare</TabsTrigger>
-                  </TabsList>
-                </Tabs>
-              </div>
-            </div>
-
-            <Button onClick={generatePalette} className="mb-6 w-full">
-              <RefreshCw className="mr-2 h-4 w-4" />
-              Genera Palette
-            </Button>
-
-            <div className="grid grid-cols-5 gap-2">
-              {palette.map((color, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <div
-                    className="mb-2 h-16 w-full cursor-pointer rounded-md border"
-                    style={{ backgroundColor: color }}
-                    onClick={() => copyToClipboard(color)}
-                  ></div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs font-mono">{color}</span>
-                    <button onClick={() => copyToClipboard(color)} className="rounded-full p-1 hover:bg-muted">
-                      <Copy className="h-3 w-3" />
-                    </button>
+        <Card className="overflow-hidden border-border/70">
+          <CardContent className="p-4 sm:p-6 lg:p-8">
+            <div className="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-10">
+              <div className="space-y-6">
+                <div>
+                  <Label htmlFor="base-color">Colore Base</Label>
+                  <div className="mt-2 flex gap-2">
+                    <Input
+                      id="base-color"
+                      type="color"
+                      value={safeBaseColor}
+                      onChange={(e) => setBaseColor(normalizeHex(e.target.value))}
+                      className="h-11 w-14 cursor-pointer p-1"
+                    />
+                    <Input
+                      type="text"
+                      value={baseColor}
+                      onChange={(e) => setBaseColor(e.target.value)}
+                      onBlur={() => {
+                        if (isHexColor(baseColor)) setBaseColor(normalizeHex(baseColor))
+                      }}
+                      className="h-11 flex-1 font-mono text-sm uppercase"
+                    />
                   </div>
                 </div>
-              ))}
+
+                <div>
+                  <Label>Tipo di Palette</Label>
+                  <Tabs
+                    defaultValue="analogous"
+                    value={colorMode}
+                    onValueChange={(value) => setColorMode(value as ColorMode)}
+                    className="mt-2"
+                  >
+                    <TabsList className="grid h-auto w-full grid-cols-1 gap-1 bg-muted/70 p-1 sm:grid-cols-2">
+                      {paletteModeOptions.map((option) => (
+                        <TabsTrigger key={option.value} value={option.value} className="px-3 py-2 text-xs sm:text-sm">
+                          {option.label}
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
+                  </Tabs>
+                </div>
+
+                <Button onClick={generatePalette} className="w-full">
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Rigenera Palette
+                </Button>
+              </div>
+
+              <div className="space-y-4 rounded-2xl border bg-background/60 p-4 sm:p-5">
+                <div className="flex items-center justify-between gap-2">
+                  <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Palette Corrente</h2>
+                  <button
+                    type="button"
+                    onClick={() => copyPalette(palette)}
+                    className="rounded-md p-1.5 transition-colors hover:bg-muted"
+                  >
+                    <Copy className="h-4 w-4" />
+                  </button>
+                </div>
+
+                <div className="flex h-14 overflow-hidden rounded-lg border">
+                  {palette.map((color, index) => (
+                    <button
+                      key={`${color}-bar-${index}`}
+                      type="button"
+                      className="relative flex-1 transition-opacity hover:opacity-85"
+                      style={{ backgroundColor: color }}
+                      onClick={() => copyToClipboard(color)}
+                    >
+                      <span className="sr-only">Copia {color}</span>
+                    </button>
+                  ))}
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                  {palette.map((color, index) => (
+                    <div key={`${color}-${index}`} className="rounded-lg border bg-card p-2">
+                      <button
+                        type="button"
+                        className="mb-2 h-16 w-full rounded-md border transition-transform hover:scale-[0.98]"
+                        style={{ backgroundColor: color }}
+                        onClick={() => copyToClipboard(color)}
+                      >
+                        <span className="sr-only">Copia {color}</span>
+                      </button>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="truncate font-mono text-xs sm:text-sm">{color}</span>
+                        <button
+                          type="button"
+                          onClick={() => copyToClipboard(color)}
+                          className="rounded-md p-1.5 transition-colors hover:bg-muted"
+                        >
+                          <Copy className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border-border/70">
+          <CardContent className="grid gap-8 p-4 sm:p-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:p-8">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <Share2 className="h-4 w-4 text-muted-foreground" />
+                <h2 className="text-base font-semibold">Condividi la tua palette</h2>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="palette-name">Nome palette</Label>
+                <Input
+                  id="palette-name"
+                  value={paletteName}
+                  onChange={(e) => setPaletteName(e.target.value)}
+                  placeholder="Es. Sunset Editorial"
+                  maxLength={40}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="author-name">Autore (opzionale)</Label>
+                <Input
+                  id="author-name"
+                  value={authorName}
+                  onChange={(e) => setAuthorName(e.target.value)}
+                  placeholder="Il tuo nome"
+                  maxLength={30}
+                />
+              </div>
+              <div className="grid grid-cols-5 gap-2 rounded-lg border p-2">
+                {palette.map((color, index) => (
+                  <div
+                    key={`${color}-share-${index}`}
+                    className="h-8 rounded-sm border"
+                    style={{ backgroundColor: color }}
+                    title={color}
+                  />
+                ))}
+              </div>
+              <Button onClick={sharePalette} disabled={isSharing} className="w-full">
+                <Share2 className="mr-2 h-4 w-4" />
+                {isSharing ? "Pubblicazione..." : "Pubblica Palette"}
+              </Button>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <Users className="h-4 w-4 text-muted-foreground" />
+                  <h2 className="text-base font-semibold">Palette della community</h2>
+                </div>
+                <Button variant="outline" size="sm" onClick={() => void loadSharedPalettes()}>
+                  Aggiorna
+                </Button>
+              </div>
+
+              {isLoadingShared ? <p className="text-sm text-muted-foreground">Caricamento palette...</p> : null}
+
+              {!isLoadingShared && sharedPalettes.length === 0 ? (
+                <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
+                  Nessuna palette condivisa al momento. Pubblica la prima.
+                </div>
+              ) : null}
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {sharedPalettes.map((item) => (
+                  <article key={item.id} className="rounded-lg border bg-card p-3">
+                    <div className="mb-2 flex items-start justify-between gap-2">
+                      <div>
+                        <h3 className="line-clamp-1 text-sm font-semibold">{item.name}</h3>
+                        <p className="text-xs text-muted-foreground">
+                          {item.author ? `${item.author} · ` : ""}
+                          {dateFormatter.format(new Date(item.createdAt))}
+                        </p>
+                      </div>
+                      <span className="rounded-full bg-muted px-2 py-1 text-[11px] text-muted-foreground">
+                        {modeLabels[item.mode]}
+                      </span>
+                    </div>
+
+                    <div className="mb-3 flex h-9 overflow-hidden rounded-md border">
+                      {item.colors.map((color, index) => (
+                        <button
+                          key={`${item.id}-${color}-${index}`}
+                          type="button"
+                          className="flex-1"
+                          style={{ backgroundColor: color }}
+                          onClick={() => copyToClipboard(color)}
+                        >
+                          <span className="sr-only">Copia {color}</span>
+                        </button>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <Button size="sm" className="h-8 flex-1" onClick={() => useSharedPalette(item)}>
+                        Usa questa
+                      </Button>
+                      <Button size="sm" variant="outline" className="h-8 px-2.5" onClick={() => copyPalette(item.colors)}>
+                        <Copy className="h-3.5 w-3.5" />
+                      </Button>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </CardContent>
         </Card>
