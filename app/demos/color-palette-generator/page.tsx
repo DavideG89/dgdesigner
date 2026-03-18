@@ -324,9 +324,9 @@ export default function ColorPaletteGenerator() {
     <div className="container py-8 sm:py-12">
       <div className="mx-auto max-w-6xl space-y-8">
         <div className="text-center">
-          <h1 className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl">Generatore di Palette Colori</h1>
+          <h1 className="mb-2 text-3xl font-bold tracking-tight sm:text-4xl">Free Color Palette Generator</h1>
           <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base">
-            Crea palette armoniose, pubblicale nella bacheca condivisa e riusa quelle della community.
+            Create harmonious color schemes for your web, mobile, and brand design projects in seconds.
           </p>
         </div>
 
@@ -335,7 +335,7 @@ export default function ColorPaletteGenerator() {
             <div className="grid gap-8 lg:grid-cols-[320px_minmax(0,1fr)] lg:gap-10">
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="base-color">Colore Base</Label>
+                  <Label htmlFor="base-color">Base Color</Label>
                   <div className="mt-2 flex gap-2">
                     <Input
                       id="base-color"
@@ -357,7 +357,7 @@ export default function ColorPaletteGenerator() {
                 </div>
 
                 <div>
-                  <Label>Tipo di Palette</Label>
+                  <Label>Palette Type</Label>
                   <Tabs
                     defaultValue="analogous"
                     value={colorMode}
@@ -376,13 +376,13 @@ export default function ColorPaletteGenerator() {
 
                 <Button onClick={generatePalette} className="w-full">
                   <RefreshCw className="mr-2 h-4 w-4" />
-                  Rigenera Palette
+                      Generate Palette
                 </Button>
               </div>
 
               <div className="space-y-4 rounded-2xl border bg-background/60 p-4 sm:p-5">
                 <div className="flex items-center justify-between gap-2">
-                  <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Palette Corrente</h2>
+                  <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Current Palette</h2>
                   <button
                     type="button"
                     onClick={() => copyPalette(palette)}
@@ -401,7 +401,7 @@ export default function ColorPaletteGenerator() {
                       style={{ backgroundColor: color }}
                       onClick={() => copyToClipboard(color)}
                     >
-                      <span className="sr-only">Copia {color}</span>
+                      <span className="sr-only">Copy {color}</span>
                     </button>
                   ))}
                 </div>
@@ -440,10 +440,10 @@ export default function ColorPaletteGenerator() {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <Share2 className="h-4 w-4 text-muted-foreground" />
-                <h2 className="text-base font-semibold">Condividi la tua palette</h2>
+                <h2 className="text-base font-semibold">Share Your Palette</h2>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="palette-name">Nome palette</Label>
+                <Label htmlFor="palette-name">Palette Name</Label>
                 <Input
                   id="palette-name"
                   value={paletteName}
@@ -453,7 +453,7 @@ export default function ColorPaletteGenerator() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="author-name">Autore (opzionale)</Label>
+                <Label htmlFor="author-name">Author (opzional)</Label>
                 <Input
                   id="author-name"
                   value={authorName}
@@ -482,18 +482,18 @@ export default function ColorPaletteGenerator() {
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <Users className="h-4 w-4 text-muted-foreground" />
-                  <h2 className="text-base font-semibold">Palette della community</h2>
+                  <h2 className="text-base font-semibold">Shared Palettes</h2>
                 </div>
                 <Button variant="outline" size="sm" onClick={() => void loadSharedPalettes()}>
-                  Aggiorna
+                  Update
                 </Button>
               </div>
 
-              {isLoadingShared ? <p className="text-sm text-muted-foreground">Caricamento palette...</p> : null}
+              {isLoadingShared ? <p className="text-sm text-muted-foreground">Loading palettes...</p> : null}
 
               {!isLoadingShared && sharedPalettes.length === 0 ? (
                 <div className="rounded-lg border border-dashed p-6 text-sm text-muted-foreground">
-                  Nessuna palette condivisa al momento. Pubblica la prima.
+                  No shared palettes at the moment. Publish the first one.
                 </div>
               ) : null}
 
@@ -522,14 +522,14 @@ export default function ColorPaletteGenerator() {
                           style={{ backgroundColor: color }}
                           onClick={() => copyToClipboard(color)}
                         >
-                          <span className="sr-only">Copia {color}</span>
+                          <span className="sr-only">Copy {color}</span>
                         </button>
                       ))}
                     </div>
 
                     <div className="flex items-center gap-2">
                       <Button size="sm" className="h-8 flex-1" onClick={() => useSharedPalette(item)}>
-                        Usa questa
+                        Use this
                       </Button>
                       <Button size="sm" variant="outline" className="h-8 px-2.5" onClick={() => copyPalette(item.colors)}>
                         <Copy className="h-3.5 w-3.5" />
