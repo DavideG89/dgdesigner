@@ -19,13 +19,13 @@ const navigationItems: Record<SupportedLanguage, NavigationItem[]> = {
     { name: "Home", href: "/" },
     { name: "Chi sono", href: "/about" },
     { name: "Servizi", href: "/services" },
-    { name: "Progetti", href: "/projects" },
+    { name: "Works", href: "/works" },
   ],
   en: [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Projects", href: "/projects" },
+    { name: "Works", href: "/works" },
   ],
 }
 

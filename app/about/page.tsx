@@ -386,7 +386,7 @@ export default function AboutPage({ searchParams }: PageProps) {
   const values = valuesByLanguage[lang]
 
   const contactHref = appendLanguageParam("/contact", lang)
-  const projectsHref = appendLanguageParam("/projects", lang)
+  const projectsHref = appendLanguageParam("/works", lang)
 
   return (
     <>

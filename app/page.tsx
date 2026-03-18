@@ -42,7 +42,7 @@ const heroCopy: Record<SupportedLanguage, {
     description:
       "Ciao! Sono Davide, UX/UI & Web Designer che ama creare esperienze digitali intuitive, funzionali ed esteticamente piacevoli.",
     primaryCta: "Iniziamo a collaborare",
-    secondaryCta: "Esplora i progetti",
+    secondaryCta: "Esplora i lavori",
   },
   en: {
     badge: "UI/UX & Web Designer",
@@ -52,7 +52,7 @@ const heroCopy: Record<SupportedLanguage, {
     description:
       "Hi! I'm Davide, a UX/UI & Web designer who loves crafting digital experiences that are intuitive, functional, and visually refined.",
     primaryCta: "Let's start working together",
-    secondaryCta: "Explore my projects",
+    secondaryCta: "Explore my works",
   },
 }
 
@@ -178,18 +178,18 @@ const projectsSectionCopy: Record<SupportedLanguage, {
   viewAll: string
 }> = {
   it: {
-    badge: "Progetti",
+    badge: "Works",
     title: "Lavori recenti",
     description:
-      "Esplora alcuni dei miei progetti più recenti e scopri come ho aiutato i miei clienti a raggiungere i loro obiettivi.",
-    viewAll: "Vedi tutti i progetti",
+      "Esplora alcuni dei miei lavori più recenti e scopri come ho aiutato i miei clienti a raggiungere i loro obiettivi.",
+    viewAll: "Vedi tutti i lavori",
   },
   en: {
-    badge: "Projects",
+    badge: "Works",
     title: "Recent work",
     description:
-      "Explore a selection of my latest projects and see how I've helped clients reach their goals.",
-    viewAll: "View all projects",
+      "Explore a selection of my latest work and see how I've helped clients reach their goals.",
+    viewAll: "View all works",
   },
 }
 
@@ -311,7 +311,7 @@ const demosSectionCopy: Record<SupportedLanguage, {
         description:
           "Uno strumento interattivo per generare palette di colori armoniose per i tuoi progetti di design.",
         linkLabel: "Apri demo completa",
-        href: "/demos/color-palette-generator",
+        href: "/works/tools/color-palette-generator",
         iframe: "/color-palette-generator",
       },
       {
@@ -335,7 +335,7 @@ const demosSectionCopy: Record<SupportedLanguage, {
         description:
           "An interactive tool for generating harmonious colour palettes for your design projects.",
         linkLabel: "Open full demo",
-        href: "/demos/color-palette-generator",
+        href: "/works/tools/color-palette-generator",
         iframe: "/color-palette-generator",
       },
       {
@@ -410,7 +410,7 @@ export default async function Home({ searchParams }: HomePageProps) {
   const contactSection = contactSectionCopy[lang]
 
   const contactHref = appendLanguageParam("/contact", lang)
-  const projectsHref = appendLanguageParam("/projects", lang)
+  const projectsHref = appendLanguageParam("/works", lang)
 
   return (
     <>

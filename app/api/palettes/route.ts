@@ -31,7 +31,7 @@ export async function GET() {
   } catch (error) {
     console.error("Shared palettes GET error", error)
 
-    return NextResponse.json({ error: "Impossibile caricare le palette condivise." }, { status: 500 })
+    return NextResponse.json({ error: "Unable to load shared palettes." }, { status: 500 })
   }
 }
 
@@ -47,25 +47,25 @@ export async function POST(request: Request) {
 
     if (name.length < 2 || name.length > 40) {
       return NextResponse.json(
-        { error: "Il nome della palette deve avere tra 2 e 40 caratteri." },
+        { error: "Palette name must be between 2 and 40 characters." },
         { status: 400 },
       )
     }
 
     if (author.length > 30) {
-      return NextResponse.json({ error: "Il nome autore può avere massimo 30 caratteri." }, { status: 400 })
+      return NextResponse.json({ error: "Author name can be at most 30 characters." }, { status: 400 })
     }
 
     if (!mode || !modeValues.has(mode)) {
-      return NextResponse.json({ error: "Tipo palette non valido." }, { status: 400 })
+      return NextResponse.json({ error: "Invalid palette type." }, { status: 400 })
     }
 
     if (!isHexColor(baseColor)) {
-      return NextResponse.json({ error: "Colore base non valido." }, { status: 400 })
+      return NextResponse.json({ error: "Invalid base color." }, { status: 400 })
     }
 
     if (colors.length < 3 || colors.length > 8) {
-      return NextResponse.json({ error: "La palette deve contenere da 3 a 8 colori." }, { status: 400 })
+      return NextResponse.json({ error: "Palette must include between 3 and 8 colors." }, { status: 400 })
     }
 
     const normalizedColors = colors.map((value) => {
@@ -87,11 +87,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true, palette: saved }, { status: 201 })
   } catch (error) {
     if (error instanceof Error && error.message === "INVALID_COLOR") {
-      return NextResponse.json({ error: "Uno o più colori non sono validi." }, { status: 400 })
+      return NextResponse.json({ error: "One or more colors are invalid." }, { status: 400 })
     }
 
     console.error("Shared palettes POST error", error)
 
-    return NextResponse.json({ error: "Impossibile salvare la palette. Riprova." }, { status: 500 })
+    return NextResponse.json({ error: "Unable to save palette. Please try again." }, { status: 500 })
   }
 }

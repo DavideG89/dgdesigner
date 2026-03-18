@@ -15,7 +15,7 @@ const navigationCopy = {
     home: "Home",
     about: "Chi sono",
     servicesLink: "Servizi",
-    projects: "Progetti",
+    projects: "Works",
     contactLink: "Contatti",
     servicesSections: {
       ui: "UI Design",
@@ -45,7 +45,7 @@ const navigationCopy = {
     home: "Home",
     about: "About",
     servicesLink: "Services",
-    projects: "Projects",
+    projects: "Works",
     contactLink: "Contact",
     servicesSections: {
       ui: "UI Design",
@@ -79,7 +79,7 @@ export default function Footer() {
   const homeHref = appendLanguageParam("/", lang)
   const aboutHref = appendLanguageParam("/about", lang)
   const servicesHref = appendLanguageParam("/services", lang)
-  const projectsHref = appendLanguageParam("/projects", lang)
+  const projectsHref = appendLanguageParam("/works", lang)
   const contactHref = appendLanguageParam("/contact", lang)
 
   return (

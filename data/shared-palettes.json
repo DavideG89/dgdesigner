@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "b9bd774a-96c1-4665-bbb6-18ba7260d8d7",
+    "name": "Violet Palette",
+    "author": "John Citrus",
+    "baseColor": "#E042FF",
+    "mode": "monochromatic",
+    "colors": [
+      "#8C00A8",
+      "#CC00F4",
+      "#E042FF",
+      "#ED8FFF",
+      "#F9DBFF"
+    ],
+    "createdAt": "2026-03-18T22:50:08.258Z"
+  }
+]

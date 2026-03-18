@@ -10,7 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/about",
     "/services",
-    "/projects",
+    "/works",
+    "/works/tools/color-palette-generator",
     "/contact",
   ]
 
