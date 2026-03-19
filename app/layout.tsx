@@ -8,6 +8,7 @@ import Footer from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dgdesigner.site"
+const showWipBanner = false
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -80,14 +81,18 @@ export default function RootLayout({
               <Footer />
             </Suspense>
           </div>
-          <div className="fixed bottom-4 right-4 z-50 hidden sm:flex items-center gap-2 rounded-full border border-foreground/10 bg-background/80 px-4 py-2 text-xs font-medium shadow-lg backdrop-blur">
-            <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500" aria-hidden />
-            <span>Sito in lavorazione · Website in progress</span>
-          </div>
-          <div className="fixed bottom-3 right-3 z-50 inline-flex items-center gap-1.5 rounded-full border border-foreground/10 bg-background/85 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide shadow-md backdrop-blur sm:hidden">
-            <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
-            <span>Sito in lavorazione</span>
-          </div>
+          {showWipBanner && (
+            <>
+              <div className="fixed bottom-4 right-4 z-50 hidden sm:flex items-center gap-2 rounded-full border border-foreground/10 bg-background/80 px-4 py-2 text-xs font-medium shadow-lg backdrop-blur">
+                <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500" aria-hidden />
+                <span>Sito in lavorazione · Website in progress</span>
+              </div>
+              <div className="fixed bottom-3 right-3 z-50 inline-flex items-center gap-1.5 rounded-full border border-foreground/10 bg-background/85 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wide shadow-md backdrop-blur sm:hidden">
+                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden />
+                <span>Sito in lavorazione</span>
+              </div>
+            </>
+          )}
           <Toaster />
         </ThemeProvider>
       </body>
