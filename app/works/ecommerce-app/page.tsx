@@ -272,6 +272,8 @@ const pageCopy: Record<SupportedLanguage, {
   otherProjectsTitle: string
   otherProjectsSubtitle: string
   otherProjectsCta: string
+  orLabel: string
+  linkedInCta: string
 }> = {
   it: {
     metadata: {
@@ -287,7 +289,9 @@ const pageCopy: Record<SupportedLanguage, {
     caseStudy: caseStudyCopy.it,
     otherProjectsTitle: "Scopri gli altri lavori",
     otherProjectsSubtitle: "Esplora altri lavori del mio portfolio e scopri come ho aiutato diversi clienti.",
-    otherProjectsCta: "Vedi tutti i lavori",
+    otherProjectsCta: "Segui su Behance",
+    orLabel: "o",
+    linkedInCta: "Seguimi su LinkedIn",
   },
   en: {
     metadata: {
@@ -303,7 +307,9 @@ const pageCopy: Record<SupportedLanguage, {
     caseStudy: caseStudyCopy.en,
     otherProjectsTitle: "Explore more works",
     otherProjectsSubtitle: "Browse additional portfolio pieces and see how I've helped different clients.",
-    otherProjectsCta: "View all works",
+    otherProjectsCta: "Follow on Behance",
+    orLabel: "or",
+    linkedInCta: "Follow me on LinkedIn",
   },
 }
 
@@ -346,6 +352,8 @@ export default function EcommerceAppProject({ searchParams }: PageProps) {
   }))
 
   const projectsHref = appendLanguageParam("/works", lang)
+  const behanceProfileHref = "https://www.behance.net/davidegiuliano89bdff"
+  const linkedInProfileHref = "https://www.linkedin.com/in/dav-giu/"
 
   return (
     <>
@@ -596,10 +604,17 @@ export default function EcommerceAppProject({ searchParams }: PageProps) {
               ))}
             </div>
 
-            <div className="mt-12 text-center">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
               <Button asChild variant="outline" size="lg" className="rounded-full bg-transparent">
-                <Link href={projectsHref}>
+                <Link href={behanceProfileHref} target="_blank" rel="noopener noreferrer">
                   {copy.otherProjectsCta}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <span className="text-sm text-muted-foreground">{copy.orLabel}</span>
+              <Button asChild variant="outline" size="lg" className="rounded-full bg-transparent">
+                <Link href={linkedInProfileHref} target="_blank" rel="noopener noreferrer">
+                  {copy.linkedInCta}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

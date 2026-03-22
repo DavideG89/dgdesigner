@@ -176,20 +176,26 @@ const projectsSectionCopy: Record<SupportedLanguage, {
   title: string
   description: string
   viewAll: string
+  orLabel: string
+  linkedInCta: string
 }> = {
   it: {
     badge: "Works",
     title: "Lavori recenti",
     description:
       "Esplora alcuni dei miei lavori più recenti e scopri come ho aiutato i miei clienti a raggiungere i loro obiettivi.",
-    viewAll: "Vedi tutti i lavori",
+    viewAll: "Segui su Behance",
+    orLabel: "o",
+    linkedInCta: "Seguimi su LinkedIn",
   },
   en: {
     badge: "Works",
     title: "Recent work",
     description:
       "Explore a selection of my latest work and see how I've helped clients reach their goals.",
-    viewAll: "View all works",
+    viewAll: "Follow on Behance",
+    orLabel: "or",
+    linkedInCta: "Follow me on LinkedIn",
   },
 }
 
@@ -495,7 +501,7 @@ export default async function Home({ searchParams }: HomePageProps) {
             ))}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <Button asChild variant="outline" size="lg" className="rounded-full">
               <Link
                 href="https://www.behance.net/davidegiuliano89bdff"
@@ -503,6 +509,13 @@ export default async function Home({ searchParams }: HomePageProps) {
                 rel="noopener noreferrer"
               >
                 {projectsSection.viewAll}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <span className="text-sm text-muted-foreground">{projectsSection.orLabel}</span>
+            <Button asChild variant="outline" size="lg" className="rounded-full">
+              <Link href="https://www.linkedin.com/in/dav-giu/" target="_blank" rel="noopener noreferrer">
+                {projectsSection.linkedInCta}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
