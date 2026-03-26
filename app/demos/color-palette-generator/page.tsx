@@ -1,5 +1,0 @@
-import { redirect } from "next/navigation"
-
-export default function LegacyColorPaletteGeneratorPage() {
-  redirect("/works/tools/color-palette-generator")
-}
