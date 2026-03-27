@@ -96,7 +96,7 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
         {
           title: "Performance",
           description: "Prestazioni ottimizzate per caricare velocemente.",
-           image: "/Phone call.json",
+           image: "/performance.json",
         },
 
       ],
@@ -176,7 +176,7 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
         {
           title: "Performance",
           description: "Optimised to load fast.",
-          image: "/Phone call.json",
+          image: "/performance.json",
         },
       ],
     },
