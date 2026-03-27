@@ -70,7 +70,7 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
     painPoints: {
       badge: "Problemi comuni",
       title: "Ti riconosci in una di queste situazioni?",
-      description: "Realizzo siti in WordPress su misura pensati per:",
+      description: "",
       bullets: [
         "Hai un sito vecchio che non rappresenta piu la tua attivita",
         "Il tuo sito e lento o non funziona bene da mobile",
