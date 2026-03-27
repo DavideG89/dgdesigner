@@ -241,19 +241,19 @@ export async function generateMetadata({ searchParams }: LandingPageProps): Prom
 
   if (lang === "en") {
     return {
-      title: "WordPress Landing Page | Davide Giuliano",
-      description: "Professional WordPress sites for small businesses that want more clients online.",
+      title: " DGDesigner |Crafting bespoke digital experiences & WordPress sites",
+      description: "I create tailor-made digital experiences for small businesses, freelancers and restaurants. Clean design, easy management, and zero technical stress for your brand.",
       alternates: {
-        canonical: "/landing",
+        canonical: "/web-design-palermo",
       },
     }
   }
 
   return {
-    title: "Landing Page WordPress | Davide Giuliano",
-    description: "Siti WordPress professionali per piccole attivita che vogliono piu clienti online.",
+    title: "DGDesigner | Realizzo siti ed esperienze digitali a Palermo",
+    description: "Esperienze digitali su misura per ristoranti, privati e piccole imprese. Design curato, gestione semplice e zero stress tecnico per il tuo business.",
     alternates: {
-      canonical: "/landing",
+      canonical: "/web-design-palermo",
     },
   }
 }
