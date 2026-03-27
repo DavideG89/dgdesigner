@@ -321,11 +321,11 @@ const galleryImages = [
 ]
 
 type PageProps = {
-  searchParams?: Record<string, string | string[] | undefined>
+  searchParams?: Promise<Record<string, string | string[] | undefined>>
 }
 
-export function generateMetadata({ searchParams }: PageProps): Metadata {
-  const lang = getLanguage(searchParams)
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const lang = getLanguage(await searchParams)
   return {
     ...pageCopy[lang].metadata,
     alternates: {
@@ -334,8 +334,8 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
   }
 }
 
-export default function EcommerceAppProject({ searchParams }: PageProps) {
-  const lang = getLanguage(searchParams)
+export default async function EcommerceAppProject({ searchParams }: PageProps) {
+  const lang = getLanguage(await searchParams)
   const copy = pageCopy[lang]
   const details: DetailCardCopy[] = detailCards.map(({ icon, copy: detailCopy }) => ({
     icon,

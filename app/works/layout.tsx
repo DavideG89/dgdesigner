@@ -18,11 +18,11 @@ const metadataCopy: Record<SupportedLanguage, { title: string; description: stri
 
 type LayoutProps = {
   children: ReactNode
-  searchParams?: Record<string, string | string[] | undefined>
+  searchParams?: Promise<Record<string, string | string[] | undefined>>
 }
 
-export function generateMetadata({ searchParams }: LayoutProps): Metadata {
-  const lang = getLanguage(searchParams)
+export async function generateMetadata({ searchParams }: LayoutProps): Promise<Metadata> {
+  const lang = getLanguage(await searchParams)
   return {
     ...metadataCopy[lang],
     alternates: {

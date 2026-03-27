@@ -453,7 +453,7 @@ export default async function Home({ searchParams }: HomePageProps) {
                 alt="Davide - UI/UX Designer"
                 width={500}
                 height={500}
-                className="h-full w-full object-cover object-center grayscale"
+                className="h-full w-full object-cover object-center grayscale scale-150"
                 priority
               />
             </div>

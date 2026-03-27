@@ -318,7 +318,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
                 alt="Designer portrait"
                 width={520}
                 height={520}
-                className="h-full w-full object-cover object-center"
+                className="h-full w-full object-cover object-center scale-150"
                 priority
               />
             </div>
@@ -443,8 +443,8 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
 
       <section className="py-16 md:py-20">
         <div className="container">
-          <Card className="overflow-hidden border-0 bg-primary/5">
-            <CardContent className="grid gap-4 p-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-4 md:p-14">
+          <Card className=" flex justify-center overflow-hidden border-0 bg-primary/5">
+            <CardContent className="flex justify-between gap-16 p-10 md:items-center md:gap-16 md:p-10">
               <div className="space-y-4 text-left md:justify-self-start md:max-w-2xl">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.cta.title}</h2>
                 <p className="max-w-2xl text-muted-foreground">{copy.cta.description}</p>
@@ -459,7 +459,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
               </div>
               <div className="hidden md:block md:justify-self-end">
                 <div className="relative h-48 w-48 overflow-hidden rounded-2xl bg-background shadow-xl md:h-56 md:w-56">
-                  <Image src="/Me-About.gif" alt="Davide Giuliano" fill className="object-cover" />
+                  <Image src="/Me-About.gif" alt="Davide Giuliano" fill className="object-cover scale-150" />
                 </div>
               </div>
             </CardContent>

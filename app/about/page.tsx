@@ -299,9 +299,9 @@ const pageCopy: Record<SupportedLanguage, {
     heroGreeting: "Ciao, sono",
     heroTitleHighlight: "Davide",
     heroParagraphs: [
-      "Sono un designer UX/UI con oltre 5 anni di esperienza nella creazione di esperienze digitali intuitive e coinvolgenti.",
-      "La mia passione è trasformare idee complesse in interfacce semplici e intuitive che gli utenti adorano utilizzare. Credo che il buon design debba essere tanto funzionale quanto bello, e mi impegno a creare prodotti che soddisfino entrambi questi criteri.",
-      "Quando non sto progettando, mi piace esplorare nuove tecnologie, leggere libri sul design e l'usabilità, e fare escursioni all'aria aperta.",
+      "Sono un designer UI/Web Designer con oltre 4 anni di esperienza nella creazione di esperienze digitali intuitive e coinvolgenti.",
+      "Riesco a trasformare idee complesse in interfacce semplici e intuitive per dare un'esperienza utente fluida e coinvolgente. Credo che il vero design debba essere tanto funzionale quanto bello, e mi impegno a creare prodotti che soddisfino entrambi questi criteri.",
+      "Nel mio tempo libero, mi piace informarmi sulle ultime tendenze, esplorare nuovi luoghi, praticare hobbiese passare il tempo con la famiglia.",
     ],
     primaryCta: "Contattami",
     secondaryCta: "Vedi i miei lavori",
@@ -336,9 +336,9 @@ const pageCopy: Record<SupportedLanguage, {
     heroGreeting: "Hi, I'm",
     heroTitleHighlight: "Davide",
     heroParagraphs: [
-      "I'm a UX/UI designer with over five years of experience creating intuitive, engaging digital experiences.",
-      "I'm passionate about turning complex ideas into simple, intuitive interfaces that people love. I believe great design should be as functional as it is beautiful, and I strive to deliver products that balance both.",
-      "When I'm not designing, I explore new technologies, read about design and usability, and head outdoors for hikes.",
+     "I am a UI/Web Designer with over 4 years of experience in crafting intuitive and engaging digital experiences.",
+     "I specialize in transforming complex ideas into simple, user-friendly interfaces that ensure a seamless and captivating journey. I believe true design should be as functional as it is beautiful, and I am committed to creating products that excel in both.",
+     "In my free time, I stay updated on the latest trends, explore new places, enjoy my hobbies, and cherish time with my family.",
     ],
     primaryCta: "Contact me",
     secondaryCta: "See my work",
@@ -365,11 +365,11 @@ const pageCopy: Record<SupportedLanguage, {
 }
 
 type PageProps = {
-  searchParams?: Record<string, string | string[] | undefined>
+  searchParams?: Promise<Record<string, string | string[] | undefined>>
 }
 
-export function generateMetadata({ searchParams }: PageProps): Metadata {
-  const lang = getLanguage(searchParams)
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const lang = getLanguage(await searchParams)
   return {
     ...pageCopy[lang].metadata,
     alternates: {
@@ -378,8 +378,8 @@ export function generateMetadata({ searchParams }: PageProps): Metadata {
   }
 }
 
-export default function AboutPage({ searchParams }: PageProps) {
-  const lang = getLanguage(searchParams)
+export default async function AboutPage({ searchParams }: PageProps) {
+  const lang = getLanguage(await searchParams)
   const copy = pageCopy[lang]
   const experiences = experiencesByLanguage[lang]
   const education = educationByLanguage[lang]
