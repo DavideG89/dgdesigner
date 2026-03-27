@@ -1,0 +1,18 @@
+# User-agent: * significa che queste regole valgono per tutti i motori di ricerca
+User-agent: *
+
+# Permetti l'indicizzazione di tutto il sito (default)
+Allow: /
+
+# Se hai cartelle private o di test che non vuoi far vedere a nessuno
+Disallow: /_next/
+Disallow: /api/
+Disallow: /admin/
+Disallow: /temp/
+
+# Se vuoi che una pagina specifica del tuo sito personale NON appaia su Google 
+# (magari una vecchia bozza o una pagina troppo privata)
+# Disallow: /nome-pagina-segreta
+
+# IL PUNTO PIÙ IMPORTANTE: Indica a Google dove si trova la tua mappa del tesoro
+Sitemap: https://www.dgdesigner.site/sitemap.xml

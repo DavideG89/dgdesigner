@@ -16,13 +16,11 @@ interface NavigationItem {
 
 const navigationItems: Record<SupportedLanguage, NavigationItem[]> = {
   it: [
-    { name: "Home", href: "/" },
     { name: "Chi sono", href: "/about" },
     { name: "Servizi", href: "/services" },
     { name: "Works", href: "/works" },
   ],
   en: [
-    { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Works", href: "/works" },

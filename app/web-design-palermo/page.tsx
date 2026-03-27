@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import ContactForm from "@/components/contact-form"
+import LottieAnimation from "@/components/lottie-animation"
 import { getLanguage, type SupportedLanguage } from "@/lib/i18n"
 
 type LandingCopy = {
@@ -21,20 +22,25 @@ type LandingCopy = {
     note: string
   }
   painPoints: {
+    badge: string
     title: string
     description: string
     bullets: string[]
   }
   value: {
+    badge: string
     title: string
-    bullets: string[]
-  }
-  audience: {
-    title: string
-    items: string[]
+    description: string
+    cards: Array<{
+      title: string
+      description: string
+      image: string
+    }>
   }
   process: {
+    badge: string
     title: string
+    description: string
     steps: Array<{ title: string; description: string; image: string }>
   }
   cta: {
@@ -56,14 +62,15 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
       title: "Siti per piccole attivita che vogliono",
       highlight: "piu clienti online",
       description:
-        "Creo siti veloci, moderni e facili da gestire per ristoranti, professionisti e piccole imprese. Niente complicazioni, solo risultati concreti.",
+        "Creo siti veloci, moderni e facili da gestire per piccole e medie imprese, ristoranti e professionisti. Niente complicazioni, solo risultati concreti.",
       primaryCta: "Richiedi una consulenza gratuita",
       secondaryCta: "Scopri il processo",
       note: "Risposta entro 24 ore",
     },
     painPoints: {
+      badge: "Problemi comuni",
       title: "Ti riconosci in una di queste situazioni?",
-      description: "Realizzo siti WordPress su misura pensati per:",
+      description: "Realizzo siti in WordPress su misura pensati per:",
       bullets: [
         "Hai un sito vecchio che non rappresenta piu la tua attivita",
         "Il tuo sito e lento o non funziona bene da mobile",
@@ -72,40 +79,48 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
       ],
     },
     value: {
+      badge: "Cosa offro",
       title: "Cosa posso fare per te",
-      bullets: [
-        "Siti chiari e professionali, pensati per convertire",
-        "Esperienza perfetta da mobile",
-        "Prestazioni ottimizzate per caricare velocemente",
-        "Percorsi guidati che portano l'utente a contattarti",
-      ],
-    },
-    audience: {
-      title: "Questo servizio e ideale se sei:",
-      items: [
-        "Un ristoratore o una attivita locale",
-        "Un libero professionista",
-        "Una piccola o media impresa",
-        "Un freelance che vuole un sito serio e credibile",
+      description: "Un sito ben fatto deve essere chiaro, veloce e orientare subito l'utente all'azione.",
+      cards: [
+        {
+          title: "Creazione",
+          description: "Siti chiari e professionali, pensati per convertire.",
+           image: "/Editable Vector.json",
+        },
+        {
+          title: "Responsività",
+          description: "Esperienza perfetta per tutti i dispositivi.",
+           image: "/responsive xperience.json",
+        },
+        {
+          title: "Performance",
+          description: "Prestazioni ottimizzate per caricare velocemente.",
+           image: "/Phone call.json",
+        },
+
       ],
     },
     process: {
-      title: "Il processo e semplice",
+      badge: "Processo",
+      title: "Il processo è semplice",
+      description:
+        "Ti accompagno in ogni fase, dal primo confronto fino alla pubblicazione finale del sito.",
       steps: [
         {
           title: "Call di allineamento",
           description: "Raccogliamo obiettivi, contenuti e priorita in una breve call.",
-          image: "/Topos.png",
+          image: "/Phone call.json",
         },
         {
           title: "Design e sviluppo",
           description: "Progetto un layout chiaro e lo trasformo in un sito veloce.",
-          image: "/Palermointour website.png",
+          image: "/ux wireframe.json",
         },
         {
           title: "Messa online",
           description: "Pubblicazione, test finali e supporto per il lancio.",
-          image: "/WhatsappStudy.png",
+          image: "/website.json",
         },
       ],
     },
@@ -133,6 +148,7 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
       note: "Reply within 24 hours",
     },
     painPoints: {
+      badge: "Common problems",
       title: "Do any of these sound familiar?",
       description: "I design WordPress sites tailored for:",
       bullets: [
@@ -143,40 +159,46 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
       ],
     },
     value: {
+      badge: "What I offer",
       title: "What I can do for you",
-      bullets: [
-        "Clear, professional websites designed to convert",
-        "Perfect mobile experience",
-        "Optimised performance for fast loading",
-        "Guided journeys that lead users to contact you",
-      ],
-    },
-    audience: {
-      title: "This service is ideal if you are:",
-      items: [
-        "A restaurant or local business",
-        "A freelance professional",
-        "A small or mid-sized company",
-        "A freelancer who needs a credible website",
+      description: "A good website should be clear, fast, and lead users toward action.",
+      cards: [
+        {
+          title: "Conversion-focused",
+          description: "Clear, professional sites designed to convert.",
+          image: "/Editable Vector.json",
+        },
+        {
+          title: "Responsive design",
+          description: "A smooth experience on every device.",
+          image: "/responsive xperience.json",
+        },
+        {
+          title: "Performance",
+          description: "Optimised to load fast.",
+          image: "/Phone call.json",
+        },
       ],
     },
     process: {
+      badge: "Process",
       title: "The process is simple",
+      description: "I guide you through each step, from the first conversation to the final launch.",
       steps: [
         {
           title: "Alignment call",
           description: "We gather goals, content, and priorities in a short call.",
-          image: "/Topos.png",
+          image: "/Phone call.json",
         },
         {
           title: "Design and build",
           description: "I craft a clear layout and turn it into a fast website.",
-          image: "/Palermointour website.png",
+          image: "/ux wireframe.json",
         },
         {
           title: "Launch",
           description: "Go live, final tests, and launch support.",
-          image: "/WhatsappStudy.png",
+          image: "/website.json",
         },
       ],
     },
@@ -192,6 +214,21 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
       description: "Fill out the form and I will reply within 24 hours.",
     },
   },
+}
+
+const defaultLandingCopy = landingCopy.it
+
+function resolveLandingCopy(lang: SupportedLanguage): LandingCopy {
+  const selectedCopy = landingCopy[lang] ?? defaultLandingCopy
+
+  return {
+    hero: selectedCopy.hero ?? defaultLandingCopy.hero,
+    painPoints: selectedCopy.painPoints ?? defaultLandingCopy.painPoints,
+    value: selectedCopy.value ?? defaultLandingCopy.value,
+    process: selectedCopy.process ?? defaultLandingCopy.process,
+    cta: selectedCopy.cta ?? defaultLandingCopy.cta,
+    contact: selectedCopy.contact ?? defaultLandingCopy.contact,
+  }
 }
 
 type LandingPageProps = {
@@ -224,15 +261,35 @@ export async function generateMetadata({ searchParams }: LandingPageProps): Prom
 export default async function LandingPage({ searchParams }: LandingPageProps) {
   const params = await searchParams
   const lang = getLanguage(params)
-  const copy = landingCopy[lang]
+  const copy = resolveLandingCopy(lang)
+  const professionalServiceStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "DG Designer",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Palermo",
+      addressRegion: "PA",
+      addressCountry: "IT",
+    },
+    description: "Realizzazione siti web per ristoranti e piccole imprese a Palermo e all'estero.",
+  }
+
 
   return (
-    <main className="bg-background text-foreground">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(professionalServiceStructuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+      <main className="bg-background text-foreground">
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.14),transparent_65%)]" />
         <div className="container grid items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
           <div className="flex flex-col gap-6">
-            <Badge className="w-fit" variant="outline">
+            <Badge variant="outline" className="w-fit rounded-full px-4 py-1.5 uppercase tracking-[0.18em]">
               {copy.hero.badge}
             </Badge>
             <div className="space-y-4">
@@ -273,6 +330,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
         <div className="container grid gap-12 md:grid-cols-[1.05fr_0.95fr]">
           <div className="space-y-6">
             <div className="space-y-3">
+              <Badge className="mb-4">{copy.painPoints.badge}</Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.painPoints.title}</h2>
               <p className="text-muted-foreground">{copy.painPoints.description}</p>
             </div>
@@ -290,15 +348,15 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
               Se anche solo uno di questi punti ti suona familiare, sei nel posto giusto.
             </p>
           </div>
-          <Card className="border-0 bg-muted/30 shadow-lg">
+          <Card className="border-0">
             <CardContent className="p-6">
-              <div className="overflow-hidden rounded-2xl bg-background">
+              <div className="mx-auto w-fit overflow-hidden rounded-2xl bg-background">
                 <Image
                   src="/WebDesign.png"
                   alt="Mockup sito web"
-                  width={720}
-                  height={520}
-                  className="h-full w-full object-cover"
+                  width={320}
+                  height={180}
+                  className="block h-auto w-[320px] object-contain"
                 />
               </div>
             </CardContent>
@@ -306,56 +364,67 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
-        <div className="container grid gap-10 md:grid-cols-[1.05fr_0.95fr]">
-          <div className="space-y-6">
+      <section className="py-20">
+        <div className="container">
+          <div className="mx-auto mb-12 max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.value.title}</h2>
-            <ul className="space-y-3">
-              {copy.value.bullets.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-muted-foreground">
-                  <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Check className="h-4 w-4" />
-                  </span>
-                  <span className="text-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-4 text-lg text-muted-foreground">{copy.value.description}</p>
           </div>
-          <Card className="border-0 bg-muted/30 shadow-lg">
-            <CardContent className="space-y-4 p-6">
-              <p className="text-lg font-semibold">{copy.audience.title}</p>
-              <div className="space-y-3">
-                {copy.audience.items.map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-xl bg-background px-4 py-3">
-                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary">
-                      <Check className="h-4 w-4" />
-                    </span>
-                    <span>{item}</span>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {copy.value.cards.map((card) => (
+              <Card
+                key={card.title}
+                className="overflow-hidden border-0 bg-muted/50 transition-all hover:-translate-y-1 hover:bg-muted"
+              >
+                <CardContent className="flex h-full flex-col gap-4 p-6">
+                  <div className="overflow-hidden rounded-2xl p-3">
+                    {card.image.endsWith(".json") ? (
+                      <LottieAnimation src={card.image} alt={card.title} className="h-40 w-full" />
+                    ) : (
+                      <Image
+                        src={card.image}
+                        alt={card.title}
+                        width={520}
+                        height={360}
+                        className="h-40 w-full object-cover"
+                      />
+                    )}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold">{card.title}</h3>
+                    <p className="text-muted-foreground">{card.description}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="py-16 md:py-20" id="process">
         <div className="container">
           <div className="mb-10 space-y-3 text-center">
+            <Badge className="mb-4">{copy.process.badge}</Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.process.title}</h2>
+            <p className="mx-auto max-w-2xl text-muted-foreground">{copy.process.description}</p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {copy.process.steps.map((step, index) => (
               <Card key={step.title} className="border-0 bg-muted/30 shadow-lg">
                 <CardContent className="space-y-4 p-6">
                   <div className="overflow-hidden rounded-2xl">
-                    <Image
-                      src={step.image}
-                      alt={step.title}
-                      width={520}
-                      height={360}
-                      className="h-40 w-full object-cover"
-                    />
+                    {step.image.endsWith(".json") ? (
+                      <LottieAnimation src={step.image} alt={step.title} className="h-40 w-full" />
+                    ) : (
+                      <Image
+                        src={step.image}
+                        alt={step.title}
+                        width={520}
+                        height={360}
+                        className="h-40 w-full object-cover"
+                      />
+                    )}
                   </div>
                   <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                     {index === 0 && <MessageCircle className="h-4 w-4 text-primary" />}
@@ -374,16 +443,25 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
 
       <section className="py-16 md:py-20">
         <div className="container">
-          <Card className="border-0 bg-primary/5">
-            <CardContent className="flex flex-col items-center gap-4 p-10 text-center md:p-14">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.cta.title}</h2>
-              <p className="max-w-2xl text-muted-foreground">{copy.cta.description}</p>
-              <Button asChild size="lg" className="rounded-full">
-                <Link href="#contact">
-                  {copy.cta.button}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+          <Card className="overflow-hidden border-0 bg-primary/5">
+            <CardContent className="grid gap-4 p-10 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-4 md:p-14">
+              <div className="space-y-4 text-left md:justify-self-start md:max-w-2xl">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.cta.title}</h2>
+                <p className="max-w-2xl text-muted-foreground">{copy.cta.description}</p>
+                <div className="flex justify-start">
+                  <Button asChild size="lg" className="rounded-full">
+                    <Link href="#contact">
+                      {copy.cta.button}
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+              <div className="hidden md:block md:justify-self-end">
+                <div className="relative h-48 w-48 overflow-hidden rounded-2xl bg-background shadow-xl md:h-56 md:w-56">
+                  <Image src="/Me-About.gif" alt="Davide Giuliano" fill className="object-cover" />
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -404,6 +482,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   )
 }
