@@ -59,12 +59,12 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
   it: {
     hero: {
       badge: "Siti WordPress professionali",
-      title: "Siti per piccole attivita che vogliono",
-      highlight: "piu clienti online",
+      title: "Realizzazione siti web a Palermo:",
+      highlight: "dai valore al tuo lavoro e ai tuoi servizi.",
       description:
         "Creo siti veloci, moderni e facili da gestire per piccole e medie imprese, ristoranti e professionisti. Niente complicazioni, solo risultati concreti.",
-      primaryCta: "Richiedi una consulenza gratuita",
-      secondaryCta: "Scopri il processo",
+      primaryCta: "Chiedimi un parere senza impegno",
+      secondaryCta: "Guarda cosa posso fare per te",
       note: "Risposta entro 24 ore",
     },
     painPoints: {
@@ -125,7 +125,7 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
       ],
     },
     cta: {
-      title: "Hai un progetto in mente?",
+      title: "Raccontami la tua attività",
       description:
         "Raccontami cosa ti serve e vediamo insieme se posso aiutarti. La prima consulenza e gratuita e senza impegno.",
       button: "Prenota la tua consulenza",
