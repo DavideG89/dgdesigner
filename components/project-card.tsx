@@ -31,7 +31,7 @@ export default function ProjectCard({ title, description, image, tags, link }: P
       <CardContent className="p-6">
         <div className="mb-4 flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className="font-normal">
+            <Badge key={tag} variant="secondary" className="font-normal text-foreground bg-foreground/10">
               {tag}
             </Badge>
           ))}

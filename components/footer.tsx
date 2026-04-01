@@ -85,7 +85,7 @@ export default function Footer() {
   return (
     <footer className="border-t bg-background">
       <div className="container py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 lg:mx-auto lg:w-fit">
           <div>
             <Link href={homeHref} className="flex items-center">
               <Image src="/logo.png" alt="DG Designer logo" width={48} height={48} className="h-12 w-12" priority />
@@ -132,36 +132,6 @@ export default function Footer() {
               <li>
                 <Link href={contactHref} className="text-sm text-muted-foreground hover:text-primary">
                   {copy.contactLink}
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-medium">{copy.services}</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link href={appendLanguageParam("/services#ui-design", lang)} className="text-sm text-muted-foreground hover:text-primary">
-                  {copy.servicesSections.ui}
-                </Link>
-              </li>
-              <li>
-                <Link href={appendLanguageParam("/services#ux-design", lang)} className="text-sm text-muted-foreground hover:text-primary">
-                  {copy.servicesSections.ux}
-                </Link>
-              </li>
-              <li>
-                <Link href={appendLanguageParam("/services#web-design", lang)} className="text-sm text-muted-foreground hover:text-primary">
-                  {copy.servicesSections.web}
-                </Link>
-              </li>
-              <li>
-                <Link href={appendLanguageParam("/services#app-design", lang)} className="text-sm text-muted-foreground hover:text-primary">
-                  {copy.servicesSections.app}
-                </Link>
-              </li>
-              <li>
-                <Link href={appendLanguageParam("/services#branding", lang)} className="text-sm text-muted-foreground hover:text-primary">
-                  {copy.servicesSections.branding}
                 </Link>
               </li>
             </ul>

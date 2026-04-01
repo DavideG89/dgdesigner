@@ -446,7 +446,7 @@ export default async function Home({ searchParams }: HomePageProps) {
               </Button>
             </div>
           </div>
-          <div className="order-1 relative mx-auto aspect-square w-full max-w-md rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 p-4 md:order-2 md:p-8">
+          <div className="order-1 relative mx-auto aspect-square w-full max-w-md rounded-full bg-gradient-to-br from-primary/20 to-emerald-800/20 p-4 md:order-2 md:p-8">
             <div className="relative h-full w-full overflow-hidden rounded-full bg-muted">
               <Image
                 src="/Me-Gif.gif"
@@ -462,17 +462,17 @@ export default async function Home({ searchParams }: HomePageProps) {
       </section>
 
       {/* Services Section */}
-      <section className="py-20">
+      <section className="py-20 bg-foreground">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <Badge className="mb-4">{servicesSection.badge}</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{servicesSection.title}</h2>
-            <p className="mt-4 text-lg text-muted-foreground">{servicesSection.description}</p>
+            <h2 className="text-secondary-foreground text-3xl font-bold tracking-tight sm:text-4xl">{servicesSection.title}</h2>
+            <p className="mt-4 text-lg text-secondary-foreground">{servicesSection.description}</p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {servicesCards.map(({ icon: Icon, title, description }) => (
-              <Card key={title} className="border-0 bg-muted/50 transition-all hover:bg-muted">
+              <Card key={title} className="border-0 bg-muted transition-all">
                 <CardContent className="flex flex-col items-start gap-4 p-6">
                   <div className="rounded-full bg-primary/10 p-3 text-primary">
                     <Icon className="h-6 w-6" />

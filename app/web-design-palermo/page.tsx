@@ -59,10 +59,10 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
   it: {
     hero: {
       badge: "Siti WordPress professionali",
-      title: "Realizzazione siti web a Palermo:",
-      highlight: "dai valore al tuo lavoro e ai tuoi servizi.",
+      title: "Web designer a Palermo:",
+      highlight: "Realizzo il sito web professionale per la tua attività.",
       description:
-        "Creo siti veloci, moderni e facili da gestire per piccole e medie imprese, ristoranti e professionisti. Niente complicazioni, solo risultati concreti.",
+        "Trasformo la navigazione in un percorso fluido che elimina i dubbi e mette in luce il tuo lavoro.",
       primaryCta: "Chiedimi un parere senza impegno",
       secondaryCta: "Guarda cosa posso fare per te",
       note: "Risposta entro 24 ore",
@@ -127,7 +127,7 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
     cta: {
       title: "Raccontami la tua attività",
       description:
-        "Raccontami cosa ti serve e vediamo insieme se posso aiutarti. La prima consulenza e gratuita e senza impegno.",
+        "Raccontami cosa ti serve e vediamo insieme se posso aiutarti.\nLa prima consulenza e gratuita e senza impegno.",
       button: "Prenota la tua consulenza",
     },
     contact: {
@@ -289,12 +289,10 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.14),transparent_65%)]" />
         <div className="container grid items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
           <div className="flex flex-col gap-6">
-            <Badge variant="outline" className="w-fit rounded-full px-4 py-1.5 uppercase tracking-[0.18em]">
-              {copy.hero.badge}
-            </Badge>
+          
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                {copy.hero.title} <span className="text-primary">{copy.hero.highlight}</span>
+                {copy.hero.title} <span className="text-foreground text-[30px] sm:text-3xl md:text-[30px]">{copy.hero.highlight}</span>
               </h1>
               <p className="max-w-xl text-lg text-muted-foreground">{copy.hero.description}</p>
             </div>
@@ -326,41 +324,40 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
-        <div className="container grid gap-12 md:grid-cols-[1.05fr_0.95fr]">
-          <div className="space-y-6">
-            <div className="space-y-3">
-              <Badge className="mb-4">{copy.painPoints.badge}</Badge>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.painPoints.title}</h2>
-              <p className="text-muted-foreground">{copy.painPoints.description}</p>
-            </div>
-            <ul className="space-y-3">
-              {copy.painPoints.bullets.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-muted-foreground">
-                  <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <Check className="h-4 w-4" />
-                  </span>
-                  <span className="text-foreground">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="text-sm font-medium text-muted-foreground">
-              Se anche solo uno di questi punti ti suona familiare, sei nel posto giusto.
-            </p>
-          </div>
-          <Card className="border-0">
+      <section className="py-16 md:py-20 bg-foreground/100">
+        <div className="container grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
+            <Card className="border-0 bg-transparent shadow-none">
             <CardContent className="p-6">
-              <div className="mx-auto w-fit overflow-hidden rounded-2xl bg-background">
+              <div className="mx-auto w-fit  ">
                 <Image
                   src="/WebDesign.png"
                   alt="Mockup sito web"
-                  width={320}
                   height={180}
+                  width={320}
                   className="block h-auto w-[320px] object-contain"
                 />
               </div>
             </CardContent>
           </Card>
+          <div className="flex h-full flex-col justify-center space-y-6">
+            <div className="space-y-3">
+              <Badge className="mb-4">{copy.painPoints.badge}</Badge>
+              <h2 className="text-secondary-foreground text-3xl font-bold tracking-tight sm:text-4xl">{copy.painPoints.title}</h2>
+              <p className="text-secondary-foreground">{copy.painPoints.description}</p>
+            </div>
+            <ul className="space-y-3">
+              {copy.painPoints.bullets.map((item) => (
+                <li key={item} className="flex items-start gap-3 ">
+                  <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-secondary/10">
+                    <Check className="h-4 w-4" />
+                  </span>
+                  <span className="text-secondary-foreground">{item}</span>
+                </li>
+              ))}
+            </ul>
+          
+          </div>
+        
         </div>
       </section>
 
@@ -441,13 +438,13 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
         </div>
       </section>
 
-      <section className="py-16 md:py-20">
-        <div className="container">
-          <Card className=" flex justify-center overflow-hidden border-0 bg-primary/5">
-            <CardContent className="flex justify-between gap-16 p-10 md:items-center md:gap-16 md:p-10">
+      <section className="py-16 md:py-20 wir">
+        <div className="w-full">
+          <Card className="flex justify-center overflow-hidden border-0 bg-foreground">
+            <CardContent className="flex justify-between gap-16 md:items-center md:gap-16 p-20 md:p-20">
               <div className="space-y-4 text-left md:justify-self-start md:max-w-2xl">
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.cta.title}</h2>
-                <p className="max-w-2xl text-muted-foreground">{copy.cta.description}</p>
+                <h2 className=" text-secondary-foreground text-3xl font-bold tracking-tight sm:text-4xl">{copy.cta.title}</h2>
+                <p className="max-w-2xl text-secondary-foreground">{copy.cta.description}</p>
                 <div className="flex justify-start">
                   <Button asChild size="lg" className="rounded-full">
                     <Link href="#contact">

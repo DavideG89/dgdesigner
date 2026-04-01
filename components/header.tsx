@@ -101,7 +101,7 @@ export default function Header() {
                 key={item.name}
                 href={appendLanguageParam(item.href, lang)}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === item.href ? "text-primary" : "text-foreground/80"
+                  pathname === item.href ? "text-primary" : "text-foreground"
                 }`}
               >
                 {item.name}
@@ -191,7 +191,7 @@ export default function Header() {
               className={`block rounded-md px-3 py-2 text-base font-medium ${
                 pathname === item.href
                   ? "bg-primary/10 text-primary"
-                  : "text-foreground/80 hover:bg-primary/5 hover:text-primary"
+                  : "text-foreground hover:bg-primary/5 hover:text-primary"
               }`}
               onClick={() => setMobileMenuOpen(false)}
             >
