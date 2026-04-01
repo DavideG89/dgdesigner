@@ -60,9 +60,9 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
     hero: {
       badge: "Siti WordPress professionali",
       title: "Web designer a Palermo:",
-      highlight: "Realizzo il sito web professionale per la tua attività.",
+      highlight: "Realizzo siti web focalizzati sull'esperienza utente.",
       description:
-        "Trasformo la navigazione in un percorso fluido che elimina i dubbi e mette in luce il tuo lavoro.",
+        "Trasforma la tua presenza online con un design curato che converte i visitatori in clienti, senza stress tecnico.",
       primaryCta: "Chiedimi un parere senza impegno",
       secondaryCta: "Guarda cosa posso fare per te",
       note: "Risposta entro 24 ore",
@@ -70,9 +70,9 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
     painPoints: {
       badge: "Problemi comuni",
       title: "Ti riconosci in una di queste situazioni?",
-      description: "",
+      description: "Aiuto le piccole imprese e i ristoranti di Palermo a superare la confusione digitale con soluzioni semplici e trasparenti.",
       bullets: [
-        "Hai un sito vecchio che non rappresenta piu la tua attivita",
+        "Hai un sito vecchio che non rappresenta più la tua attività",
         "Il tuo sito e lento o non funziona bene da mobile",
         "Le persone visitano il sito ma non ti contattano",
         "Non sai da dove iniziare per rifarlo (e hai paura dei costi)",
@@ -84,17 +84,17 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
       description: "Un sito ben fatto deve essere chiaro, veloce e orientare subito l'utente all'azione.",
       cards: [
         {
-          title: "Creazione",
+          title: "Siti Web su misura",
           description: "Siti chiari e professionali, pensati per convertire.",
            image: "/Editable Vector.json",
         },
         {
-          title: "Responsività",
+          title: "User Experience (UX) Design",
           description: "Esperienza perfetta per tutti i dispositivi.",
            image: "/responsive xperience.json",
         },
         {
-          title: "Performance",
+          title: "SEO e Velocità",
           description: "Prestazioni ottimizzate per caricare velocemente.",
            image: "/performance.json",
         },
@@ -241,7 +241,7 @@ export async function generateMetadata({ searchParams }: LandingPageProps): Prom
 
   if (lang === "en") {
     return {
-      title: " DGDesigner |Crafting bespoke digital experiences & WordPress sites",
+      title: " DGDesigner | Crafting bespoke digital experiences & WordPress sites",
       description: "I create tailor-made digital experiences for small businesses, freelancers and restaurants. Clean design, easy management, and zero technical stress for your brand.",
       alternates: {
         canonical: "/web-design-palermo",
@@ -250,8 +250,8 @@ export async function generateMetadata({ searchParams }: LandingPageProps): Prom
   }
 
   return {
-    title: "DGDesigner | Realizzo siti ed esperienze digitali a Palermo",
-    description: "Esperienze digitali su misura per ristoranti, privati e piccole imprese. Design curato, gestione semplice e zero stress tecnico per il tuo business.",
+    title: "Web Design Palermo: Siti Web su Misura | DGDesigner",
+    description: "Cerchi un Web Designer a Palermo? Realizzo siti web migliorando l'esperienza utente per ristoranti, piccole/medie imprese e professionisti. SEO e zero stress tecnico. Chiedi un preventivo gratuito!",
     alternates: {
       canonical: "/web-design-palermo",
     },
@@ -313,7 +313,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
             <div className="relative h-full w-full overflow-hidden rounded-full bg-muted">
               <Image
                 src="/Me-Gif.gif"
-                alt="Designer portrait"
+                alt=" DGDesigner - Web Designer esperto in UX a Palermo"
                 width={520}
                 height={520}
                 className="h-full w-full object-cover object-center scale-150"
@@ -343,7 +343,6 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
             <div className="space-y-3">
               <Badge className="mb-4">{copy.painPoints.badge}</Badge>
               <h2 className="text-secondary-foreground text-3xl font-bold tracking-tight sm:text-4xl">{copy.painPoints.title}</h2>
-              <p className="text-secondary-foreground">{copy.painPoints.description}</p>
             </div>
             <ul className="space-y-3">
               {copy.painPoints.bullets.map((item) => (
@@ -355,7 +354,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
                 </li>
               ))}
             </ul>
-          
+            <p className="text-secondary-foreground">{copy.painPoints.description}</p>
           </div>
         
         </div>

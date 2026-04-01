@@ -35,8 +35,8 @@ const navigationCopy = {
       phone: "320 567 1678",
       location: "Italia",
     },
-    tagline: "Crafting impactful User Experiences, one pixel at a time.",
-    rights: (year: number) => `© ${year} DG Designer. Tutti i diritti riservati.`,
+    tagline: "Web Designer Freelance a Palermo (PA).\nDisponibile per progetti in tutta Italia ed estero.",
+    rights: (year: number) => `© ${year} Tutti i diritti riservati.`,
   },
   en: {
     navigation: "Navigation",
@@ -90,7 +90,7 @@ export default function Footer() {
             <Link href={homeHref} className="flex items-center">
               <Image src="/logo.png" alt="DG Designer logo" width={48} height={48} className="h-12 w-12" priority />
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground">{copy.tagline}</p>
+            <p className="mt-4 whitespace-pre-line text-sm text-muted-foreground">{copy.tagline}</p>
             <div className="mt-4 flex space-x-4">
               <Link href="https://github.com" className="text-foreground/60 hover:text-primary">
                 <Github className="h-5 w-5" />
