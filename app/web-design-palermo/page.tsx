@@ -288,8 +288,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
       <section className="relative overflow-hidden py-20 md:py-28">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.14),transparent_65%)]" />
         <div className="container grid items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="flex flex-col gap-6">
-          
+          <div className="flex flex-col gap-6">   
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
                 {copy.hero.title} <span className="text-foreground text-[30px] sm:text-3xl md:text-[30px]">{copy.hero.highlight}</span>
