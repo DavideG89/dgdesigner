@@ -71,6 +71,14 @@ export default function RootLayout({
   return (
     <html lang="it" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-PMB5B33T"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <Suspense fallback={null}>
