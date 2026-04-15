@@ -241,7 +241,7 @@ export async function generateMetadata({ searchParams }: LandingPageProps): Prom
 
   if (lang === "en") {
     return {
-      title: " Davide Giuliano | Crafting bespoke digital experiences & WordPress sites",
+      title: "Davide Giuliano | Crafting bespoke digital experiences & WordPress sites",
       description: "I create tailor-made digital experiences for small businesses, freelancers and restaurants. Clean design, easy management, and zero technical stress for your brand.",
       alternates: {
         canonical: "/web-design-palermo",
