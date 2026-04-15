@@ -389,7 +389,7 @@ export async function generateMetadata({ searchParams }: HomePageProps): Promise
       description:
         "Hi! I’m Davide, a UX/UI Designer passionate about creating intuitive, functional, and visually refined digital experiences.",
       alternates: {
-        canonical: "/",
+        canonical: "/web-design-palermo",
       },
     }
   }
@@ -399,7 +399,7 @@ export async function generateMetadata({ searchParams }: HomePageProps): Promise
     description:
       "Ciao! Sono Davide, un designer UX/UI che ama creare esperienze digitali intuitive, funzionali ed esteticamente piacevoli.",
     alternates: {
-      canonical: "/",
+      canonical: "/web-design-palermo",
     },
   }
 }

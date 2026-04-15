@@ -241,7 +241,7 @@ export async function generateMetadata({ searchParams }: LandingPageProps): Prom
 
   if (lang === "en") {
     return {
-      title: " DGDesigner | Crafting bespoke digital experiences & WordPress sites",
+      title: " Davide Giuliano | Crafting bespoke digital experiences & WordPress sites",
       description: "I create tailor-made digital experiences for small businesses, freelancers and restaurants. Clean design, easy management, and zero technical stress for your brand.",
       alternates: {
         canonical: "/web-design-palermo",
@@ -250,7 +250,7 @@ export async function generateMetadata({ searchParams }: LandingPageProps): Prom
   }
 
   return {
-    title: "Web Design Palermo: Siti Web su Misura | DGDesigner",
+    title: "Web Design Palermo: Siti Web su Misura | Davide Giuliano",
     description: "Cerchi un Web Designer a Palermo? Realizzo siti web migliorando l'esperienza utente per ristoranti, piccole/medie imprese e professionisti. SEO e zero stress tecnico. Chiedi un preventivo gratuito!",
     alternates: {
       canonical: "/web-design-palermo",
