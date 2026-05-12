@@ -250,8 +250,8 @@ export async function generateMetadata({ searchParams }: LandingPageProps): Prom
   }
 
   return {
-    title: "Web Design Palermo: Siti Web su Misura | Davide Giuliano",
-    description: "Cerchi un Web Designer a Palermo? Realizzo siti web migliorando l'esperienza utente per ristoranti, piccole/medie imprese e professionisti. SEO e zero stress tecnico. Chiedi un preventivo gratuito!",
+    title: "Davide Giuliano | Web Design Palermo: Siti Web su Misura ",
+    description: "Cerchi un Web Designer a Palermo? Realizzo siti web migliorando l'esperienza utente per ristoranti, piccole / medie imprese e professionisti. Chiedi un preventivo gratuito!",
     alternates: {
       canonical: "/web-design-palermo",
     },
