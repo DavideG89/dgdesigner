@@ -217,6 +217,43 @@ const landingCopy: Record<SupportedLanguage, LandingCopy> = {
 }
 
 const defaultLandingCopy = landingCopy.it
+const pageTitle = "Web Designer a Palermo | Davide Giuliano"
+const pageDescription =
+  "Realizzo siti web chiari, veloci e orientati all'esperienza utente per ristoranti, professionisti e piccole imprese."
+const pageUrl = "https://www.dgdesigner.site/web-design-palermo"
+const pageImage = "https://www.dgdesigner.site/Me-About.gif"
+
+export const metadata: Metadata = {
+  title: {
+    absolute: pageTitle,
+  },
+  description: pageDescription,
+  alternates: {
+    canonical: pageUrl,
+  },
+  openGraph: {
+    type: "website",
+    locale: "it_IT",
+    siteName: "DG Designer",
+    title: pageTitle,
+    description: pageDescription,
+    url: pageUrl,
+    images: [
+      {
+        url: pageImage,
+        width: 1280,
+        height: 720,
+        alt: "Davide Giuliano - Web Designer a Palermo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: pageDescription,
+    images: [pageImage],
+  },
+}
 
 function resolveLandingCopy(lang: SupportedLanguage): LandingCopy {
   const selectedCopy = landingCopy[lang] ?? defaultLandingCopy
@@ -235,29 +272,6 @@ type LandingPageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>
 }
 
-export async function generateMetadata({ searchParams }: LandingPageProps): Promise<Metadata> {
-  const params = await searchParams
-  const lang = getLanguage(params)
-
-  if (lang === "en") {
-    return {
-      title: "Davide Giuliano | Crafting bespoke digital experiences & WordPress sites",
-      description: "I create tailor-made digital experiences for small businesses, freelancers and restaurants. Clean design, easy management, and zero technical stress for your brand.",
-      alternates: {
-        canonical: "/web-design-palermo",
-      },
-    }
-  }
-
-  return {
-    title: "Davide Giuliano | Web Design Palermo: Siti Web su Misura ",
-    description: "Cerchi un Web Designer a Palermo? Realizzo siti web migliorando l'esperienza utente per ristoranti, piccole / medie imprese e professionisti. Chiedi un preventivo gratuito!",
-    alternates: {
-      canonical: "/web-design-palermo",
-    },
-  }
-}
-
 export default async function LandingPage({ searchParams }: LandingPageProps) {
   const params = await searchParams
   const lang = getLanguage(params)
@@ -265,7 +279,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
   const professionalServiceStructuredData = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    name: "DG Designer",
+    name: "Davide Giuliano - Web Designer Freelance a Palermo",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Palermo",
