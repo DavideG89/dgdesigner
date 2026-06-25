@@ -3,10 +3,11 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
 import { ArrowRight, Code, Figma, Layers, Smartphone, Zap } from "lucide-react"
 
 import { appendLanguageParam, getLanguage, type SupportedLanguage } from "@/lib/i18n"
+import { CtaBanner } from "@/components/cta-banner"
+import { ExplainerCard } from "@/components/explainer-card"
 
 const rawBaseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.dgdesigner.site"
 const baseUrl = rawBaseUrl.endsWith("/") ? rawBaseUrl.slice(0, -1) : rawBaseUrl
@@ -139,7 +140,7 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Design di icone e assets",
           "Ottimizzazione per diverse dimensioni di schermo",
         ],
-        image: "/Appdesign.png",
+        image: "/AppExample.png",
       },
       {
         id: "branding",
@@ -341,7 +342,7 @@ const servicesTranslations: Record<SupportedLanguage, {
           "Icon and asset design",
           "Optimisation for multiple screen sizes",
         ],
-        image: "/Appdesign.png",
+        image: "/AppExample.png",
       },
       {
         id: "branding",
@@ -620,14 +621,14 @@ export default async function ServicesPage({ searchParams }: ServicesPageProps) 
                     </Button>
                   </div>
                   <div className={`rounded-xl p-6 ${imageFirst ? "order-2 md:order-1" : ""}`}>
-                    <div className="relative aspect-video overflow-hidden rounded-lg ">
+                    <div className="relative md:h-[400px] overflow-hidden rounded-lg ">
                       {section.image ? (
                         <Image
                           src={section.image}
                           alt={section.title}
                           fill
-                          className="object-cover"
-                          sizes="(min-width: 1024px) 560px, (min-width: 768px) 50vw, 100vw"
+                          className="object-contain"
+                          sizes="(min-width: 1024px) 700px, (min-width: 700px) 50vw, 100vw "
                           priority={index === 0}
                         />
                       ) : (
@@ -646,27 +647,29 @@ export default async function ServicesPage({ searchParams }: ServicesPageProps) 
 
       {/* Process Section */}
       <section className="py-20">
-        <div className="container">
+  
+        <div className="container py-10">
+        
           <div className="mx-auto mb-12 max-w-3xl text-center">
             <Badge className="mb-4">{content.processBadge}</Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{content.processTitle}</h2>
             <p className="mt-4 text-lg text-muted-foreground">{content.processSubtitle}</p>
           </div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          
+            <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
             {content.processSteps.map((step, index) => (
-              <Card key={step.title} className="border-0 bg-muted/50">
-                <CardContent className="p-6">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <span className="text-xl font-bold">{index + 1}</span>
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+              <li key={step.title}>
+                <ExplainerCard
+                  marker={<span className="text-xl font-bold">{index + 1}</span>}
+                  title={step.title}
+                  description={step.description}
+                />
+              </li>
+                ))}
+
+          </ul>
           </div>
-        </div>
+
       </section>
 
       {/* Pricing Section 
@@ -746,23 +749,13 @@ export default async function ServicesPage({ searchParams }: ServicesPageProps) 
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container">
-          <div className="rounded-2xl bg-muted p-8 md:p-12">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{content.ctaTitle}</h2>
-              <p className="mb-8 text-lg text-muted-foreground">{content.ctaSubtitle}</p>
-              <Button asChild size="lg" className="rounded-full">
-                <Link href={contactHref}>
-                  {content.ctaButton}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaBanner
+        titleId="services-cta-title"
+        title={content.ctaTitle}
+        description={content.ctaSubtitle}
+        href={contactHref}
+        actionLabel={content.ctaButton}
+      />
     </>
   )
 }

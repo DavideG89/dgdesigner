@@ -3,377 +3,23 @@ import Link from "next/link"
 import Image from "next/image"
 import { Suspense } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Code, Figma, Layers, Rocket, Smartphone, Zap } from "lucide-react"
+import { ArrowRight, Sparkles } from "lucide-react"
 
-import { appendLanguageParam, getLanguage, type SupportedLanguage } from "@/lib/i18n"
+import {
+  contactSectionCopy,
+  heroCopy,
+  heroStats,
+  projectsCopy,
+  projectsSection,
+  servicesCopy,
+  servicesSection,
+  skillMarquee,
+} from "@/data/home"
+import { appendLanguageParam, getLanguage } from "@/lib/i18n"
+import { ExplainerCard } from "@/components/explainer-card"
 import ProjectCard from "@/components/project-card"
 import ContactForm from "@/components/contact-form"
-import { describe } from "node:test"
-
-interface ServiceCardCopy {
-  title: string
-  description: string
-}
-
-interface ShowcaseProject {
-  title: string
-  description: string
-  image: string
-  tags: string[]
-  link: string
-}
-
-const heroCopy: Record<SupportedLanguage, {
-  badge: string
-  titlePrefix: string
-  titleHighlight: string
-  titleSuffix: string
-  description: string
-  primaryCta: string
-  secondaryCta: string
-}> = {
-  it: {
-    badge: "UI/UX & Web Designer",
-    titlePrefix: "Crafting",
-    titleHighlight: "impactful",
-    titleSuffix: "User Experiences",
-    description:
-      "Ciao! Sono Davide, UX/UI & Web Designer che ama creare esperienze digitali intuitive, funzionali ed esteticamente piacevoli.",
-    primaryCta: "Iniziamo a collaborare",
-    secondaryCta: "Esplora i lavori",
-  },
-  en: {
-    badge: "UI/UX & Web Designer",
-    titlePrefix: "Crafting",
-    titleHighlight: "impactful",
-    titleSuffix: "User Experiences",
-    description:
-      "Hi! I'm Davide, a UX/UI & Web designer who loves crafting digital experiences that are intuitive, functional, and visually refined.",
-    primaryCta: "Let's start working together",
-    secondaryCta: "Explore my works",
-  },
-}
-
-const servicesCopy: Array<{
-  icon: typeof Layers
-  copy: Record<SupportedLanguage, ServiceCardCopy>
-}> = [
-  {
-    icon: Layers,
-    copy: {
-      it: {
-        title: "UI Design",
-        description:
-          "Interfacce utente intuitive e accattivanti che migliorano l'esperienza dell'utente e aumentano la conversione.",
-      },
-      en: {
-        title: "UI Design",
-        description:
-          "Intuitive, captivating interfaces that enhance the user experience and boost conversion.",
-      },
-    },
-  },
-  {
-    icon: Figma,
-    copy: {
-      it: {
-        title: "UX Design",
-        description:
-          "Ricerca utente, wireframing e prototyping per creare esperienze utente fluide e coinvolgenti.",
-      },
-      en: {
-        title: "UX Design",
-        description:
-          "User research, wireframing, and prototyping to build seamless, engaging experiences.",
-      },
-    },
-  },
-  {
-    icon: Code,
-    copy: {
-      it: {
-        title: "Web Designer",
-        description:
-          "Sviluppo di siti web moderni, reattivi e ottimizzati per le prestazioni utilizzando le tecnologie più recenti.",
-      },
-      en: {
-        title: "Web Designer",
-        description:
-          "Modern, responsive websites optimised for performance with the latest technologies.",
-      },
-    },
-  },
-  {
-    icon: Smartphone,
-    copy: {
-      it: {
-        title: "App Design",
-        description:
-          "Design di applicazioni mobile intuitive e funzionali per iOS e Android che gli utenti adoreranno.",
-      },
-      en: {
-        title: "App Design",
-        description:
-          "Intuitive, high-performing mobile app design for iOS and Android that people love to use.",
-      },
-    },
-  },
-  {
-    icon: Zap,
-    copy: {
-      it: {
-        title: "Branding",
-        description:
-          "Creazione di identità di marca distintive che comunicano i valori e la personalità del tuo business.",
-      },
-      en: {
-        title: "Branding",
-        description:
-          "Distinctive brand identities that communicate your values and personality.",
-      },
-    },
-  },
-  {
-    icon: Rocket,
-    copy: {
-      it: {
-        title: "Consulenza UX",
-        description:
-          "Analisi e ottimizzazione delle tue interfacce esistenti per migliorare l'usabilità e la conversione.",
-      },
-      en: {
-        title: "UX Consulting",
-        description:
-          "Analysis and optimisation of your existing interfaces to improve usability and conversion.",
-      },
-    },
-  },
-]
-
-const servicesSectionCopy: Record<SupportedLanguage, {
-  badge: string
-  title: string
-  description: string
-}> = {
-  it: {
-    badge: "Servizi",
-    title: "Soluzioni creative per ogni esigenza digitale",
-    description:
-      "Offro una gamma completa di servizi di design per aiutarti a creare esperienze digitali eccezionali.",
-  },
-  en: {
-    badge: "Services",
-    title: "Creative solutions for every digital challenge",
-    description:
-      "I offer a full spectrum of design services to help you craft outstanding digital experiences.",
-  },
-}
-
-const projectsSectionCopy: Record<SupportedLanguage, {
-  badge: string
-  title: string
-  description: string
-  viewAll: string
-  orLabel: string
-  linkedInCta: string
-}> = {
-  it: {
-    badge: "Works",
-    title: "Lavori recenti",
-    description:
-      "Esplora alcuni dei miei lavori più recenti e scopri come ho aiutato i miei clienti a raggiungere i loro obiettivi.",
-    viewAll: "Segui su Behance",
-    orLabel: "o",
-    linkedInCta: "Seguimi su LinkedIn",
-  },
-  en: {
-    badge: "Works",
-    title: "Recent work",
-    description:
-      "Explore a selection of my latest work and see how I've helped clients reach their goals.",
-    viewAll: "Follow on Behance",
-    orLabel: "or",
-    linkedInCta: "Follow me on LinkedIn",
-  },
-}
-
-const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
-  it: [
-    {
-      title: "Topos Network",
-      description:
-        "Startup innovativa nel settore finance e crypto che porta soluzioni di pagamento decentralizzate nei paesi in via di sviluppo.",
-      image: "/Topos.png",
-      tags: ["Website", "Webflow", "Fintech", "Crypto"],
-      link: "https://www.topos.com.ng/",
-    },
-    {
-      title: "Palermointour",
-      description:
-        "Sito web dedicato a una guida turistica palermitana per aumentare la visibilità online e favorire le prenotazioni.",
-      image: "/Palermointour website.png",
-      tags: ["Website", "Wordpress", "Branding", "Tourism"],
-      link: "https://palermointour.com",
-    },
-    {
-      title: "WhatsApp UX Case Study",
-      description:
-        "Analisi dell'usabilità di WhatsApp con focus su opportunità di miglioramento per ottimizzare l'esperienza utente.",
-      image: "/WhatsappStudy.png",
-      tags: ["Case Study", "UX Research", "Product"],
-      link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
-    },
-    {
-      title: "Mavi Pesca",
-      description:
-        "App mobile progettata per un'azienda ittica per gestire ordini dei clienti e ottimizzare l'intero processo di vendita.",
-      image: "/MavipescaStudy.png",
-      tags: ["Case Study", "Product Design", "Mobile"],
-      link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
-    },
-    {
-      title: "Matilda The Cat Beat Marketplace",
-      description:
-        "Marketplace su misura per un beatmaker, con catalogo tracce e call-to-action che indirizzano agli acquisti su BeatStars e al canale YouTube.",
-      image: "/CatMatildabeat_Dsk.png",
-      tags: ["Website", "Marketplace", "Music", "Branding"],
-      link: "https://www.matildathecat.com/",
-    },
-   {
-    title: 'Amico Fritto Delivery App',
-    description: ' App di delivery progettata per un takeaway di Misilmeri, con un’interfaccia semplice e intuitiva che permette agli utenti di sfogliare il menu, personalizzare i prodotti e ordinare rapidamente.',
-    image:'Logo-Amico-Fritto.jpg',
-    tags: ['App Design', 'UX/UI', 'Food Delivery', 'Branding'],
-    link: 'https://amicofritto.store',
-    },
-  ],
-  en: [
-    {
-      title: "Topos Network",
-      description:
-        "Innovative fintech and crypto startup bringing decentralised payment solutions to developing countries.",
-      image: "/Topos.png",
-      tags: ["Website", "Webflow", "Fintech", "Crypto"],
-      link: "https://www.topos.com.ng/",
-    },
-    {
-      title: "Palermointour",
-      description:
-        "Website for a Palermo tour guide, built to boost online visibility and drive bookings.",
-      image: "/Palermointour website.png",
-      tags: ["Website", "Wordpress", "Branding", "Tourism"],
-      link: "https://palermointour.com",
-    },
-    {
-      title: "WhatsApp UX Case Study",
-      description:
-        "Usability analysis of WhatsApp, highlighting opportunities to optimise the user experience.",
-      image: "/WhatsappStudy.png",
-      tags: ["Case Study", "UX Research", "Product"],
-      link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
-    },
-    {
-      title: "Mavi Pesca",
-      description:
-        "Mobile app designed for a seafood company to manage customer orders and streamline the sales process.",
-      image: "/MavipescaStudy.png",
-      tags: ["Case Study", "Product Design", "Mobile"],
-      link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
-    },
-    {
-      title: "Matilda The Cat Beat Marketplace",
-      description:
-        "Custom marketplace for a beatmaker with a track catalogue and calls to action for BeatStars and YouTube.",
-      image: "/CatMatildabeat_Dsk.png",
-      tags: ["Website", "Marketplace", "Music", "Branding"],
-      link: "https://www.matildathecat.com/",
-    },
-     {
-    title: 'Amico Fritto Delivery App',
-    description: ' Delivery app designed for a takeaway in Misilmeri, featuring a simple and intuitive interface that allows users to browse the menu, customize items, and place orders quickly.',
-    image:'Logo-Amico-Fritto.jpg',
-    tags: ['App Design', 'UX/UI', 'Food Delivery', 'Branding'],
-    link: 'https://amicofritto.store',
-    },
-  ],
-}
-
-const demosSectionCopy: Record<SupportedLanguage, {
-  badge: string
-  title: string
-  description: string
-  demos: Array<{ title: string; description: string; linkLabel: string; href: string; iframe: string }>
-}> = {
-  it: {
-    badge: "Demo Interattive",
-    title: "Prova le mie applicazioni",
-    description:
-      "Esplora alcune delle applicazioni interattive che ho creato per mostrare le mie competenze di design e sviluppo.",
-    demos: [
-      {
-        title: "Generatore di Palette Colori",
-        description:
-          "Uno strumento interattivo per generare palette di colori armoniose per i tuoi progetti di design.",
-        linkLabel: "Apri demo completa",
-        href: "/works/tools/color-palette-generator",
-        iframe: "/color-palette-generator",
-      },
-      {
-        title: "Componente di Prezzo Interattivo",
-        description:
-          "Un componente di prezzo interattivo con slider per selezionare diversi piani di abbonamento.",
-        linkLabel: "Apri demo completa",
-        href: "/demos/interactive-pricing",
-        iframe: "/interactive-pricing",
-      },
-    ],
-  },
-  en: {
-    badge: "Interactive demos",
-    title: "Try my applications",
-    description:
-      "Explore interactive applications I've built to showcase my design and development skills.",
-    demos: [
-      {
-        title: "Color Palette Generator",
-        description:
-          "An interactive tool for generating harmonious colour palettes for your design projects.",
-        linkLabel: "Open full demo",
-        href: "/works/tools/color-palette-generator",
-        iframe: "/color-palette-generator",
-      },
-      {
-        title: "Interactive Pricing Component",
-        description:
-          "An interactive pricing component with sliders for exploring different subscription plans.",
-        linkLabel: "Open full demo",
-        href: "/demos/interactive-pricing",
-        iframe: "/interactive-pricing",
-      },
-    ],
-  },
-}
-
-const contactSectionCopy: Record<SupportedLanguage, {
-  badge: string
-  title: string
-  description: string
-}> = {
-  it: {
-    badge: "Contatti",
-    title: "Hai un progetto in mente?",
-    description:
-      "Contattami per discutere del tuo progetto e scoprire come posso aiutarti a realizzare la tua visione.",
-  },
-  en: {
-    badge: "Contact",
-    title: "Have a project in mind?",
-    description:
-      "Get in touch to discuss your project and discover how I can help bring your vision to life.",
-  },
-}
 
 type HomePageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>
@@ -408,11 +54,11 @@ export default async function Home({ searchParams }: HomePageProps) {
   const params = await searchParams
   const lang = getLanguage(params)
   const hero = heroCopy[lang]
-  const servicesSection = servicesSectionCopy[lang]
+  const stats = heroStats[lang]
+  const serviceSectionContent = servicesSection[lang]
   const servicesCards = servicesCopy.map(({ icon: Icon, copy }) => ({ icon: Icon, ...copy[lang] }))
-  const projectsSection = projectsSectionCopy[lang]
+  const projectsSectionContent = projectsSection[lang]
   const projects = projectsCopy[lang]
-  const demosSection = demosSectionCopy[lang]
   const contactSection = contactSectionCopy[lang]
 
   const contactHref = appendLanguageParam("/contact", lang)
@@ -420,153 +66,151 @@ export default async function Home({ searchParams }: HomePageProps) {
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 md:py-32">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(var(--primary-rgb),0.1),transparent_50%)]"></div>
-        <div className="container grid items-center gap-8 md:grid-cols-2 md:gap-12">
-          <div className="order-2 flex flex-col gap-4 md:order-1">
-            <Badge className="w-fit" variant="outline">
-              {hero.badge}
-            </Badge>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+      <section className="relative overflow-hidden py-16 md:py-24" aria-labelledby="home-hero-title">
+        <div className="container grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="motion-rise order-2 flex flex-col gap-6 lg:order-1">
+            
+            <h1 id="home-hero-title" className="max-w-4xl text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl">
               {hero.titlePrefix}{" "}
               <span className="gradient-text">{hero.titleHighlight}</span>{" "}
               {hero.titleSuffix}
             </h1>
-            <p className="text-xl text-muted-foreground">{hero.description}</p>
-            <div className="mt-4 flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg" className="rounded-full">
+            <p className="max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">{hero.description}</p>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="primary" size="pill">
                 <Link href={contactHref}>
                   {hero.primaryCta}
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-full">
+              <Button asChild variant="secondary" size="pill">
                 <Link href={projectsHref}>{hero.secondaryCta}</Link>
               </Button>
             </div>
+            <dl className="grid gap-3 pt-3 sm:grid-cols-3">
+              {stats.map((stat) => (
+                <div key={stat.label} className="surface-panel rounded-lg border border-foreground/10 p-4">
+                  <dt className="text-2xl font-bold text-foreground">{stat.value}</dt>
+                  <dd className="mt-1 text-sm text-muted-foreground">{stat.label}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <div className="order-1 relative mx-auto aspect-square w-full max-w-md rounded-full bg-gradient-to-br from-primary/20 to-emerald-800/20 p-4 md:order-2 md:p-8">
-            <div className="relative h-full w-full overflow-hidden rounded-full bg-muted">
+          <div className="motion-rise-delay order-1 relative mx-auto w-full max-w-lg lg:order-2">
+            <div className="surface-panel motion-float relative aspect-[4/5] overflow-hidden rounded-lg border border-foreground/10 p-4">
+              <div className="absolute left-4 right-4 top-4 z-10 h-px scan-line" />
+              <div className="absolute bottom-5 left-5 z-10 rounded-lg border border-white/20 bg-background/80 px-4 py-3 shadow-xl backdrop-blur">
+                <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">DG Designer</p>
+                <p className="mt-1 text-sm font-semibold">Palermo / Remote</p>
+              </div>
               <Image
                 src="/Me-Gif.gif"
                 alt="Davide - UI/UX Designer"
                 width={500}
                 height={500}
-                className="h-full w-full object-cover object-center grayscale scale-150"
+                className="h-full w-full rounded-md object-cover object-center scale-125"
                 priority
               />
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Services Section */}
-      <section className="py-20 bg-foreground">
-        <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{servicesSection.badge}</Badge>
-            <h2 className="text-secondary-foreground text-3xl font-bold tracking-tight sm:text-4xl">{servicesSection.title}</h2>
-            <p className="mt-4 text-lg text-secondary-foreground">{servicesSection.description}</p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {servicesCards.map(({ icon: Icon, title, description }) => (
-              <Card key={title} className="border-0 bg-muted transition-all">
-                <CardContent className="flex flex-col items-start gap-4 p-6">
-                  <div className="rounded-full bg-primary/10 p-3 text-primary">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="text-xl font-bold">{title}</h3>
-                  <p className="text-muted-foreground">{description}</p>
-                </CardContent>
-              </Card>
+        <div className="container mt-12 overflow-hidden border-y border-foreground/10 py-4" aria-hidden="true">
+          <div className="marquee-track flex w-max gap-8 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            {[...skillMarquee, ...skillMarquee].map((skill, index) => (
+              <span key={`${skill}-${index}`} className="flex items-center gap-8">
+                {skill}
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+              </span>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="py-20">
+      <section className="py-20" aria-labelledby="services-title">
         <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{projectsSection.badge}</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{projectsSection.title}</h2>
-            <p className="mt-4 text-lg text-muted-foreground">{projectsSection.description}</p>
+          <div className="mb-12 grid gap-6 md:grid-cols-[0.75fr_1fr] md:items-end">
+            <div>
+            
+              <h2 id="services-title" className="text-3xl font-bold tracking-tight sm:text-5xl">{serviceSectionContent.title}</h2>
+              <p className="mt-4 text-lg leading-16 text-muted-foreground md:justify-self-end">{serviceSectionContent.description}</p>
+            </div>
+            
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} {...project} />
+          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {servicesCards.map(({ icon: Icon, title, description }) => (
+              <li key={title}>
+                <ExplainerCard icon={Icon} title={title} description={description} />
+              </li>
             ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="py-20" aria-labelledby="projects-title">
+        <div className="container">
+          <div className="mb-12 grid gap-6 md:grid-cols-[0.8fr_1fr] md:items-end">
+            <div>
+            
+              <h2 id="projects-title" className="text-3xl font-bold tracking-tight sm:text-5xl">{projectsSectionContent.title}</h2>
+              <p className="mt-4 text-lg leading-8 text-muted-foreground ">{projectsSectionContent.description}</p>
+            </div>
           </div>
+
+          <ul className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <li key={project.title}>
+                <ProjectCard {...project} />
+              </li>
+            ))}
+          </ul>
 
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild variant="outline" size="lg" className="rounded-full">
+            <Button asChild variant="tertiary" size="lg" className="rounded-full">
               <Link
                 href="https://www.behance.net/davidegiuliano89bdff"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {projectsSection.viewAll}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {projectsSectionContent.viewAll}
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Link>
             </Button>
-            <span className="text-sm text-muted-foreground">{projectsSection.orLabel}</span>
-            <Button asChild variant="outline" size="lg" className="rounded-full">
+            <span className="text-sm text-muted-foreground">{projectsSectionContent.orLabel}</span>
+            <Button asChild variant="tertiary" size="lg" className="rounded-full">
               <Link href="https://www.linkedin.com/in/dav-giu/" target="_blank" rel="noopener noreferrer">
-                {projectsSection.linkedInCta}
-                <ArrowRight className="ml-2 h-4 w-4" />
+                {projectsSectionContent.linkedInCta}
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Interactive Demo Section */}
-      <section className="hidden" aria-hidden="true">
-        <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{demosSection.badge}</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{demosSection.title}</h2>
-            <p className="mt-4 text-lg text-muted-foreground">{demosSection.description}</p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2">
-            {demosSection.demos.map((demo) => (
-              <Card key={demo.title} className="overflow-hidden">
-                <div className="aspect-video bg-muted">
-                  <iframe src={demo.iframe} title={demo.title} className="h-full w-full border-0"></iframe>
+      <section className="py-12 md:py-20" id="contact" aria-labelledby="contact-title">
+        <div className="mx-auto w-full px-0 sm:px-6 lg:container">
+          <div className="surface-panel overflow-hidden rounded-none border-y border-foreground/10 sm:rounded-lg sm:border">
+            <div className="grid gap-10 px-5 py-10 sm:px-8 md:grid-cols-[0.8fr_1fr] md:p-10 lg:p-12">
+              <div className="flex justify-between flex-col gap-8">
+                <div>
+                  <h2 id="contact-title" className="text-4xl font-bold tracking-tight sm:text-5xl">{contactSection.title}</h2>
+                  <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">{contactSection.description}</p>
                 </div>
-                <CardContent className="p-6">
-                  <h3 className="mb-2 text-xl font-bold">{demo.title}</h3>
-                  <p className="mb-4 text-muted-foreground">{demo.description}</p>
-                  <Button asChild variant="outline" className="rounded-full">
-                    <Link href={appendLanguageParam(demo.href, lang)}>
-                      {demo.linkLabel}
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-20" id="contact">
-        <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{contactSection.badge}</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{contactSection.title}</h2>
-            <p className="mt-4 text-lg text-muted-foreground">{contactSection.description}</p>
-          </div>
-
-          <div className="mx-auto max-w-3xl">
-            <Suspense fallback={null}>
-              <ContactForm key={lang} />
-            </Suspense>
+                <address className=" rounded-lg  text-sm not-italic leading-7 text-muted-foreground">
+                  <p className="text-lg text-foreground font-semibold">Contatti</p>
+                  <a className="transition-colors hover:text-foreground" href="mailto:davidegiuliano.free@gmail.com">
+                    davidegiuliano.free@gmail.com
+                  </a>
+                  <br />
+                  <a className="transition-colors hover:text-foreground" href="tel:+393205671678">
+                   +39 320 567 1678
+                  </a>
+                </address>
+              </div>
+              <Suspense fallback={null}>
+                <ContactForm key={lang} />
+              </Suspense>
+            </div>
           </div>
         </div>
       </section>

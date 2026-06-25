@@ -1,11 +1,11 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import { CtaBanner } from "@/components/cta-banner"
 import ProjectCard from "@/components/project-card"
 import { Search } from "lucide-react"
 
@@ -108,6 +108,17 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
     client: 'Amico Fritto',
     link: 'https://amicofritto.store',
     },
+    {
+    id: "washlabservice-website",
+    title: 'WashLabServices Website',
+    description: ' Sito web per un servizio di Autolavaggio di provincia.',
+    image:'WashLabService.png',
+    tags: ['Website', 'UX/UI', 'Branding'],
+    category: ["Website"],
+    year: "2026",
+    client: 'WashLabServices',
+    link: 'https://washlabservice.it',
+    },
   ],
   en: [
     {
@@ -192,6 +203,17 @@ const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
     year: "2026",
     client: 'Amico Fritto',
     link: 'https://amicofritto.store',
+    },
+      {
+    id: "washlabservice-website",
+    title: 'WashLabServices Website',
+    description: ' Carwash website for a local business.',
+    image:'WashLabService.png',
+    tags: ['Website', 'UX/UI', 'Branding'],
+    category: ["Website"],
+    year: "2026",
+    client: 'WashLabServices',
+    link: 'https://washlabservice.it',
     },
   ],
 }
@@ -321,7 +343,7 @@ export default function ProjectsPage() {
                 {categories.map((category) => (
                   <Button
                     key={category}
-                    variant={selectedCategory === category ? "default" : "outline"}
+                    variant="tertiary"
                     size="sm"
                     onClick={() => setSelectedCategory(category)}
                     className="rounded-full"
@@ -378,20 +400,14 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container">
-          <div className="rounded-2xl bg-muted p-8 md:p-12">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{copy.ctaTitle}</h2>
-              <p className="mb-8 text-lg text-muted-foreground">{copy.ctaDescription}</p>
-              <Button asChild size="lg" className="rounded-full">
-                <Link href={contactHref}>{copy.ctaButton}</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaBanner
+        titleId="works-cta-title"
+        title={copy.ctaTitle}
+        description={copy.ctaDescription}
+        href={contactHref}
+        actionLabel={copy.ctaButton}
+        showIcon={false}
+      />
     </>
   )
 }

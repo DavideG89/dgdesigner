@@ -299,198 +299,221 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
         }}
       />
       <main className="bg-background text-foreground">
-      <section className="relative overflow-hidden py-20 md:py-28">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,rgba(var(--primary-rgb),0.14),transparent_65%)]" />
-        <div className="container grid items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="flex flex-col gap-6">   
-            <div className="space-y-4">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                {copy.hero.title} <span className="text-foreground text-[30px] sm:text-3xl md:text-[30px]">{copy.hero.highlight}</span>
-              </h1>
-              <p className="max-w-xl text-lg text-muted-foreground">{copy.hero.description}</p>
+        <section className="relative overflow-hidden py-16 md:py-24">
+          <div className="container grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="motion-rise flex flex-col gap-6">
+              <Badge className="w-fit border-primary/20 bg-primary/10 px-4 py-1.5 text-primary" variant="outline">
+                {copy.hero.badge}
+              </Badge>
+              <div className="space-y-5">
+                <h1 className="max-w-4xl text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl">
+                  {copy.hero.title} <span className="gradient-text">{copy.hero.highlight}</span>
+                </h1>
+                <p className="max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">{copy.hero.description}</p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button asChild variant="primary" size="pill">
+                  <Link href="#contact">
+                    {copy.hero.primaryCta}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </Button>
+                <Button asChild variant="secondary" size="pill">
+                  <Link href="#process">{copy.hero.secondaryCta}</Link>
+                </Button>
+              </div>
+              <div className="grid gap-3 pt-3 sm:grid-cols-3">
+                {[
+                  copy.hero.note,
+                  "Palermo / Remote",
+                  "UX + Performance",
+                ].map((item) => (
+                  <div key={item} className="surface-panel rounded-lg border border-foreground/10 p-4 text-sm font-medium text-muted-foreground">
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="flex flex-col gap-4 sm:flex-row">
-              <Button asChild size="lg" className="rounded-full">
-                <Link href="#contact">
-                  {copy.hero.primaryCta}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full">
-                <Link href="#process">{copy.hero.secondaryCta}</Link>
-              </Button>
+            <div className="motion-rise-delay relative mx-auto w-full max-w-lg">
+              <div className="surface-panel motion-float relative aspect-[4/5] overflow-hidden rounded-lg border border-foreground/10 p-4">
+                <div className="absolute left-4 right-4 top-4 z-10 h-px scan-line" />
+                <div className="absolute bottom-5 left-5 z-10 rounded-lg border border-white/20 bg-background/80 px-4 py-3 shadow-xl backdrop-blur">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Web Design Palermo</p>
+                  <p className="mt-1 text-sm font-semibold">Siti chiari, veloci, usabili</p>
+                </div>
+                <Image
+                  src="/Me-Gif.gif"
+                  alt=" DGDesigner - Web Designer esperto in UX a Palermo"
+                  width={520}
+                  height={650}
+                  className="h-full w-full rounded-md object-cover object-center scale-125"
+                  priority
+                />
+              </div>
             </div>
-            <p className="text-sm text-muted-foreground">{copy.hero.note}</p>
           </div>
-          <div className="relative mx-auto aspect-square w-full max-w-md rounded-full bg-primary/10 p-5 shadow-2xl">
-            <div className="relative h-full w-full overflow-hidden rounded-full bg-muted">
-              <Image
-                src="/Me-Gif.gif"
-                alt=" DGDesigner - Web Designer esperto in UX a Palermo"
-                width={520}
-                height={520}
-                className="h-full w-full object-cover object-center scale-150"
-                priority
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-16 md:py-20 bg-foreground/100">
-        <div className="container grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
-            <Card className="border-0 bg-transparent shadow-none">
-            <CardContent className="p-6">
-              <div className="mx-auto w-fit  ">
+        <section className="py-16 md:py-20">
+          <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="surface-panel overflow-hidden rounded-lg border border-foreground/10 p-6">
+              <div className="relative mx-auto aspect-[4/3] max-w-md overflow-hidden rounded-md bg-background/70">
                 <Image
                   src="/WebDesign.png"
                   alt="Mockup sito web"
-                  height={180}
-                  width={320}
-                  className="block h-auto w-[320px] object-contain"
+                  fill
+                  className="object-contain p-8"
                 />
               </div>
-            </CardContent>
-          </Card>
-          <div className="flex h-full flex-col justify-center space-y-6">
-            <div className="space-y-3">
-              <Badge className="mb-4">{copy.painPoints.badge}</Badge>
-              <h2 className="text-secondary-foreground text-3xl font-bold tracking-tight sm:text-4xl">{copy.painPoints.title}</h2>
             </div>
-            <ul className="space-y-3">
-              {copy.painPoints.bullets.map((item) => (
-                <li key={item} className="flex items-start gap-3 ">
-                  <span className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-secondary/10">
-                    <Check className="h-4 w-4" />
-                  </span>
-                  <span className="text-secondary-foreground">{item}</span>
-                </li>
+            <div className="space-y-6">
+              <div className="space-y-3">
+                <Badge className="bg-foreground text-background">{copy.painPoints.badge}</Badge>
+                <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">{copy.painPoints.title}</h2>
+              </div>
+              <p className="text-lg leading-8 text-muted-foreground">{copy.painPoints.description}</p>
+              <ul className="grid gap-3 sm:grid-cols-2">
+                {copy.painPoints.bullets.map((item) => (
+                  <li key={item} className="surface-panel flex items-start gap-3 rounded-lg border border-foreground/10 p-4">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                      <Check className="h-4 w-4" />
+                    </span>
+                    <span className="text-sm leading-6 text-foreground">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="container">
+            <div className="mb-12 grid gap-6 md:grid-cols-[0.75fr_1fr] md:items-end">
+              <div>
+                <Badge className="mb-4 border-accent/30 bg-accent/15 text-accent-foreground">{copy.value.badge}</Badge>
+                <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">{copy.value.title}</h2>
+              </div>
+              <p className="text-lg leading-8 text-muted-foreground md:text-right">{copy.value.description}</p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {copy.value.cards.map((card) => (
+                <Card
+                  key={card.title}
+                  className="group overflow-hidden border-foreground/10 bg-card/80 transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
+                >
+                  <CardContent className="flex h-full flex-col gap-4 p-6">
+                    <div className="overflow-hidden rounded-lg bg-muted/60 p-3 transition-transform duration-300 group-hover:scale-[1.02]">
+                      {card.image.endsWith(".json") ? (
+                        <LottieAnimation src={card.image} alt={card.title} className="h-40 w-full" />
+                      ) : (
+                        <Image
+                          src={card.image}
+                          alt={card.title}
+                          width={520}
+                          height={360}
+                          className="h-40 w-full object-cover"
+                        />
+                      )}
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-bold transition-colors group-hover:text-primary">{card.title}</h3>
+                      <p className="leading-7 text-muted-foreground">{card.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
-            </ul>
-            <p className="text-secondary-foreground">{copy.painPoints.description}</p>
+            </div>
           </div>
-        
-        </div>
-      </section>
+        </section>
 
-      <section className="py-20">
-        <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.value.title}</h2>
-            <p className="mt-4 text-lg text-muted-foreground">{copy.value.description}</p>
+        <section className="py-16 md:py-20" id="process">
+          <div className="container">
+            <div className="mb-12 grid gap-6 md:grid-cols-[0.75fr_1fr] md:items-end">
+              <div>
+                <Badge className="mb-4 bg-primary text-primary-foreground">{copy.process.badge}</Badge>
+                <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">{copy.process.title}</h2>
+              </div>
+              <p className="text-lg leading-8 text-muted-foreground md:text-right">{copy.process.description}</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {copy.process.steps.map((step, index) => (
+                <Card key={step.title} className="group border-foreground/10 bg-card/80 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10">
+                  <CardContent className="space-y-4 p-6">
+                    <div className="overflow-hidden rounded-lg bg-muted/60">
+                      {step.image.endsWith(".json") ? (
+                        <LottieAnimation src={step.image} alt={step.title} className="h-40 w-full" />
+                      ) : (
+                        <Image
+                          src={step.image}
+                          alt={step.title}
+                          width={520}
+                          height={360}
+                          className="h-40 w-full object-cover"
+                        />
+                      )}
+                    </div>
+                    <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                      {index === 0 && <MessageCircle className="h-4 w-4 text-primary" />}
+                      {index === 1 && <PenTool className="h-4 w-4 text-primary" />}
+                      {index === 2 && <Rocket className="h-4 w-4 text-primary" />}
+                      <span>Step {index + 1}</span>
+                    </div>
+                    <h3 className="text-xl font-semibold transition-colors group-hover:text-primary">{step.title}</h3>
+                    <p className="leading-7 text-muted-foreground">{step.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
+        </section>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            {copy.value.cards.map((card) => (
-              <Card
-                key={card.title}
-                className="overflow-hidden border-0 bg-muted/50 transition-all hover:-translate-y-1 hover:bg-muted"
-              >
-                <CardContent className="flex h-full flex-col gap-4 p-6">
-                  <div className="overflow-hidden rounded-2xl p-3">
-                    {card.image.endsWith(".json") ? (
-                      <LottieAnimation src={card.image} alt={card.title} className="h-40 w-full" />
-                    ) : (
-                      <Image
-                        src={card.image}
-                        alt={card.title}
-                        width={520}
-                        height={360}
-                        className="h-40 w-full object-cover"
-                      />
-                    )}
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-xl font-bold">{card.title}</h3>
-                    <p className="text-muted-foreground">{card.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-20" id="process">
-        <div className="container">
-          <div className="mb-10 space-y-3 text-center">
-            <Badge className="mb-4">{copy.process.badge}</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.process.title}</h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">{copy.process.description}</p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {copy.process.steps.map((step, index) => (
-              <Card key={step.title} className="border-0 bg-muted/30 shadow-lg">
-                <CardContent className="space-y-4 p-6">
-                  <div className="overflow-hidden rounded-2xl">
-                    {step.image.endsWith(".json") ? (
-                      <LottieAnimation src={step.image} alt={step.title} className="h-40 w-full" />
-                    ) : (
-                      <Image
-                        src={step.image}
-                        alt={step.title}
-                        width={520}
-                        height={360}
-                        className="h-40 w-full object-cover"
-                      />
-                    )}
-                  </div>
-                  <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                    {index === 0 && <MessageCircle className="h-4 w-4 text-primary" />}
-                    {index === 1 && <PenTool className="h-4 w-4 text-primary" />}
-                    {index === 2 && <Rocket className="h-4 w-4 text-primary" />}
-                    <span>Step {index + 1}</span>
-                  </div>
-                  <h3 className="text-xl font-semibold">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-20 wir">
-        <div className="w-full">
-          <Card className="flex justify-center overflow-hidden border-0 bg-foreground">
-            <CardContent className="flex justify-between gap-16 md:items-center md:gap-16 p-20 md:p-20">
-              <div className="space-y-4 text-left md:justify-self-start md:max-w-2xl">
-                <h2 className=" text-secondary-foreground text-3xl font-bold tracking-tight sm:text-4xl">{copy.cta.title}</h2>
-                <p className="max-w-2xl text-secondary-foreground">{copy.cta.description}</p>
-                <div className="flex justify-start">
-                  <Button asChild size="lg" className="rounded-full">
+        <section className="py-16 md:py-20">
+          <div className="container">
+            <div className="overflow-hidden rounded-lg border border-foreground/10 bg-foreground text-background">
+              <div className="grid gap-8 p-6 md:grid-cols-[1fr_auto] md:items-center md:p-10 lg:p-12">
+                <div className="space-y-4">
+                  <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">{copy.cta.title}</h2>
+                  <p className="max-w-2xl whitespace-pre-line text-lg leading-8 text-background/70">{copy.cta.description}</p>
+                  <Button asChild variant="primary" size="pill">
                     <Link href="#contact">
                       {copy.cta.button}
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
                   </Button>
                 </div>
-              </div>
-              <div className="hidden md:block md:justify-self-end">
-                <div className="relative h-48 w-48 overflow-hidden rounded-2xl bg-background shadow-xl md:h-56 md:w-56">
-                  <Image src="/Me-About.gif" alt="Davide Giuliano" fill className="object-cover scale-150" />
+                <div className="hidden md:block">
+                  <div className="relative h-52 w-52 overflow-hidden rounded-lg border border-background/15 bg-background/10 shadow-xl">
+                    <Image src="/Me-About.gif" alt="Davide Giuliano" fill className="object-cover scale-125" />
+                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      <section className="py-20" id="contact">
-        <div className="container">
-          <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{copy.contact.badge}</Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.contact.title}</h2>
-            <p className="mt-4 text-lg text-muted-foreground">{copy.contact.description}</p>
+            </div>
           </div>
+        </section>
 
-          <div className="mx-auto max-w-3xl">
-            <Suspense fallback={null}>
-              <ContactForm key={lang} />
-            </Suspense>
+        <section className="py-20" id="contact">
+          <div className="container">
+            <div className="surface-panel overflow-hidden rounded-lg border border-foreground/10">
+              <div className="grid gap-8 p-6 md:grid-cols-[0.8fr_1fr] md:p-10 lg:p-12">
+                <div className="flex flex-col justify-between gap-8">
+                  <div>
+                    <Badge className="mb-4 bg-primary text-primary-foreground">{copy.contact.badge}</Badge>
+                    <h2 className="text-3xl font-bold tracking-tight sm:text-5xl">{copy.contact.title}</h2>
+                    <p className="mt-5 text-lg leading-8 text-muted-foreground">{copy.contact.description}</p>
+                  </div>
+                  <div className="rounded-lg border border-foreground/10 bg-background/60 p-4 text-sm text-muted-foreground">
+                    Palermo / Remote<br />
+                    {copy.hero.note}
+                  </div>
+                </div>
+                <Suspense fallback={null}>
+                  <ContactForm key={lang} />
+                </Suspense>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       </main>
     </>
   )

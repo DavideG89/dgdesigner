@@ -24,7 +24,6 @@ const pageCopy: Record<SupportedLanguage, {
   contactInfoDescription: string
   followMe: string
   mapAlt: string
-  formTitle: string
   details: ContactDetail[]
 }> = {
   it: {
@@ -41,8 +40,8 @@ const pageCopy: Record<SupportedLanguage, {
     contactInfoDescription:
       "Sono sempre disponibile per nuove opportunità di collaborazione. Non esitare a contattarmi per qualsiasi domanda o proposta.",
     followMe: "Seguimi",
-    mapAlt: "Mappa di Milano",
-    formTitle: "Inviami un messaggio",
+    mapAlt: "Mappa di Palermo",
+
     details: [
       {
         icon: Mail,
@@ -59,7 +58,7 @@ const pageCopy: Record<SupportedLanguage, {
       {
         icon: MapPin,
         title: "Località",
-        value: "Italia, Worldwide",
+        value: "Palermo, Italia / Worldwide",
         note: "Disponibile per lavoro remoto",
       },
     ],
@@ -78,8 +77,8 @@ const pageCopy: Record<SupportedLanguage, {
     contactInfoDescription:
       "I'm always open to new collaboration opportunities. Feel free to contact me with any question or proposal.",
     followMe: "Follow me",
-    mapAlt: "Map of Milan",
-    formTitle: "Send me a message",
+    mapAlt: "Map of Palermo",
+
     details: [
       {
         icon: Mail,
@@ -96,7 +95,7 @@ const pageCopy: Record<SupportedLanguage, {
       {
         icon: MapPin,
         title: "Location",
-        value: "Italy,Worldwide",
+        value: "Palermo, Italy / Worldwide",
         note: "Available for remote work",
       },
     ],
@@ -129,7 +128,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
       <section className="py-20">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge className="mb-4">{copy.heroBadge}</Badge>
+           
             <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
               {copy.heroTitlePrefix}{" "}
               <span className="gradient-text">{copy.heroTitleHighlight}</span>
@@ -141,8 +140,8 @@ export default async function ContactPage({ searchParams }: PageProps) {
 
       {/* Contact Info + Form */}
       <section className="py-12">
-        <div className="container">
-          <div className="grid gap-12 md:grid-cols-2">
+        <div className="w-full px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-[0.8fr_1.2fr]">
             <div>
               <h2 className="mb-6 text-2xl font-bold">{copy.contactInfoTitle}</h2>
               <p className="mb-8 text-muted-foreground">{copy.contactInfoDescription}</p>
@@ -152,7 +151,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
                   const Icon = detail.icon
                   return (
                     <div key={detail.title} className="flex items-start gap-4">
-                      <div className="rounded-full bg-primary/10 p-3 text-primary">
+                      <div className="rounded-full p-3 text-primary">
                         <Icon className="h-6 w-6" />
                       </div>
                       <div>
@@ -170,13 +169,13 @@ export default async function ContactPage({ searchParams }: PageProps) {
                 <div className="flex space-x-4">
                   <a
                     href="https://www.instagram.com/dave.julian89"
-                    className="rounded-full bg-muted p-3 text-foreground/60 hover:bg-primary/10 hover:text-primary"
+                    className="rounded-full p-3 text-foreground/60 hover:bg-primary/10 hover:text-primary"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-instagram-icon lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram-icon lucide-instagram" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" x2="17.51" y1="6.5" y2="6.5" /></svg>
                   </a>
                   <a
                     href="https://github.com"
-                    className="rounded-full bg-muted p-3 text-foreground/60 hover:bg-primary/10 hover:text-primary"
+                    className="rounded-full  p-3 text-foreground/60 hover:bg-primary/10 hover:text-primary"
                   >
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path
@@ -188,7 +187,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
                   </a>
                   <a
                     href="https://www.linkedin.com/in/dav-giu/"
-                    className="rounded-full bg-muted p-3 text-foreground/60 hover:bg-primary/10 hover:text-primary"
+                    className="rounded-full  p-3 text-foreground/60 hover:bg-primary/10 hover:text-primary"
                   >
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path
@@ -202,8 +201,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
               </div>
             </div>
 
-            <div>
-              <h2 className="mb-6 text-2xl font-bold">{copy.formTitle}</h2>
+            <div className="w-full">
               <Suspense fallback={null}>
                 <ContactForm key={lang} />
               </Suspense>
@@ -217,7 +215,7 @@ export default async function ContactPage({ searchParams }: PageProps) {
         <div className="container">
           <div className="overflow-hidden rounded-xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.854087811755!2d9.186501776537555!3d45.46433623566531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6aec34636a1%3A0xab7f4e27101a2e08!2sMilano%20MI!5e0!3m2!1sit!2sit!4v1682341234567!5m2!1sit!2sit"
+              src="https://www.google.com/maps?q=Palermo%2C%20Sicily%2C%20Italy&output=embed"
               width="100%"
               height="450"
               style={{ border: 0 }}

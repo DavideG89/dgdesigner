@@ -77,12 +77,12 @@ export default function Header() {
     <>
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          scrolled ? "bg-background/80 backdrop-blur-md shadow-sm" : "bg-transparent"
+          scrolled ? "border-b border-foreground/10 bg-background/78 shadow-sm backdrop-blur-xl" : "bg-background/40 backdrop-blur-sm"
         }`}
       >
-        <nav className="container mx-auto flex items-center justify-between py-4">
+        <nav className="container mx-auto flex items-center justify-between py-3">
           <div className="flex items-center">
-            <Link href={appendLanguageParam("/", lang)} className="flex items-center">
+            <Link href={appendLanguageParam("/", lang)} className="flex items-center gap-2 rounded-full  px-3 py-2  backdrop-blur">
               <Image
                 src="/favicon.png"
                 alt="DG Designer logo"
@@ -91,17 +91,18 @@ export default function Header() {
                 className="h-8 w-8"
                 priority
               />
+              <span className="hidden text-sm font-semibold sm:inline">DG Designer</span>
             </Link>
           </div>
 
           {/* Desktop navigation */}
-          <div className="hidden md:flex md:items-center md:gap-x-8">
+          <div className="hidden rounded-full   px-2 py-2 backdrop-blur md:flex md:items-center md:gap-x-1">
             {items.map((item) => (
               <Link
                 key={item.name}
                 href={appendLanguageParam(item.href, lang)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === item.href ? "text-primary" : "text-foreground"
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors hover:bg-tertiary-hover  ${
+                  pathname === item.href ? "bg-tertiary-active " : "text-foreground"
                 }`}
               >
                 {item.name}
@@ -110,10 +111,10 @@ export default function Header() {
           </div>
 
           <div className="hidden md:flex md:items-center md:gap-x-4">
-            <div className="flex space-x-2">
+            <div className="flex rounded-full  p-1  backdrop-blur">
               <Link
                 href={buildLanguageHref(pathname, new URLSearchParams(searchParams), "it")}
-                className="flex h-8 w-8 items-center justify-center"
+                className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${lang === "it" ? "bg-foreground/10" : "hover:bg-foreground/5"}`}
               >
                 <span className="text-sm" role="img" aria-label="Italiano">
                   🇮🇹
@@ -121,14 +122,14 @@ export default function Header() {
               </Link>
               <Link
                 href={buildLanguageHref(pathname, new URLSearchParams(searchParams), "en")}
-                className="flex h-8 w-8 items-center justify-center"
+                className={`flex h-8 w-8 items-center justify-center rounded-full transition-colors ${lang === "en" ? "bg-foreground/10" : "hover:bg-foreground/5"}`}
               >
                 <span className="text-sm" role="img" aria-label="English">
                   🇺🇸
                 </span>
               </Link>
             </div>
-            <Button asChild className="rounded-full">
+            <Button asChild className="rounded-full shadow-lg shadow-primary/15">
               <Link href={contactHref}>{ctaCopy[lang]}</Link>
             </Button>
           </div>
@@ -137,7 +138,7 @@ export default function Header() {
           <div className="flex md:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-md p-2 text-foreground"
+              className="inline-flex items-center justify-center rounded-full border border-foreground/10 bg-background/75 p-2 text-foreground shadow-sm backdrop-blur"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-menu"
@@ -165,7 +166,7 @@ export default function Header() {
       {/* Mobile menu panel */}
       <div
         id="mobile-menu"
-        className={`fixed top-0 right-0 bottom-0 z-50 w-64 bg-background shadow-xl transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 bottom-0 z-50 w-72 border-l border-foreground/10 bg-background/95 shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-in-out md:hidden ${
           mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

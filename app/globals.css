@@ -4,25 +4,33 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 218 45% 20%;
+    --background: 42 32% 97%;
+    --foreground: 158 54% 7%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 216 38% 15%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 100 40% 35%;
+    --primary: 156 54% 40%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 40% 96.1%;
+    --primary-hover:156 54% 30%;
+    --secondary: 156 53% 90%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --secondary-hover: 156 55% 80%;
+    --secondary-active: 156 54% 70%;
+    --secondary-tint: 214 7% 58%;
+    --secondary-tint-hover: 156 55% 80%;
+    --tertiary: 0 0% 100%;
+    --tertiary-hover:159 54% 95%;
+    --tertiary-active: 155 57% 90%;
+    --muted: 42 24% 92%;
+    --muted-foreground: 216 14% 42%;
+    --accent: 46 97% 66%;
+    --accent-foreground: 216 38% 15%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 96 31% 37%;
+    --border: 156 53% 90%;
+    --input: 216 24% 87%;
+    --ring: 156 55% 32%;
     --radius: 0.5rem;
     --font-inter: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
     --font-space: "Space Grotesk", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -39,6 +47,8 @@
     --primary-foreground: 0 0% 100%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 0 0% 100%;
+    --secondary-tint: 214 7% 58%;
+    --secondary-tint-hover: 214 7% 53%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
     --accent: 217.2 32.6% 17.5%;
@@ -55,10 +65,6 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
-
   h1,
   h2,
   h3,
@@ -70,7 +76,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(100, 40%, 40%) 100%);
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 48%, hsl(202 72% 38%) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -78,9 +84,38 @@
 }
 
 .animated-gradient {
-  background: linear-gradient(-45deg, hsl(var(--primary)), hsl(96 35% 28%), hsl(96 31% 46%), hsl(96 35% 23%));
+  background: linear-gradient(-45deg, hsl(var(--primary)), hsl(202 72% 38%), hsl(var(--accent)), hsl(216 38% 15%));
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
+}
+
+.surface-panel {
+  background:
+    linear-gradient(135deg, hsl(var(--card) / 0.92), hsl(var(--card) / 0.74)),
+    linear-gradient(120deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.08));
+  box-shadow: 0 24px 80px hsl(var(--foreground) / 0.10);
+  backdrop-filter: blur(18px);
+}
+
+.motion-rise {
+  animation: motion-rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.motion-rise-delay {
+  animation: motion-rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms both;
+}
+
+.motion-float {
+  animation: motion-float 7s ease-in-out infinite;
+}
+
+.marquee-track {
+  animation: marquee 24s linear infinite;
+}
+
+.scan-line {
+  background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.45), hsl(var(--accent) / 0.45), transparent);
+  animation: scan-line 4s ease-in-out infinite;
 }
 
 @keyframes gradient {
@@ -92,5 +127,58 @@
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes motion-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes motion-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1deg);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scan-line {
+  0%,
+  100% {
+    transform: translateX(-35%);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(35%);
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
   }
 }

@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { ArrowRight, Award, BookOpen, Boxes, Braces, Briefcase, GraduationCap, Pencil, PenTool, Terminal, Users, Wrench } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { ArrowRight, Award, BookOpen, Briefcase, GraduationCap, Users } from "lucide-react"
-
+import { CtaBanner } from "@/components/cta-banner"
+import { ExplainerCard } from "@/components/explainer-card"
 import { appendLanguageParam, getLanguage, type SupportedLanguage } from "@/lib/i18n"
 
 interface TimelineEntry {
@@ -395,7 +396,7 @@ export default async function AboutPage({ searchParams }: PageProps) {
         <div className="container">
           <div className="grid gap-12 md:grid-cols-2">
             <div className="order-2 md:order-1">
-              <Badge className="mb-4">{copy.heroBadge}</Badge>
+              
               <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl">
                 {copy.heroGreeting}{" "}
                 <span className="gradient-text">{copy.heroTitleHighlight}</span>
@@ -409,13 +410,13 @@ export default async function AboutPage({ searchParams }: PageProps) {
                 </p>
               ))}
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Button asChild size="lg" className="rounded-full">
+                <Button asChild variant="primary" size="pill">
                   <Link href={contactHref}>
                     {copy.primaryCta}
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full">
+                <Button asChild variant="secondary" size="pill">
                   <Link href={projectsHref}>{copy.secondaryCta}</Link>
                 </Button>
               </div>
@@ -431,38 +432,32 @@ export default async function AboutPage({ searchParams }: PageProps) {
       <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{copy.skillsBadge}</Badge>
+           
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.skillsTitle}</h2>
             <p className="mt-4 text-lg text-muted-foreground">{copy.skillsDescription}</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="border-0 bg-muted/50">
-              <CardContent className="p-6">
-                <h3 className="mb-4 text-xl font-bold">{copy.designLabel}</h3>
-                <ul className="space-y-2">
-                  {[
-                    "UI Design",
-                    "UX Design",
-                    "Wireframing",
+            <ExplainerCard title={copy.designLabel} icon={PenTool}>
+              <ul className="flex flex-wrap gap-2 ">
+                {[
+                  "UI Design",
+                  "UX Design",
+                  "Wireframing",
                     "Prototyping",
                     "Responsive Design",
                     "Design System",
                   ].map((skill) => (
-                    <li key={skill} className="flex items-center gap-2">
-                      <Badge variant="outline" className="font-normal">
+                    <li key={skill} className=" items-center gap-2">
+                      <Badge variant="secondary" className="font-normal">
                         {skill}
                       </Badge>
                     </li>
                   ))}
                 </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 bg-muted/50">
-              <CardContent className="p-6">
-                <h3 className="mb-4 text-xl font-bold">{copy.toolsLabel}</h3>
-                <ul className="space-y-2">
+            </ExplainerCard>
+            <ExplainerCard title={copy.toolsLabel} icon={Boxes}>
+                <ul className="flex flex-wrap gap-2">
                   {[
                     "Figma",
                     "Adobe XD",
@@ -472,35 +467,32 @@ export default async function AboutPage({ searchParams }: PageProps) {
                     "InVision",
                   ].map((tool) => (
                     <li key={tool} className="flex items-center gap-2">
-                      <Badge variant="outline" className="font-normal">
+                      <Badge variant="secondary" className="font-normal">
                         {tool}
                       </Badge>
                     </li>
                   ))}
                 </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="border-0 bg-muted/50">
-              <CardContent className="p-6">
-                <h3 className="mb-4 text-xl font-bold">{copy.devLabel}</h3>
-                <ul className="space-y-2">
-                  {[
+            </ExplainerCard>
+            
+            <ExplainerCard title={copy.devLabel} icon={Braces}>
+              <ul className="flex flex-wrap gap-2">
+                {[
                     "HTML/CSS",
                     "JavaScript",
                     "React",
                     "Next.js",
                     "WordPress",
                   ].map((skill) => (
-                    <li key={skill} className="flex items-center gap-2">
-                      <Badge variant="outline" className="font-normal">
+                    <li key={skill} className="align-center ">
+                      <Badge variant="secondary" className="font-normal">
                         {skill}
                       </Badge>
                     </li>
                   ))}
                 </ul>
-              </CardContent>
-            </Card>
+
+            </ExplainerCard>
           </div>
         </div>
       </section>
@@ -509,7 +501,7 @@ export default async function AboutPage({ searchParams }: PageProps) {
       <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{copy.experienceBadge}</Badge>
+
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.experienceTitle}</h2>
             <p className="mt-4 text-lg text-muted-foreground">{copy.experienceSubtitle}</p>
           </div>
@@ -537,7 +529,7 @@ export default async function AboutPage({ searchParams }: PageProps) {
               ))}
             </Accordion>
 
-            <div className="relative hidden border-l border-muted pl-8 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-10 before:bg-gradient-to-b before:from-background before:to-transparent before:content-[''] md:block">
+            <div className="relative hidden border-muted pl-8 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-10 before:bg-gradient-to-b  before:to-transparent before:content-[''] md:block">
               {experiences.map((experience) => (
                 <div key={experience.id} className="relative mb-12">
                   <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
@@ -545,7 +537,7 @@ export default async function AboutPage({ searchParams }: PageProps) {
                   </div>
                   <div className="mb-2 flex items-center justify-between">
                     <h3 className="text-xl font-bold">{experience.role}</h3>
-                    <Badge variant="outline">{experience.period}</Badge>
+                    <Badge variant="secondary">{experience.period}</Badge>
                   </div>
                   <p className="mb-2 text-muted-foreground">{experience.location}</p>
                   <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
@@ -564,7 +556,7 @@ export default async function AboutPage({ searchParams }: PageProps) {
       <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{copy.educationBadge}</Badge>
+
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.educationTitle}</h2>
             <p className="mt-4 text-lg text-muted-foreground">{copy.educationSubtitle}</p>
           </div>
@@ -587,7 +579,7 @@ export default async function AboutPage({ searchParams }: PageProps) {
               ))}
             </Accordion>
 
-            <div className="relative hidden border-l border-muted pl-8 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-10 before:bg-gradient-to-b before:from-background before:to-transparent before:content-[''] md:block">
+            <div className="relative hidden border-muted pl-8 before:absolute before:left-[-5px] before:top-0 before:h-full before:w-10 before:bg-gradient-to-b before:to-transparent before:content-[''] md:block">
               {education.map((entry) => (
                 <div key={entry.id} className="relative mb-12">
                   <div className="absolute left-[-35px] flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
@@ -595,7 +587,7 @@ export default async function AboutPage({ searchParams }: PageProps) {
                   </div>
                   <div className="mb-2 flex items-center justify-between">
                     <h3 className="text-xl font-bold">{entry.school}</h3>
-                    <Badge variant="outline">{entry.period}</Badge>
+                    <Badge variant="secondary">{entry.period}</Badge>
                   </div>
                   <p className="mb-2 text-muted-foreground">{entry.title}</p>
                   <p className="text-muted-foreground">{entry.description}</p>
@@ -610,47 +602,28 @@ export default async function AboutPage({ searchParams }: PageProps) {
       <section className="py-20">
         <div className="container">
           <div className="mx-auto mb-12 max-w-3xl text-center">
-            <Badge className="mb-4">{copy.valuesBadge}</Badge>
+
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{copy.valuesTitle}</h2>
             <p className="mt-4 text-lg text-muted-foreground">{copy.valuesSubtitle}</p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {values.map((value) => {
-              const Icon = value.icon
-              return (
-                <Card key={value.title} className="border-0 bg-muted/50">
-                  <CardContent className="p-6">
-                    <div className="mb-4 w-fit rounded-full bg-primary/10 p-3">
-                      <Icon className="h-6 w-6 text-primary" />
-                    </div>
-                    <h3 className="mb-2 text-xl font-bold">{value.title}</h3>
-                    <p className="text-muted-foreground">{value.description}</p>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
+          <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {values.map((value) => (
+              <li key={value.title}>
+                <ExplainerCard icon={value.icon} title={value.title} description={value.description} />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container">
-          <div className="rounded-2xl bg-muted p-8 md:p-12">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{copy.ctaTitle}</h2>
-              <p className="mb-8 text-lg text-muted-foreground">{copy.ctaSubtitle}</p>
-              <Button asChild size="lg" className="rounded-full">
-                <Link href={contactHref}>
-                  {copy.ctaButton}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+      <CtaBanner
+        titleId="about-cta-title"
+        title={copy.ctaTitle}
+        description={copy.ctaSubtitle}
+        href={contactHref}
+        actionLabel={copy.ctaButton}
+      />
     </>
   )
 }

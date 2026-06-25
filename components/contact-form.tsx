@@ -163,7 +163,7 @@ export default function ContactForm() {
   }
 
   return (
-    <Card>
+    <Card className=" border-0 bg-secondary/30">
       <CardHeader>
         <CardTitle>{copy.cardTitle}</CardTitle>
         <CardDescription>{copy.cardDescription}</CardDescription>
