@@ -1,6 +1,7 @@
 import type React from "react"
 import { Suspense } from "react"
 import type { Metadata } from "next"
+import Script from "next/script"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Header from "@/components/header"
@@ -71,6 +72,11 @@ export default function RootLayout({
   return (
     <html lang="it" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
+        <Script
+          id="cookieyes"
+          src="https://cdn-cookieyes.com/client_data/e56d0bbe7a3bc1925ab2480f496bc1c2/script.js"
+          strategy="beforeInteractive"
+        />
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-PMB5B33T"
