@@ -162,7 +162,9 @@ export default function Footer() {
         <div className="mt-12 border-t border-background/10 pt-8 text-center">
           <div className="flex flex-col items-center gap-3 text-sm text-background/60 md:flex-row md:justify-center">
             <Image src="/logo.png" alt="DG Designer logo" width={32} height={32} className="h-8 w-8" />
-            <span>{copy.rights(currentYear)}</span>
+            <span>{copy.rights(currentYear)}</span> <a href="/privacy-policy" className="text-background/60 hover:text-background">
+              Privacy Policy
+            </a>
           </div>
         </div>
       </div>
