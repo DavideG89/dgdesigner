@@ -245,8 +245,16 @@ export const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       description:
         "Sito web per un servizio di Autolavaggio di provincia.",
       image: "/WashLabService.png",
-      tags: ["Website", "UX/UI", "Branding"],
+      tags: ["Website", "Branding"],
       link: "https://washlabservice.it",
+    },
+        {
+      title: "Centro Studi Metis",
+      description:
+        "Centro Studi Metis è un hub polifunzionale dedicato a orientamento universitario, tutoraggio, supporto alla tesi, certificazioni e crescita professionale.",
+      image: "/metis-bg.png",
+      tags: ["Website", "UX/UI", "Branding"],
+      link: "https://centrostudimetis.it/",
     },
   ],
   en: [
@@ -305,6 +313,14 @@ export const projectsCopy: Record<SupportedLanguage, ShowcaseProject[]> = {
       image: "/WashLabService.png",
       tags: ["Website", "UX/UI", "Branding"],
       link: "https://washlabservice.it",
+    },
+      {
+      title: "Centro Studi Metis",
+      description:
+        "Centro Studi Metis is a multifunctional hub dedicated to university guidance, tutoring, thesis support, certifications, and professional development.",
+      image: "/metis-bg.png",
+      tags: ["Website", "UX/UI", "Branding"],
+      link: "https://centrostudimetis.it/",
     },
   ],
 }
