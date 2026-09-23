@@ -7,216 +7,10 @@ import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { CtaBanner } from "@/components/cta-banner"
 import ProjectCard from "@/components/project-card"
+import { getProjects } from "@/data/projects"
 import { Search } from "lucide-react"
 
 import { appendLanguageParam, type SupportedLanguage } from "@/lib/i18n"
-
-interface Project {
-  id: string
-  title: string
-  description: string
-  image: string
-  tags: string[]
-  category: string[]
-  year: string
-  client: string
-  link: string
-}
-
-const projectsByLanguage: Record<SupportedLanguage, Project[]> = {
-  it: [
-    {
-      id: "topos-network",
-      title: "Topos Network",
-      description:
-        "Startup innovativa nel settore finance e crypto che porta soluzioni di pagamento decentralizzate nei paesi in via di sviluppo.",
-      image: "/Topos.png",
-      tags: ["Website", "Fintech", "Crypto"],
-      category: ["Website"],
-      year: "2024",
-      client: "Topos Network",
-      link: "https://www.topos.com.ng/",
-    },
-    {
-      id: "palermointour",
-      title: "Palermointour",
-      description:
-        "Sito web dedicato a una guida turistica palermitana per aumentare la visibilità online e favorire le prenotazioni.",
-      image: "/Palermointour website.png",
-      tags: ["Website", "Branding", "Tourism"],
-      category: ["Website"],
-      year: "2024",
-      client: "Palermointour",
-      link: "https://palermointour.com",
-    },
-    {
-      id: "whatsapp-case-study",
-      title: "WhatsApp UX Case Study",
-      description:
-        "Analisi di usabilità dell'app WhatsApp con focus sulle opportunità di miglioramento dell'esperienza utente.",
-      image: "/WhatsappStudy.png",
-      tags: ["Case Study", "UX Research", "Product"],
-      category: ["Case Study"],
-      year: "2023",
-      client: "Ricerca personale",
-      link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
-    },
-    {
-      id: "mavi-pesca",
-      title: "Mavi Pesca",
-      description:
-        "App progettata per un'azienda ittica per gestire gli ordini dei clienti e ottimizzare il processo di vendita.",
-      image: "/MavipescaStudy.png",
-      tags: ["Case Study", "Product Design", "Mobile"],
-      category: ["Case Study"],
-      year: "2023",
-      client: "Mavi Pesca",
-      link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
-    },
-    {
-      id: "catmatildabeat",
-      title: "Matilda The Cat Marketplace",
-      description:
-        "Marketplace per un beatmaker con catalogo tracce e call-to-action verso BeatStars e contenuti YouTube.",
-      image: "/CatMatildabeat_Dsk.png",
-      tags: ["Website", "Marketplace", "Music"],
-      category: ["Website"],
-      year: "2022",
-      client: "Matilda The Cat",
-      link: "https://www.matildathecat.com/",
-    },
-    {
-      id: "color-palette-generator-tool",
-      title: "Color Palette Generator",
-      description:
-        "Strumento interattivo per generare palette armoniose con codici HEX pronti all'uso e condivisione community.",
-      image: "/UI_bg.png",
-      tags: ["Tool", "Color", "UI/UX"],
-      category: ["Tools"],
-      year: "2026",
-      client: "DG Designer Lab",
-      link: "/works/tools/color-palette-generator",
-    },
-      {
-    id: "amicofritto-delivery-app",
-    title: 'Amico Fritto Delivery App',
-    description: ' App di delivery progettata per un takeaway di Misilmeri, con un’interfaccia semplice e intuitiva che permette agli utenti di sfogliare il menu, personalizzare i prodotti e ordinare rapidamente.',
-    image:'Logo-Amico-Fritto.jpg',
-    tags: ['App Design', 'UX/UI', 'Food Delivery', 'Branding'],
-    category: ["Case Study", "Website"],
-    year: "2026",
-    client: 'Amico Fritto',
-    link: 'https://amicofritto.store',
-    },
-    {
-    id: "washlabservice-website",
-    title: 'WashLabServices Website',
-    description: ' Sito web per un servizio di Autolavaggio di provincia.',
-    image:'WashLabService.png',
-    tags: ['Website', 'UX/UI', 'Branding'],
-    category: ["Website"],
-    year: "2026",
-    client: 'WashLabServices',
-    link: 'https://washlabservice.it',
-    },
-  ],
-  en: [
-    {
-      id: "topos-network",
-      title: "Topos Network",
-      description:
-        "Innovative fintech and crypto startup bringing decentralised payment solutions to developing countries.",
-      image: "/Topos.png",
-      tags: ["Website", "Fintech", "Crypto"],
-      category: ["Website"],
-      year: "2024",
-      client: "Topos Network",
-      link: "https://www.topos.com.ng/",
-    },
-    {
-      id: "palermointour",
-      title: "Palermointour",
-      description:
-        "Website for a Palermo tour guide, built to increase online visibility and drive bookings.",
-      image: "/Palermointour website.png",
-      tags: ["Website", "Branding", "Tourism"],
-      category: ["Website"],
-      year: "2024",
-      client: "Palermointour",
-      link: "https://palermointour.com",
-    },
-    {
-      id: "whatsapp-case-study",
-      title: "WhatsApp UX Case Study",
-      description:
-        "Usability analysis of WhatsApp highlighting opportunities to enhance the user experience.",
-      image: "/WhatsappStudy.png",
-      tags: ["Case Study", "UX Research", "Product"],
-      category: ["Case Study"],
-      year: "2023",
-      client: "Self-initiated research",
-      link: "https://www.behance.net/gallery/190797495/Beyond-Messaging-Redefining-WhatsApps-User-Experience",
-    },
-    {
-      id: "mavi-pesca",
-      title: "Mavi Pesca",
-      description:
-        "Mobile app designed for a seafood company to manage customer orders and streamline the sales process.",
-      image: "/MavipescaStudy.png",
-      tags: ["Case Study", "Product Design", "Mobile"],
-      category: ["Case Study"],
-      year: "2023",
-      client: "Mavi Pesca",
-      link: "https://www.behance.net/gallery/175839809/Mavi-Pesca-Reservation-App-Case-study-UX",
-    },
-    {
-      id: "catmatildabeat",
-      title: "Matilda The Cat Marketplace",
-      description:
-        "Marketplace for a beatmaker featuring a track catalogue and calls to action leading to BeatStars and YouTube.",
-      image: "/CatMatildabeat_Dsk.png",
-      tags: ["Website", "Marketplace", "Music"],
-      category: ["Website"],
-      year: "2022",
-      client: "CatMatildabeat",
-      link: "https://www.matildathecat.com/",
-    },
-    {
-      id: "color-palette-generator-tool",
-      title: "Color Palette Generator",
-      description:
-        "Interactive tool to build harmonious palettes with ready-to-use HEX codes and community sharing.",
-      image: "/UI_bg.png",
-      tags: ["Tool", "Color", "UI/UX"],
-      category: ["Tools"],
-      year: "2026",
-      client: "DG Designer Lab",
-      link: "/works/tools/color-palette-generator",
-    },
-     {
-    id: "amicofritto-delivery-app",
-    title: 'Amico Fritto Delivery App',
-    description: ' Delivery app designed for a takeaway in Misilmeri, featuring a simple and intuitive interface that allows users to browse the menu, customize items, and place orders quickly.',
-    image:'Logo-Amico-Fritto.jpg',
-    tags: ['App Design', 'UX/UI', 'Food Delivery', 'Branding'],
-    category: ["Case Study", "Website"],
-    year: "2026",
-    client: 'Amico Fritto',
-    link: 'https://amicofritto.store',
-    },
-      {
-    id: "washlabservice-website",
-    title: 'WashLabServices Website',
-    description: ' Carwash website for a local business.',
-    image:'WashLabService.png',
-    tags: ['Website', 'UX/UI', 'Branding'],
-    category: ["Website"],
-    year: "2026",
-    client: 'WashLabServices',
-    link: 'https://washlabservice.it',
-    },
-  ],
-}
 
 const heroCopy: Record<SupportedLanguage, {
   badge: string
@@ -242,7 +36,7 @@ const heroCopy: Record<SupportedLanguage, {
     titleHighlight: "lavori",
     titleSuffix: "",
     description:
-      "Esplora alcuni dei miei lavori più recenti e scopri come ho aiutato i miei clienti a raggiungere i loro obiettivi attraverso design innovativo e soluzioni creative.",
+      "Siti web, interfacce e studi UX. Esplora i progetti per settore e tipologia, dai siti per imprese agli studi di esperienza utente.",
     searchPlaceholder: "Cerca lavori...",
     allLabel: "Tutti",
     toolsLabel: "Tools",
@@ -262,7 +56,7 @@ const heroCopy: Record<SupportedLanguage, {
     titleHighlight: "works",
     titleSuffix: "",
     description:
-      "Explore a selection of my latest work and see how I've helped clients reach their goals through innovative design and creative solutions.",
+      "Websites, interfaces, and UX studies. Explore work across industries, from business websites to user experience studies.",
     searchPlaceholder: "Search works...",
     allLabel: "All",
     toolsLabel: "Tools",
@@ -282,7 +76,7 @@ export default function ProjectsPage() {
   const searchParams = useSearchParams()
   const lang: SupportedLanguage = searchParams.get("lang") === "en" ? "en" : "it"
   const copy = heroCopy[lang]
-  const projects = useMemo(() => projectsByLanguage[lang], [lang])
+  const projects = useMemo(() => getProjects(lang), [lang])
   const categories = useMemo(() => [copy.allLabel, "Website", "Case Study", copy.toolsLabel], [copy.allLabel, copy.toolsLabel])
 
   const [selectedCategory, setSelectedCategory] = useState(categories[0])
@@ -377,7 +171,7 @@ export default function ProjectsPage() {
                     description={project.description}
                     image={project.image}
                     tags={project.tags}
-                    link={project.link}
+                    link={appendLanguageParam(project.link, lang)}
                   />
                 </div>
               ))}

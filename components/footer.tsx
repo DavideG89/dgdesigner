@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { Github, Linkedin, Mail, Twitter } from "lucide-react"
+import { Linkedin, Mail } from "lucide-react"
 
 import { appendLanguageParam, type SupportedLanguage } from "@/lib/i18n"
 
@@ -67,7 +67,7 @@ const navigationCopy = {
       phone: "320 567 1678",
       location: "Italy",
     },
-    tagline: "Crafting impactful user experiences, one pixel at a time.",
+    tagline: "Websites for businesses. UI/UX for product teams. Based in Palermo, working remotely.",
     rights: (year: number) => `© ${year} DG Designer. All rights reserved.`,
   },
 } satisfies Record<SupportedLanguage, any>
@@ -95,10 +95,6 @@ export default function Footer() {
             </Link>
             <p className="mt-5 whitespace-pre-line text-sm leading-7 text-background/70">{copy.tagline}</p>
             <div className="mt-4 flex space-x-4">
-              <Link href="https://github.com" className="rounded-full border border-background/15 bg-background/10 p-2 text-background/70 transition-colors hover:text-background">
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </Link>
               <Link href="https://www.linkedin.com/in/dav-giu/" className="rounded-full border border-background/15 bg-background/10 p-2 text-background/70 transition-colors hover:text-background">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
@@ -162,7 +158,7 @@ export default function Footer() {
         <div className="mt-12 border-t border-background/10 pt-8 text-center">
           <div className="flex flex-col items-center gap-3 text-sm text-background/60 md:flex-row md:justify-center">
             <Image src="/logo.png" alt="DG Designer logo" width={32} height={32} className="h-8 w-8" />
-            <span>{copy.rights(currentYear)}</span> <a href="/privacy-policy" className="text-background/60 hover:text-background">
+            <span>{copy.rights(currentYear)}</span> <a href={appendLanguageParam("/privacy-policy", lang)} className="text-background/60 hover:text-background">
               Privacy Policy
             </a>
           </div>

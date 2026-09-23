@@ -300,9 +300,9 @@ const pageCopy: Record<SupportedLanguage, {
     heroGreeting: "Ciao, sono",
     heroTitleHighlight: "Davide",
     heroParagraphs: [
-      "Sono un designer UI/Web Designer con oltre 4 anni di esperienza nella creazione di esperienze digitali intuitive e coinvolgenti.",
+      "Sono un UI/UX e Web Designer con oltre 4 anni di esperienza tra siti web, piattaforme SaaS e applicazioni aziendali.",
       "Riesco a trasformare idee complesse in interfacce semplici e intuitive per dare un'esperienza utente fluida e coinvolgente. Credo che il vero design debba essere tanto funzionale quanto bello, e mi impegno a creare prodotti che soddisfino entrambi questi criteri.",
-      "Nel mio tempo libero, mi piace informarmi sulle ultime tendenze, esplorare nuovi luoghi, praticare hobbiese passare il tempo con la famiglia.",
+      "Nel mio tempo libero, mi piace informarmi sulle ultime tendenze, esplorare nuovi luoghi, praticare hobby e passare il tempo con la famiglia.",
     ],
     primaryCta: "Contattami",
     secondaryCta: "Vedi i miei lavori",
@@ -337,7 +337,7 @@ const pageCopy: Record<SupportedLanguage, {
     heroGreeting: "Hi, I'm",
     heroTitleHighlight: "Davide",
     heroParagraphs: [
-     "I am a UI/Web Designer with over 4 years of experience in crafting intuitive and engaging digital experiences.",
+     "I am a UI/UX and Web Designer with over 4 years of experience across websites, SaaS platforms, and enterprise applications.",
      "I specialize in transforming complex ideas into simple, user-friendly interfaces that ensure a seamless and captivating journey. I believe true design should be as functional as it is beautiful, and I am committed to creating products that excel in both.",
      "In my free time, I stay updated on the latest trends, explore new places, enjoy my hobbies, and cherish time with my family.",
     ],

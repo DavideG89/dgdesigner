@@ -75,7 +75,7 @@ const servicesTranslations: Record<SupportedLanguage, {
     heroTitlePrefix: "I miei",
     heroTitleHighlight: "servizi",
     heroDescription:
-      "Offro una gamma completa di servizi di design per aiutarti a creare esperienze digitali eccezionali.",
+      "Realizzo siti web per piccole e medie imprese e collaboro con agenzie e team di prodotto su interfacce, flussi e design system. Lavoro da remoto, in Italia e all’estero.",
     requestQuote: "Richiedi un preventivo",
     sections: [
       {
@@ -83,8 +83,8 @@ const servicesTranslations: Record<SupportedLanguage, {
         icon: Layers,
         title: "UI Design",
         paragraphs: [
-          "Creo interfacce utente intuitive e accattivanti che migliorano l'esperienza dell'utente e aumentano la conversione.",
-          "Il mio approccio al design dell'interfaccia utente si concentra sulla creazione di esperienze visivamente coerenti e funzionali che guidano gli utenti verso i loro obiettivi in modo intuitivo.",
+          "Affianco agenzie e team nella progettazione di interfacce per SaaS e web app, dalle prime schermate ai componenti riutilizzabili in Figma.",
+          "Definiamo insieme schermate, stati e priorità. Consegno layout e componenti organizzati, collaborando con gli sviluppatori per chiarire comportamenti e vincoli.",
         ],
         bullets: [
           "Design di interfacce web e mobile",
@@ -115,11 +115,11 @@ const servicesTranslations: Record<SupportedLanguage, {
         icon: Code,
         title: "Web Design",
         paragraphs: [
-          "Sviluppo siti web moderni, reattivi e ottimizzati per le prestazioni utilizzando le tecnologie più recenti.",
-          "Creo siti web che non solo sono belli da vedere, ma anche veloci, accessibili e facili da gestire, utilizzando le migliori pratiche di sviluppo web.",
+          "Progetto e realizzo siti per piccole e medie imprese che devono presentare i propri servizi e offrire un percorso chiaro verso il contatto.",
+          "Il lavoro può comprendere struttura dei contenuti, design responsive e sviluppo con WordPress o Webflow. Prima di iniziare concordiamo pagine, funzionalità, materiali da fornire e revisioni.",
         ],
         bullets: [
-          "Creazione frontend con Webflow, Wordpress",
+          "Sviluppo con Webflow o WordPress",
           "Siti web responsive",
           "Ottimizzazione delle prestazioni",
           "Accessibilità web",
@@ -161,7 +161,7 @@ const servicesTranslations: Record<SupportedLanguage, {
     ],
     processBadge: "Processo",
     processTitle: "Il mio processo di lavoro",
-    processSubtitle: "Un approccio strutturato per garantire risultati di qualità e soddisfazione del cliente.",
+    processSubtitle: "Obiettivi, consegne e momenti di confronto concordati prima di iniziare.",
     processSteps: [
       {
         title: "Scoperta",
@@ -181,7 +181,7 @@ const servicesTranslations: Record<SupportedLanguage, {
       {
         title: "Implementazione",
         description:
-          "Trasformo i design in prodotti funzionali, assicurandomi che ogni elemento sia implementato correttamente.",
+          "Per i siti seguo lo sviluppo concordato; per i progetti UI/UX preparo i file e affianco il team nel passaggio allo sviluppo.",
       },
     ],
     pricingBadge: "Prezzi",
@@ -269,7 +269,7 @@ const servicesTranslations: Record<SupportedLanguage, {
     ],
     ctaTitle: "Pronto a trasformare la tua idea in realtà?",
     ctaSubtitle:
-      "Contattami oggi stesso per discutere del tuo progetto e scoprire come posso aiutarti a raggiungere i tuoi obiettivi.",
+      "Descrivi la tua attività, cosa ti serve e quando vorresti partire. Definiamo insieme il perimetro del lavoro e un preventivo personalizzato.",
     ctaButton: "Iniziamo a collaborare",
   },
   en: {
@@ -277,7 +277,7 @@ const servicesTranslations: Record<SupportedLanguage, {
     heroTitlePrefix: "My",
     heroTitleHighlight: "services",
     heroDescription:
-      "I offer a full spectrum of design services to help you craft exceptional digital experiences.",
+      "I build websites for small and medium-sized businesses and work with agencies and product teams on interfaces, user flows, and design systems. Available for remote projects worldwide.",
     requestQuote: "Request a quote",
     sections: [
       {
@@ -285,8 +285,8 @@ const servicesTranslations: Record<SupportedLanguage, {
         icon: Layers,
         title: "UI Design",
         paragraphs: [
-          "I design intuitive, compelling interfaces that elevate the user experience and boost conversions.",
-          "My interface design approach focuses on building visually coherent, purposeful experiences that guide people smoothly toward their goals.",
+          "I support agencies and product teams with SaaS and web app interface design, from initial screens to reusable Figma components.",
+          "We agree on screens, states, and priorities. I deliver organised layouts and components, working with developers to clarify behaviour and technical constraints.",
         ],
         bullets: [
           "Web and mobile interface design",
@@ -317,11 +317,11 @@ const servicesTranslations: Record<SupportedLanguage, {
         icon: Code,
         title: "Web Design",
         paragraphs: [
-          "I build modern, responsive websites optimised for performance with the latest technologies.",
-          "Every site I deliver looks great, loads fast, stays accessible, and is easy to maintain thanks to web development best practices.",
+          "I design and build websites for small and medium-sized businesses that need to present their services and give visitors a clear way to get in touch.",
+          "The scope can include content structure, responsive design, and WordPress or Webflow development. Before starting, we agree on pages, features, content you need to provide, and revision rounds.",
         ],
         bullets: [
-          "Front-end development with Webflow, Wordpress",
+          "Development with Webflow or WordPress",
           "Responsive websites",
           "Performance optimisation",
           "Web accessibility",
@@ -363,7 +363,7 @@ const servicesTranslations: Record<SupportedLanguage, {
     ],
     processBadge: "Process",
     processTitle: "How I work",
-    processSubtitle: "A structured approach that guarantees quality outcomes and client satisfaction.",
+    processSubtitle: "Clear goals, deliverables, and review points agreed before work begins.",
     processSteps: [
       {
         title: "Discovery",
@@ -383,7 +383,7 @@ const servicesTranslations: Record<SupportedLanguage, {
       {
         title: "Implementation",
         description:
-          "I translate the designs into working products, ensuring every element is implemented correctly.",
+          "For websites, I handle the agreed development work. For UI/UX projects, I prepare the design files and support the team during handoff.",
       },
     ],
     pricingBadge: "Pricing",
@@ -471,7 +471,7 @@ const servicesTranslations: Record<SupportedLanguage, {
     ],
     ctaTitle: "Ready to turn your idea into reality?",
     ctaSubtitle:
-      "Reach out today to discuss your project and see how I can help you achieve your goals.",
+      "Tell me about your business, what you need, and when you would like to start. We can define the scope and a tailored quote together.",
     ctaButton: "Let's start working together",
   },
 }

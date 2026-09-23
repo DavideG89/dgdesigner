@@ -39,7 +39,7 @@ const formCopy: Record<SupportedLanguage, {
 }> = {
   it: {
     cardTitle: "Inviami un messaggio",
-    cardDescription: "Compila il modulo sottostante per contattarmi riguardo al tuo progetto.",
+    cardDescription: "Descrivi obiettivo e tempi del progetto. Ti rispondo entro 24 ore.",
     hiddenLabel: "Azienda",
     nameLabel: "Nome",
     namePlaceholder: "Il tuo nome",
@@ -50,14 +50,12 @@ const formCopy: Record<SupportedLanguage, {
     serviceLabel: "Servizio richiesto",
     servicePlaceholder: "Seleziona un servizio",
     messageLabel: "Messaggio",
-    messagePlaceholder: "Descrivi il tuo progetto o la tua richiesta...",
+    messagePlaceholder: "Cosa vuoi realizzare? Hai già un sito? Indica tempi e budget orientativo, se li conosci.",
     options: [
-      { value: "UI Design", label: "UI Design" },
-      { value: "UX Design", label: "UX Design" },
-      { value: "Web Development", label: "Web Development" },
-      { value: "App Design", label: "App Design" },
-      { value: "Branding", label: "Branding" },
-      { value: "Altro", label: "Altro" },
+      { value: "Website", label: "Sito web per la mia attività" },
+      { value: "UI/UX", label: "UI/UX per un prodotto digitale" },
+      { value: "Collaboration", label: "Collaborazione con agenzia o team" },
+      { value: "Other", label: "Altro / da definire insieme" },
     ],
     submit: "Invia messaggio",
     submitting: "Invio in corso...",
@@ -68,7 +66,7 @@ const formCopy: Record<SupportedLanguage, {
   },
   en: {
     cardTitle: "Send me a message",
-    cardDescription: "Fill in the form below to contact me about your project.",
+    cardDescription: "Share your project goals and timeline. I reply within 24 hours.",
     hiddenLabel: "Company",
     nameLabel: "Name",
     namePlaceholder: "Your name",
@@ -79,12 +77,12 @@ const formCopy: Record<SupportedLanguage, {
     serviceLabel: "Requested service",
     servicePlaceholder: "Select a service",
     messageLabel: "Message",
-    messagePlaceholder: "Describe your project or request...",
+    messagePlaceholder: "What would you like to build? Do you have a website already? Include your timeline and approximate budget, if known.",
     options: [
-      { value: "UI/UX Design", label: "UI/UX Design" },
-      { value: "Creazione Sito Web", label: "Creazione Sito Web" },
-      { value: "Consulenza", label: "Consulenza" },
-      { value: "Other", label: "Other" },
+      { value: "Website", label: "Website for my business" },
+      { value: "UI/UX", label: "UI/UX for a digital product" },
+      { value: "Collaboration", label: "Agency or team collaboration" },
+      { value: "Other", label: "Other / help me decide" },
     ],
     submit: "Send message",
     submitting: "Sending...",
@@ -139,16 +137,11 @@ export default function ContactForm() {
         toast({
           title: copy.successTitle,
           description:
-            typeof data.message === "string" ? data.message : copy.successDescription,
+            copy.successDescription,
         })
         form.reset()
       } else {
-        const errorMessage =
-          typeof data.error === "string"
-            ? data.error
-            : typeof data.message === "string"
-              ? data.message
-              : copy.genericError
+        const errorMessage = copy.genericError
         throw new Error(errorMessage)
       }
     } catch (error) {

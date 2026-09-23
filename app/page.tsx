@@ -10,12 +10,12 @@ import {
   contactSectionCopy,
   heroCopy,
   heroStats,
-  projectsCopy,
   projectsSection,
   servicesCopy,
   servicesSection,
   skillMarquee,
 } from "@/data/home"
+import { getProjects } from "@/data/projects"
 import { appendLanguageParam, getLanguage } from "@/lib/i18n"
 import { ExplainerCard } from "@/components/explainer-card"
 import ProjectCard from "@/components/project-card"
@@ -33,7 +33,7 @@ export async function generateMetadata({ searchParams }: HomePageProps): Promise
     return {
       title: "Davide Giuliano | UI/Web Designer",
       description:
-        "Hi! I’m Davide, a UX/UI Designer passionate about creating intuitive, functional, and visually refined digital experiences.",
+        "Websites for small and medium-sized businesses, UI/UX design for agencies and product teams. Based in Palermo, available for remote projects worldwide.",
       alternates: {
         canonical: "/web-design-palermo",
       },
@@ -43,7 +43,7 @@ export async function generateMetadata({ searchParams }: HomePageProps): Promise
   return {
     title: "Davide Giuliano | UI/Web Designer",
     description:
-      "Ciao! Sono Davide, un designer UX/UI che ama creare esperienze digitali intuitive, funzionali ed esteticamente piacevoli.",
+      "Siti web per piccole e medie imprese, UI/UX per agenzie e team di prodotto. Da Palermo, disponibile per collaborazioni da remoto in tutto il mondo.",
     alternates: {
       canonical: "/web-design-palermo",
     },
@@ -58,7 +58,7 @@ export default async function Home({ searchParams }: HomePageProps) {
   const serviceSectionContent = servicesSection[lang]
   const servicesCards = servicesCopy.map(({ icon: Icon, copy }) => ({ icon: Icon, ...copy[lang] }))
   const projectsSectionContent = projectsSection[lang]
-  const projects = projectsCopy[lang]
+  const projects = getProjects(lang).filter((project) => project.showOnHome)
   const contactSection = contactSectionCopy[lang]
 
   const contactHref = appendLanguageParam("/contact", lang)
@@ -197,7 +197,7 @@ export default async function Home({ searchParams }: HomePageProps) {
                   <p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">{contactSection.description}</p>
                 </div>
                 <address className=" rounded-lg  text-sm not-italic leading-7 text-muted-foreground">
-                  <p className="text-lg text-foreground font-semibold">Contatti</p>
+                  <p className="text-lg text-foreground font-semibold">{lang === "en" ? "Contact" : "Contatti"}</p>
                   <a className="transition-colors hover:text-foreground" href="mailto:davidegiuliano.free@gmail.com">
                     davidegiuliano.free@gmail.com
                   </a>
