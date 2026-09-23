@@ -35,7 +35,7 @@ export async function generateMetadata({ searchParams }: HomePageProps): Promise
       description:
         "Websites for small and medium-sized businesses, UI/UX design for agencies and product teams. Based in Palermo, available for remote projects worldwide.",
       alternates: {
-        canonical: "/web-design-palermo",
+        canonical: "/",
       },
     }
   }
@@ -45,7 +45,7 @@ export async function generateMetadata({ searchParams }: HomePageProps): Promise
     description:
       "Siti web per piccole e medie imprese, UI/UX per agenzie e team di prodotto. Da Palermo, disponibile per collaborazioni da remoto in tutto il mondo.",
     alternates: {
-      canonical: "/web-design-palermo",
+      canonical: "/",
     },
   }
 }
