@@ -93,10 +93,37 @@ const formCopy: Record<SupportedLanguage, {
   },
 }
 
-export default function ContactForm() {
+const websiteFormCopy: Record<SupportedLanguage, Partial<(typeof formCopy)["it"]>> = {
+  it: {
+    cardTitle: "Raccontami il tuo progetto web",
+    cardDescription: "Descrivi brevemente la tua attività e il sito che vorresti creare o migliorare.",
+    servicePlaceholder: "Di cosa hai bisogno?",
+    messagePlaceholder: "Di cosa si occupa la tua attività? Hai già un sito? Cosa vorresti che i visitatori facessero?",
+    options: [
+      { value: "Website", label: "Un nuovo sito web" },
+      { value: "Redesign", label: "Migliorare il sito che ho" },
+      { value: "Landing page", label: "Una landing page" },
+      { value: "Other", label: "Non lo so ancora" },
+    ],
+  },
+  en: {
+    cardTitle: "Tell me about your website project",
+    cardDescription: "Briefly describe your business and the site you want to build or improve.",
+    servicePlaceholder: "What do you need?",
+    messagePlaceholder: "What does your business do? Do you have a website? What would you like visitors to do?",
+    options: [
+      { value: "Website", label: "A new website" },
+      { value: "Redesign", label: "Improve my current site" },
+      { value: "Landing page", label: "A landing page" },
+      { value: "Other", label: "I am not sure yet" },
+    ],
+  },
+}
+
+export default function ContactForm({ context = "general" }: { context?: "general" | "website" }) {
   const searchParams = useSearchParams()
   const lang: SupportedLanguage = searchParams.get("lang") === "en" ? "en" : "it"
-  const copy = formCopy[lang]
+  const copy = context === "website" ? { ...formCopy[lang], ...websiteFormCopy[lang] } : formCopy[lang]
 
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -177,10 +204,14 @@ export default function ContactForm() {
               <Input id="email" name="email" type="email" placeholder={copy.emailPlaceholder} required />
             </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="subject">{copy.subjectLabel}</Label>
-            <Input id="subject" name="subject" placeholder={copy.subjectPlaceholder} required />
-          </div>
+          {context === "website" ? (
+            <input type="hidden" name="subject" value={lang === "it" ? "Richiesta sito web" : "Website enquiry"} />
+          ) : (
+            <div className="space-y-2">
+              <Label htmlFor="subject">{copy.subjectLabel}</Label>
+              <Input id="subject" name="subject" placeholder={copy.subjectPlaceholder} required />
+            </div>
+          )}
           <div className="space-y-2">
             <Label htmlFor="service">{copy.serviceLabel}</Label>
             <select

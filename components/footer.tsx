@@ -17,7 +17,7 @@ const navigationCopy = {
     servicesLink: "Servizi",
     projects: "Works",
     contactLink: "Contatti",
-    webdesign: "Web Design Palermo",
+    webdesign: "Web Designer Palermo",
     servicesSections: {
       ui: "UI Design",
       ux: "UX Design",
@@ -48,7 +48,7 @@ const navigationCopy = {
     servicesLink: "Services",
     projects: "Works",
     contactLink: "Contact",
-    webdesign: "Web Design Palermo ",
+    webdesign: "Web Designer Palermo",
     servicesSections: {
       ui: "UI Design",
       ux: "UX Design",
@@ -83,7 +83,7 @@ export default function Footer() {
   const servicesHref = appendLanguageParam("/services", lang)
   const projectsHref = appendLanguageParam("/works", lang)
   const contactHref = appendLanguageParam("/contact", lang)
-  const webdesignHref = appendLanguageParam("/web-design-palermo", lang)
+  const webdesignHref = appendLanguageParam("/web-designer-palermo", lang)
 
   return (
     <footer className="border-t border-foreground/10 bg-foreground text-background">

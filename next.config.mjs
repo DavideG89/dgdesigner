@@ -3,6 +3,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/web-design-palermo",
+        destination: "https://www.dgdesigner.site/web-designer-palermo",
+        statusCode: 301,
+      },
+      {
         source: "/:path*",
         has: [{ type: "host", value: "dgdesigner.site" }],
         destination: "https://www.dgdesigner.site/:path*",

@@ -5,7 +5,6 @@ User-agent: *
 Allow: /
 
 # Se hai cartelle private o di test che non vuoi far vedere a nessuno
-Disallow: /_next/
 Disallow: /api/
 Disallow: /admin/
 Disallow: /temp/

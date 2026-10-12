@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react"
 
 type LottieInstance = {
   destroy: () => void
+  goToAndStop: (value: number, isFrame: boolean) => void
+  play: () => void
+  loop: boolean
 }
 
 type LottieGlobal = {
@@ -216,6 +219,20 @@ export default function LottieAnimation({ src, alt, className }: LottieAnimation
     let cancelled = false
     const container = containerRef.current
     const encodedSrc = encodeURI(src)
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)")
+
+    function handleMotionPreferenceChange() {
+      if (!animationRef.current) return
+
+      animationRef.current.loop = !motionPreference.matches
+      if (motionPreference.matches) {
+        animationRef.current.goToAndStop(0, true)
+      } else {
+        animationRef.current.play()
+      }
+    }
+
+    motionPreference.addEventListener("change", handleMotionPreferenceChange)
 
     async function mountAnimation() {
       try {
@@ -236,8 +253,8 @@ export default function LottieAnimation({ src, alt, className }: LottieAnimation
         animationRef.current = lottie.loadAnimation({
           container,
           renderer: "svg",
-          loop: true,
-          autoplay: true,
+          loop: !motionPreference.matches,
+          autoplay: !motionPreference.matches,
           animationData,
           rendererSettings: {
             preserveAspectRatio: "xMidYMid meet",
@@ -264,6 +281,7 @@ export default function LottieAnimation({ src, alt, className }: LottieAnimation
 
     return () => {
       cancelled = true
+      motionPreference.removeEventListener("change", handleMotionPreferenceChange)
       animationRef.current?.destroy()
       animationRef.current = null
       if (containerRef.current) {
