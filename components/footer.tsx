@@ -38,6 +38,7 @@ const navigationCopy = {
     },
     tagline: "Web Designer Freelance a Palermo (PA).\nDisponibile per progetti in tutta Italia ed estero.",
     rights: (year: number) => `© ${year} Tutti i diritti riservati.`,
+    vatLabel: "P.IVA",
   },
   en: {
     navigation: "Navigation",
@@ -69,6 +70,7 @@ const navigationCopy = {
     },
     tagline: "Websites for businesses. UI/UX for product teams. Based in Palermo, working remotely.",
     rights: (year: number) => `© ${year} DG Designer. All rights reserved.`,
+    vatLabel: "VAT number",
   },
 } satisfies Record<SupportedLanguage, any>
 
@@ -156,9 +158,11 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-12 border-t border-background/10 pt-8 text-center">
-          <div className="flex flex-col items-center gap-3 text-sm text-background/60 md:flex-row md:justify-center">
+          <div className="flex flex-col items-center gap-3 text-sm text-background/60 md:flex-row md:flex-wrap md:justify-center">
             <Image src="/logo.png" alt="DG Designer logo" width={32} height={32} className="h-8 w-8" />
-            <span>{copy.rights(currentYear)}</span> <a href={appendLanguageParam("/privacy-policy", lang)} className="text-background/60 hover:text-background">
+            <span>{copy.rights(currentYear)}</span>
+            <span>{copy.vatLabel} 07070150821</span>
+            <a href={appendLanguageParam("/privacy-policy", lang)} className="text-background/60 hover:text-background">
               Privacy Policy
             </a>
           </div>

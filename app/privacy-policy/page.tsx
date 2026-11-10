@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
         </h1>
 
         <p className="mt-4 text-muted-foreground">
-          Ultimo aggiornamento: 25 giugno 2026
+          Ultimo aggiornamento: 10 novembre 2026
         </p>
 
         <div className="mt-10 space-y-8 leading-7">
@@ -30,6 +30,7 @@ export default function PrivacyPolicyPage() {
             <p className="mt-3 text-muted-foreground">
           Il titolare del trattamento dei dati raccolti tramite questo sito è:<br/>
         Nome: Davide Giuliano <br />
+        P.IVA: 07070150821 <br />
         Sito Web: dgdesigner.site <br />
         Email di contatto: : info@dgdesigner.site
             </p>
